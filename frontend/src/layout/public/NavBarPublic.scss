@@ -1,0 +1,24 @@
+.navbar {
+  background-color: var(--color-navy);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+
+  &__logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  &__links {
+    display: flex;
+    gap: 16px;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
