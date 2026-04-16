@@ -1,0 +1,10 @@
+@mixin btn-pressed($color, $shadow-color) {
+  background-color: $color;
+  box-shadow: 0 6px 0 $shadow-color;
+  transition: transform 0.1s, box-shadow 0.1s;
+
+  &:hover {
+    transform: translateY(4px);
+    box-shadow: 0 2px 0 $shadow-color;
+  }
+}

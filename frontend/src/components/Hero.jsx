@@ -10,7 +10,8 @@ const Hero = () => {
           ¡Tu momento de apuntar al 10!
         </p>
         <p className="hero__slogan">
-          Tú decides el ritmo. Sin suscripciones, sin compromisos.
+          Clases + materiales + juegos de inglés y matemáticas. 
+          Sin suscripciones, sin compromisos.
         </p>
         <a href="/register" className="hero__cta">Empieza ahora</a>
       </div>

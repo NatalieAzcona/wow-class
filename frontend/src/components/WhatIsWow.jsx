@@ -1,3 +1,6 @@
+import './WhatIsWow.scss'
+
+
 const WhatIsWow = () => {
   return (
     <section className="what-is-wow">
@@ -21,7 +24,7 @@ const WhatIsWow = () => {
 
       <div className="what-is-wow__teacher what-is-wow__teacher--right">
         <div className="what-is-wow__teacher-bio">
-          <h3 className="what-is-wow__teacher-name">Profe Enrique</h3>
+          <h3 className="what-is-wow__teacher-name">Prof Enrique</h3>
           <p className="what-is-wow__teacher-text">
             Profesor de matemáticas con más de 30 años de experiencia.
             Explica desde lo más básico hasta lo más complejo con paciencia

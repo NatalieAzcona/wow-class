@@ -1,3 +1,6 @@
+@use '../styles/mixins' as *;
+
+
 .hero {
   background-color: var(--color-background);
   min-height: 80vh;
@@ -34,7 +37,6 @@
 
   &__cta {
     display: inline-block;
-    background-color: var(--color-orange);
     color: white;
     text-decoration: none;
     padding: 1rem 2rem;
@@ -42,5 +44,7 @@
     font-size: 1.1rem;
     font-weight: bold;
     width: fit-content;
+    @include btn-pressed(var(--color-orange), #c45e2e);
+
   }
 }
