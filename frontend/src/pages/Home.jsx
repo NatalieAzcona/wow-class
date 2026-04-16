@@ -1,7 +1,11 @@
+import Hero from "../components/Hero"
+import WhatIsWow from "../components/WhatIsWow"
+
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Hero/>
+      <WhatIsWow/>
     </div>
   )
 }
