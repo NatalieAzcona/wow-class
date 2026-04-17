@@ -3,6 +3,7 @@ import Home from "../pages/Home"
 import Register from "../pages/Register"
 import Login from "../pages/Login"
 import NavBarPublic from "../layout/public/NavBarPublic"
+import Footer from "../layout/public/Footer"
 
 
 const AppRouter = () => {
@@ -14,6 +15,7 @@ const AppRouter = () => {
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
       </Routes>
+      <Footer/>
     </>
   )
 }
