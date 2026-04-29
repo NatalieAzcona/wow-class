@@ -1,0 +1,81 @@
+@use '../styles/mixins' as *;
+
+.prices {
+  background-color: var(--color-background);
+  padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 4rem);
+  text-align: center;
+
+  &__title {
+    color: var(--color-navy);
+    font-size: clamp(1rem, 3vw, 1.8rem);
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    color: var(--color-navy);
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-bottom: 3rem;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  &__card {
+    background-color: white;
+    border: 2px solid var(--color-navy);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    min-width: 240px;
+    flex: 1;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__card-title {
+    color: var(--color-navy);
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    margin: 0;
+  }
+
+  &__card-info {
+    color: var(--color-navy);
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin: 0;
+  }
+
+  &__card-price {
+    color: var(--color-navy);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+
+    span {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+  }
+
+  &__card-btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 0.8rem 2rem;
+    @include btn-pressed(var(--color-orange), #c45e2e);
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  }
+}
