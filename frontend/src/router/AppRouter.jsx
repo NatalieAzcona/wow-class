@@ -4,6 +4,7 @@ import Register from "../pages/Register"
 import Login from "../pages/Login"
 import NavBarPublic from "../layout/public/NavBarPublic"
 import Footer from "../layout/public/Footer"
+import WhatsAppButton from "../components/WhatsAppButton"
 
 
 const AppRouter = () => {
@@ -16,6 +17,7 @@ const AppRouter = () => {
         <Route path="/login" element={<Login/>}></Route>
       </Routes>
       <Footer/>
+      <WhatsAppButton />
     </>
   )
 }
