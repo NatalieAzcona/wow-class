@@ -6,7 +6,7 @@ const userSchema = new Schema (
         name: {type: String, required: true, trim: true},
         email: {type: String, required: true, unique: true, lowercase: true, trim: true}, //unique para no dulplicar email
         password: {type: String, required: true, trim: true, minlength: [8, "8 caracteres mínimo"]},
-        role: {type: String, enum: ["alumno", "profesor", "admin"], default: "alumno"},
+        role: {type: String, enum: ["student", "teacher", "admin"], default: "student"},
         avatar: {type: String, trim: true},
         subject: {type: String, enum: ["inglés", "matemáticas"]},
         birthDate: {type: Date},
