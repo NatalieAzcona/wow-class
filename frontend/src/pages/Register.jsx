@@ -1,4 +1,5 @@
 import React from 'react'
+import './Auth.scss'
 import { useMutation } from '@tanstack/react-query'
 import {useForm} from "react-hook-form"
 import {useNavigate} from 'react-router-dom'
@@ -29,21 +30,24 @@ const submit = (formData) => {
 };
   
 return (
-  <form onSubmit={handleSubmit(submit)}> 
-    <div>
-      <label> Name: </label>
-      <input type='text' {...register("name")} />
-    </div>
-    <div>
-      <label> Email: </label>
-      <input type='email' {...register("email")} />
-    </div>
-    <div>
-      <label> Password: </label>
-      <input type='password' {...register("password")} />
-    </div>
-    <button type="submit">Enviar</button>
-  </form>
+  <div className="auth">
+    <form className="auth__form" onSubmit={handleSubmit(submit)}>
+      <h1 className="auth__title">Crear cuenta</h1>
+      <div className="auth__field">
+        <label className="auth__label">Nombre</label>
+        <input className="auth__input" type='text' {...register("name")} />
+      </div>
+      <div className="auth__field">
+        <label className="auth__label">Email</label>
+        <input className="auth__input" type='email' {...register("email")} />
+      </div>
+      <div className="auth__field">
+        <label className="auth__label">Contraseña</label>
+        <input className="auth__input" type='password' {...register("password")} />
+      </div>
+      <button className="auth__btn" type="submit">Registrarse</button>
+    </form>
+  </div>
 )
 }
 
