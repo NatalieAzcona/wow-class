@@ -1,12 +1,17 @@
 import React, { useContext } from 'react'
+import './Auth.scss'
 import { useMutation } from '@tanstack/react-query'
 import {useForm} from "react-hook-form"
 import { AuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
+import AdminDashboard from './dashboards/adminDashboard'
 
 
 const Login = () => {
 
-  const { login } = useContext(AuthContext)
+const { login } = useContext(AuthContext)
+
+const navigate = useNavigate()
 
 const mutation = useMutation({
     mutationFn: (formData) => 
@@ -19,6 +24,7 @@ const mutation = useMutation({
     onSuccess: (data) => {
      const {token, user} = data
       login(token, user)
+      navigate('/dashboard')
     }
   })
   
@@ -30,23 +36,32 @@ const submit = (formData) => {
 };
 
   return (
-      <form onSubmit={handleSubmit(submit)}> 
-        <div>
-          <label> Email: </label>
-          <input type='email' {...register("email")} />
+    <div className="auth">
+      <form className="auth__form" onSubmit={handleSubmit(submit)}>
+        <h1 className="auth__title">Iniciar sesión</h1>
+        <div className="auth__field">
+          <label className="auth__label">Email</label>
+          <input className="auth__input" type='email' {...register("email")} />
         </div>
-        <div>
-          <label> Password: </label>
-          <input type='password' {...register("password")} />
+        <div className="auth__field">
+          <label className="auth__label">Contraseña</label>
+          <input className="auth__input" type='password' {...register("password")} />
         </div>
-        <button type="submit">Enviar</button>
+        <button className="auth__btn" type="submit">Entrar</button>
       </form>
+    </div>
   )
 }
 
 export default Login
 /* {
+
+Alumno
   "name": "Test User",
   "email": "test@test.com",
   "password": "12345678"
 } */
+
+//admin admin@admin.com clave: Admin1234
+
+//professor professor@professor.com clave Professor1234

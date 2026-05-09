@@ -5,6 +5,8 @@ import Login from "../pages/Login"
 import NavBarPublic from "../layout/public/NavBarPublic"
 import Footer from "../layout/public/Footer"
 import WhatsAppButton from "../components/WhatsAppButton"
+import PrivateRoute from "./PrivateRoute"
+import Dashboard from "../pages/Dashboard"
 
 
 const AppRouter = () => {
@@ -15,6 +17,7 @@ const AppRouter = () => {
         <Route path="/" element={<Home/>}></Route>
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
       </Routes>
       <Footer/>
       <WhatsAppButton />
