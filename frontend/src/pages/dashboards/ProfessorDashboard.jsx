@@ -1,7 +1,16 @@
 import React from 'react'
+import ProfileCard from '../../components/ProfileCard'
+import Calendar from '../../components/Calendar'
+import Requests from '../../components/Requests'
 
 const ProfessorDashboard = () => {
-  return <div><h1>Panel del profesor</h1></div>
+  return (
+    <>
+      <ProfileCard/>
+      <Calendar/>
+      <Requests/>
+    </>
+  )
 }
 
 
