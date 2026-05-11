@@ -7,12 +7,19 @@ import Footer from "../layout/public/Footer"
 import WhatsAppButton from "../components/WhatsAppButton"
 import PrivateRoute from "./PrivateRoute"
 import Dashboard from "../pages/Dashboard"
+import { useContext } from "react"
+import { AuthContext } from "../context/AuthContext"
+import NavBarPrivate from "../layout/private/NavBarPrivate"
 
 
 const AppRouter = () => {
+
+const { token } = useContext(AuthContext)
+
+
   return (
     <>
-      <NavBarPublic />
+      { token ? <NavBarPrivate/> : <NavBarPublic />}
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/register" element={<Register/>}></Route>
