@@ -1,0 +1,22 @@
+.avatar-menu {
+  position: relative;
+
+  &__btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--color-orange);
+    border: 2px solid white;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    z-index: 100;
+  }
+}

@@ -1,19 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavLink } from "react-router-dom"
 import "./NavBarPrivate.scss"
-import { AuthContext } from '../../context/AuthContext'
+import AvatarMenu from '../../components/AvatarMenu'
 
 const NavBarPrivate = () => {
-
-const { user } = useContext(AuthContext)
-const initial = user.name?.charAt(0).toUpperCase()
-
 
     return (
         <nav className="navbar">
           <NavLink to="/" className="navbar__logo">WöW</NavLink>
           <div className="navbar__links">
-            <button className='navbar__avatar'>{user.avatar ? <img src={user.avatar} /> : initial} </button>
+            <AvatarMenu/>
           </div>
         </nav>
       )

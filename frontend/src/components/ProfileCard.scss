@@ -1,72 +1,58 @@
-@use '../styles/mixins' as *;
-
 .profile-card {
   background-color: white;
-  border: 2px solid var(--color-navy);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  padding: 1.2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  max-width: 320px;
+  gap: 0.5rem;
+  min-width: 220px;
 
   &__avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: var(--color-navy);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: white;
+    display: none;
   }
 
   &__name {
     color: var(--color-navy);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
     margin: 0;
   }
 
   &__email {
     color: var(--color-navy);
-    font-size: 0.9rem;
-    opacity: 0.7;
+    font-size: 0.85rem;
+    opacity: 0.6;
     margin: 0;
   }
 
   &__role {
-    background-color: var(--color-honey);
     color: var(--color-navy);
     font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.3rem 1rem;
-    border-radius: 20px;
+    opacity: 0.5;
+    margin: 0;
   }
 
   &__actions {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
-    width: 100%;
+    border-top: 1px solid #eee;
     margin-top: 0.5rem;
+    padding-top: 0.5rem;
   }
 
   &__btn {
+    background: none;
     border: none;
     cursor: pointer;
-    border-radius: 12px;
-    padding: 0.7rem 1.5rem;
+    text-align: left;
+    padding: 0.5rem 0;
     font-size: 0.9rem;
-    font-weight: 700;
-    color: white;
-    @include btn-pressed(var(--color-orange), #c45e2e);
+    color: var(--color-navy);
+    font-weight: 600;
 
-    &--secondary {
-      @include btn-pressed(var(--color-navy), #1e3f70);
+    &:hover {
+      color: var(--color-orange);
     }
   }
 }
