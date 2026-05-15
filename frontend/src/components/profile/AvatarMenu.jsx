@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import ProfileCard from './ProfileCard'
-import { AuthContext } from '../context/AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import './AvatarMenu.scss'
 
 

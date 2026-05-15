@@ -1,6 +1,6 @@
 import React from 'react'
-import Calendar from '../../components/CalendarClass'
-import Requests from '../../components/Requests'
+import Calendar from '../../components/calendar/CalendarClass'
+import Requests from '../../components/shared/Requests'
 
 const ProfessorDashboard = () => {
   return (

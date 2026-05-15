@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
 import "./NavBarPrivate.scss"
-import AvatarMenu from '../../components/AvatarMenu'
+import AvatarMenu from '../../components/profile/AvatarMenu'
 
 const NavBarPrivate = () => {
 

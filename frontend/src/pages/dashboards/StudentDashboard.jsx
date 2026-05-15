@@ -1,12 +1,13 @@
 import React from 'react'
-import SubjectCard from '../../components/SubjectCard'
-import Calendar from '../../components/CalendarClass'
+import SubjectCard from '../../components/subjects/SubjectCard'
+import Calendar from '../../components/calendar/CalendarClass'
 
 const StudentDashboard = () => {
   return (
   <>
-    <SubjectCard/>
     <Calendar/>
+    <SubjectCard subject="english" path="/english" />
+    <SubjectCard subject="math" path="/math" />
   </>
   )
 }

@@ -1,0 +1,31 @@
+.subject-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--color-navy);
+  max-width: 280px;
+  cursor: pointer;
+  text-decoration: none;
+
+  &__image {
+    height: 160px;
+    background-color: #ccc;
+    background-size: cover;
+    background-position: center;
+  }
+
+  h3 {
+    color: var(--color-navy);
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 1rem;
+    margin: 0;
+  }
+
+  &--english &__image {
+    background-color: var(--color-orange);
+  }
+
+  &--math &__image {
+    background-color: var(--color-turquoise);
+  }
+}
