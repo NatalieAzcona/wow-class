@@ -26,12 +26,12 @@ const isAdmin = (req, res, next) => {
  }
  
 
-const isTeacher = (req, res, next) => { 
-   if (req.user.role !== 'teacher') {       
-      return res.status(403).json({message: "solo un profesor puede hacer esto"})
+const isTeacherOrAdmin = (req, res, next) => { 
+   if (req.user.role !== 'teacher' && req.user.role !== 'admin') {       
+      return res.status(403).json({message: "solo un profesor o admin puede hacer esto"})
    }
     next()
 }
 
 
-module.exports = {isTeacher, isAdmin, isAuth};
+module.exports = {isAdmin, isTeacherOrAdmin, isAuth};
