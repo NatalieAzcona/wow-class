@@ -10,7 +10,9 @@ const userSchema = new Schema (
         avatar: {type: String, trim: true},
         subject: {type: String, enum: ["inglés", "matemáticas"]},
         birthDate: {type: Date},
-        parentsConsent: {type: Boolean, default: false}
+        parentsConsent: {type: Boolean, default: false},
+        googleAccessToken: {type: String},
+        googleRefreshToken: {type: String}
 
     },
     {

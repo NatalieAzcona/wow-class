@@ -13,6 +13,22 @@ const postRegister = async (req, res, next) => {
             return  res.status(400).json({message: "Faltan datos por rellenar" })
         }
 
+        if (typeof name !== 'string') {
+            return res.status(400).json({message: "El usuario debe ser una cadena de texto"})
+        }
+
+        if (typeof password !== 'string') {
+            return res.status(400).json({message: "La contraseña debe ser texto"})
+        }
+
+        if(password.length < 6) {
+            return res.status(400).json({message: "La contraseña debe tener al menos 6 caracteres"})
+        }
+
+        if (await User.findOne({email})) {
+            return res.status(400).json({message: "Este email ya está registrado en la base de datos"})
+        }
+
         const newUser = new User({
             name,
             email,
@@ -20,9 +36,8 @@ const postRegister = async (req, res, next) => {
         })
 
         const savedUser = await newUser.save();
-        return res.status(201).json(savedUser);
+        return res.status(201).json(savedUser)
     } catch (error) {
-        console.log(error)
         return res.status(500).json({
             message: "Error al crear usuario"
         })

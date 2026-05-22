@@ -1,5 +1,5 @@
-import React from 'react'
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
+import React, { useState } from 'react'
+import { Calendar, dateFnsLocalizer, Views } from 'react-big-calendar'
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
@@ -7,46 +7,48 @@ import getDay from 'date-fns/getDay'
 import es from 'date-fns/locale/es'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
+const locales = { es }
 
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek: () => startOfWeek(new Date(), { locale: es }),
+  getDay,
+  locales,
+})
 
-const CalendarClass = (props) => {
+const CalendarClass = () => {
+  const [events, setEvents] = useState([])
+  const [view, setView] = useState(Views.WEEK)
 
-  const locales = {
-    'es': es,
+  const handleSelectSlot = ({ start, end }) => {
+    setEvents([...events, { start, end, title: 'Disponible' }])
   }
-  
-  const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
-  })
 
   return (
-    <div>
-    <Calendar
-      culture='es'
-      localizer={localizer}
-      events={[]}
-      startAccessor="start"
-      endAccessor="end"
-      style={{ height: 500 }}
-    
-      messages={{
-        today: 'Hoy',
-        previous: '<',
-        next: '>',
-        month: 'Mes',
-        week: 'Semana',
-        day: 'Día',
-        agenda: 'Agenda',
-      }}
-    />
-  </div>
+    <div style={{ height: 600 }}>
+      <Calendar
+        culture='es'
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        view={view}
+        onView={setView}
+        selectable
+        onSelectSlot={handleSelectSlot}
+        messages={{
+          today: 'Hoy',
+          previous: '<',
+          next: '>',
+          month: 'Mes',
+          week: 'Semana',
+          day: 'Día',
+          agenda: 'Agenda',
+        }}
+      />
+    </div>
   )
 }
 
 export default CalendarClass
-
-
