@@ -36,7 +36,11 @@ const postRegister = async (req, res, next) => {
         })
 
         const savedUser = await newUser.save();
-        return res.status(201).json(savedUser)
+
+        const userWithoutPassword = savedUser.toObject();   // paso a objeto porque Mongo devuelve docu, para poder eliminar la passw
+        delete userWithoutPassword.password;
+
+        return res.status(201).json(userWithoutPassword)
     } catch (error) {
         return res.status(500).json({
             message: "Error al crear usuario"
