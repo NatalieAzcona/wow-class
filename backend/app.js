@@ -9,10 +9,12 @@ app.use(express.json());
 
 //Rutas
 const authRouter = require("./routes/auth")
-const availabilityRouter = require("./routes/availability")
+const availabilityRouter = require("./routes/availability");
+const reservationRouter = require('./routes/reservation');
 
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/availability", availabilityRouter)
+app.use("/api/v1/reservation", reservationRouter)
 
 
 module.exports = app
