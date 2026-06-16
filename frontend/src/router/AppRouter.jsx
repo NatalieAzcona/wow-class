@@ -11,7 +11,6 @@ import { useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
 import NavBarPrivate from "../layout/private/NavBarPrivate"
 
-
 const AppRouter = () => {
 
 const { token } = useContext(AuthContext)

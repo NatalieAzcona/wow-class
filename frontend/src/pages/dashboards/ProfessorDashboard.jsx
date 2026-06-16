@@ -1,11 +1,11 @@
 import React from 'react'
-import Calendar from '../../components/calendar/CalendarClass'
 import Requests from '../../components/shared/Requests'
+import CalendarProfessor from '../../components/calendar/CalendarProfessor'
 
 const ProfessorDashboard = () => {
   return (
     <>
-      <Calendar/>
+      <CalendarProfessor/>
       <Requests/>
     </>
   )

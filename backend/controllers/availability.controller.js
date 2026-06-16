@@ -28,9 +28,14 @@ const createAvailability = async (req, res, next) => {
 
 const getAvailability = async (req, res ) => {
     try {
-        const daysAvailable = await Availability.find({ teacher: req.user._id })
-
-        return res.status(200).json(daysAvailable);
+        if (req.user.role === 'teacher') {
+            const daysAvailable = await Availability.find({ teacher: req.user._id })
+            return res.status(200).json(daysAvailable);
+          } else {
+            const daysAvailable = await Availability.find({})
+            return res.status(200).json(daysAvailable);
+          }
+          
     } catch (error) {
         return res.status(500).json({ message: "error al obtener días disponibles"});
     }

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import StudentDashboard from './dashboards/StudentDashboard'
 import AdminDashboard from './dashboards/AdminDashboard'
-import ProfessorDashboard from './dashboards/TeacherDashboard'
+import ProfessorDashboard from './dashboards/ProfessorDashboard'
 import { AuthContext } from '../context/AuthContext'
 
 

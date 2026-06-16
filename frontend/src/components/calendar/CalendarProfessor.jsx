@@ -1,30 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Calendar, dateFnsLocalizer, Views } from 'react-big-calendar'
-import format from 'date-fns/format'
-import parse from 'date-fns/parse'
-import startOfWeek from 'date-fns/startOfWeek'
-import getDay from 'date-fns/getDay'
-import es from 'date-fns/locale/es'
-import 'react-big-calendar/lib/css/react-big-calendar.css'
+import CalendarView from './CalendarView'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../context/AuthContext'
 import AvailabilityModal from './AvailabilityModal'
-import './calendar.scss'
 import DeleteEventModal from './DeleteEventModal'
 
 
-const locales = { es }
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek: () => startOfWeek(new Date(), { locale: es }),
-  getDay,
-  locales,
-})
-
-const CalendarClass = () => {
+const CalendarProfessor = () => {
   const [events, setEvents] = useState([])
-  const [view, setView] = useState(Views.WEEK)
   const {user} = useContext(AuthContext)
   const [selectedSlot, setSelectedSlot] = useState(null)
   const [selectedEvent, setSelectedEvent ] = useState(null)
@@ -38,7 +21,7 @@ const CalendarClass = () => {
       });
 
   useEffect(() => {
-    if (data) {
+    if (Array.isArray(data)) {
       setEvents(data.map((availability) => ({
         id: availability._id,
         start: new Date(availability.startTime),
@@ -89,31 +72,7 @@ const CalendarClass = () => {
 
   return (
     <div style={{ height: 600, cursor: 'pointer' }}>
-      <Calendar
-        culture='es'
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        view={view}
-        onView={setView}
-        selectable
-        onSelectSlot={handleSelectSlot}
-        onSelectEvent={setSelectedEvent}
-        step={60}
-        timeslots={1}
-        min={new Date(0, 0, 0, 7, 0)}
-        max={new Date(0, 0, 0, 22, 0)}
-        messages={{
-          today: 'Hoy',
-          previous: '<',
-          next: '>',
-          month: 'Mes',
-          week: 'Semana',
-          day: 'Día',
-          agenda: 'Agenda',
-        }}
-      />
+      <CalendarView events={events} onSelectSlot={handleSelectSlot} onSelectEvent={setSelectedEvent} />
       {selectedSlot && <AvailabilityModal 
         dateData={selectedSlot}
         onConfirm={() => {
@@ -132,4 +91,4 @@ const CalendarClass = () => {
 }
 
 
-export default CalendarClass
+export default CalendarProfessor
