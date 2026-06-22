@@ -10,6 +10,7 @@ import Dashboard from "../pages/Dashboard"
 import { useContext } from "react"
 import { AuthContext } from "../context/AuthContext"
 import NavBarPrivate from "../layout/private/NavBarPrivate"
+import SubjectPage from "../components/subjects/SubjectPage"
 
 const AppRouter = () => {
 
@@ -24,6 +25,7 @@ const { token } = useContext(AuthContext)
         <Route path="/register" element={<Register/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}></Route>
+        <Route path="/subject/:subject" element={<PrivateRoute><SubjectPage/></PrivateRoute>}></Route>
       </Routes>
       <Footer/>
       <WhatsAppButton />

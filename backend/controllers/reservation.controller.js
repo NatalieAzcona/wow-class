@@ -91,14 +91,24 @@ const updateReservation = async (req, res) => {
                 from: process.env.GMAIL_USER,
                 to: student.email,
                 subject: "Tu clase está confirmada",
-                html: ` 
-                    <h2>¡Tu clase de ${slot.subject} con ${teacher.name} está confirmada! </h2>
-                    <p>Ya puedes acceder a tu clase en el siguiente enlace:</p>
-                    <a href="${meetLink}" style="background:#2E5FA3;color:white;padding:12px 24px;border-radius:8px;text-decoration:none;">
-                        Unirse a la clase
-                    </a>
-                    <p>¡Hasta pronto!</p>
-                    `
+                html: `
+                    <div style="font-family:sans-serif;max-width:560px;margin:0 auto;background:#F7F9FC;border-radius:16px;overflow:hidden;">
+                        <div style="background:#2E5FA3;padding:32px;text-align:center;">
+                            <h1 style="color:white;margin:0;font-size:28px;letter-spacing:1px;">WöW Class</h1>
+                        </div>
+                        <div style="padding:32px;">
+                            <h2 style="color:#2E5FA3;margin-top:0;">¡Clase confirmada!</h2>
+                            <p style="color:#444;font-size:16px;">Tu clase de <strong>${slot.subject}</strong> con <strong>${teacher.name}</strong> se ha añadido al calendario</p>
+                            <p style="color:#444;font-size:16px;"> ${new Date(slot.startTime).toLocaleString('es-ES', { dateStyle: 'full', timeStyle: 'short' })}</p>
+                            <div style="text-align:center;margin:32px 0;">
+                                <a href="${meetLink}" style="background:#FF8C61;color:white;padding:14px 32px;border-radius:12px;text-decoration:none;font-size:16px;font-weight:bold;">
+                                    Unirse a la clase
+                                </a>
+                            </div>
+                            <p style="color:#888;font-size:14px;text-align:center;">¡Hasta pronto! El equipo de WöW Class 🎉</p>
+                        </div>
+                    </div>
+                `
             })
             
 

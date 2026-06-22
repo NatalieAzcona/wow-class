@@ -3,7 +3,7 @@ import CalendarView from './CalendarView'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import ReservationModal from './ReservationModal'
 
-const CalendarStudent = () => {
+const CalendarStudent = ({subject}) => {
 
 const [events, setEvents] = useState([])
 const [selectedEvent, setSelectedEvent ] = useState(null)
@@ -18,7 +18,7 @@ const [selectedEvent, setSelectedEvent ] = useState(null)
 
   useEffect(() => {
     if (Array.isArray(data)) {
-      setEvents(data.map((availability) => ({
+      setEvents(data.filter(slot => slot.subject === subject).map((availability) => ({
         id: availability._id,
         start: new Date(availability.startTime),
         end: new Date(availability.endTime),
