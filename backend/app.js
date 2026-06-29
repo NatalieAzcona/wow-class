@@ -12,11 +12,13 @@ const authRouter = require("./routes/auth")
 const availabilityRouter = require("./routes/availability");
 const reservationRouter = require('./routes/reservation');
 const moduleRouter = require('./routes/module')
+const quizRouter = require('./routes/quiz')
 
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/availability", availabilityRouter)
 app.use("/api/v1/reservation", reservationRouter)
 app.use("/api/v1/module", moduleRouter)
+app.use("/api/v1/quiz", quizRouter)
 
 
 module.exports = app
