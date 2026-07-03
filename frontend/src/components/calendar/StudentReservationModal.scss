@@ -1,0 +1,100 @@
+@use '../../styles/mixins' as *;
+
+.student-modal {
+  @include modal-base(340px);
+
+  &__header { @include modal-header; }
+  &__body { @include modal-body(0.6rem); }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  &__key {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    min-width: 72px;
+  }
+
+  &__mode {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+
+    &--online {
+      background: #dff5ec;
+      color: #1a8a5a;
+    }
+
+    &--presencial {
+      background: #fff0e6;
+      color: #c95b18;
+    }
+  }
+
+  &__date {
+    font-size: 0.85rem;
+    color: #444;
+    font-weight: 600;
+  }
+
+  &__note {
+    font-size: 0.83rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &__footer {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__meet {
+    @include confirm-btn;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.7rem;
+  }
+
+  &__whatsapp {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: #25d366;
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    padding: 0.7rem;
+    box-shadow: 0 4px 0 #1aaa52;
+    transition: transform 0.1s, box-shadow 0.1s;
+
+    &:hover {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #1aaa52;
+    }
+  }
+
+  &__cancel {
+    @include btn-pressed(#fff0f3, #f5c6cb);
+    color: #c0392b;
+    width: 100%;
+    display: block;
+  }
+
+  &__close {
+    @include btn-pressed(var(--color-navy-50), var(--color-navy-200));
+    color: var(--color-navy);
+    width: 100%;
+    display: block;
+  }
+}
