@@ -39,7 +39,7 @@ const googleCallback = async (req, res) => {
             googleRefreshToken: refresh_token
         })
 
-        res.json({message: 'Conectado', tokens})
+        res.redirect('http://localhost:5173/dashboard?google=connected')
 
     } catch (error) {
         res.status(500).json({message: 'Error al conectar'})
@@ -47,6 +47,18 @@ const googleCallback = async (req, res) => {
 
 }
 
-module.exports = {googleAuth, googleCallback}
+const disconnectGoogle = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      googleAccessToken: null,
+      googleRefreshToken: null
+    })
+    res.status(200).json({ message: 'Google desconectado' })
+  } catch (error) {
+    res.status(500).json({ message: 'Error al desconectar' })
+  }
+}
+
+module.exports = { googleAuth, googleCallback, disconnectGoogle }
 
 

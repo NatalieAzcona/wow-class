@@ -1,0 +1,74 @@
+@use '../../styles/mixins' as *;
+
+.professor-dashboard {
+  @include dashboard-page;
+
+  &__google-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff8e6;
+    border: 2px solid #f5c842;
+    border-radius: 14px;
+    padding: 0.9rem 1.2rem;
+    gap: 1rem;
+
+    span {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #7a5c00;
+    }
+  }
+
+  &__google-btn {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: white;
+    background: var(--color-navy);
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover { background: var(--color-navy-dark); }
+  }
+
+  &__google-connected {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #eafaf5;
+    border: 2px solid #3ecf8e;
+    border-radius: 14px;
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1a7a50;
+
+    span::before { content: '✓ '; }
+  }
+
+  &__google-change {
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1a7a50;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover { color: #0f5235; }
+  }
+
+  &__title { @include section-title; }
+
+  &__calendar {
+    width: 100%;
+    max-width: 860px;
+    align-self: center;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+}
