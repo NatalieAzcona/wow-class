@@ -1,0 +1,65 @@
+@use '../../styles/mixins' as *;
+
+.mode-modal {
+  @include modal-base(380px);
+
+  &__header { @include modal-header; }
+  &__body { @include modal-body; }
+
+  &__date {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #555;
+    margin: 0;
+  }
+
+  &__question {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--color-navy);
+    margin: 0;
+  }
+
+  &__options {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  &__option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 1rem 0.8rem;
+    border-radius: 14px;
+    border: 2px solid var(--color-navy-100);
+    background: white;
+    cursor: pointer;
+    transition: all 0.15s;
+
+    &:hover {
+      border-color: var(--color-navy);
+      background: var(--color-navy-50);
+    }
+
+    &--online:hover { border-color: var(--color-turquoise); }
+    &--presencial:hover { border-color: var(--color-orange); }
+
+    &-icon { font-size: 1.8rem; }
+
+    &-label {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--color-navy);
+    }
+
+    &-note {
+      font-size: 0.7rem;
+      color: var(--color-text-subtle);
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+
+}

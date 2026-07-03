@@ -1,0 +1,81 @@
+@use '../../styles/mixins' as *;
+
+.available-slot-modal {
+  @include modal-base(400px);
+
+  &__header { @include modal-header; }
+  &__body { @include modal-body; }
+
+  &__day {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--color-navy);
+    margin: 0;
+  }
+
+  &__range {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__option {
+    @include modal-option;
+
+    &--delete:hover {
+      border-color: var(--color-coral);
+      background: #fff0f5;
+    }
+  }
+
+  &__icon { font-size: 1.4rem; }
+
+  &__label {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--color-navy);
+  }
+
+  &__desc {
+    font-size: 0.8rem;
+    color: var(--color-text-subtle);
+    font-weight: 600;
+  }
+
+  &__schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__label-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  &__select { @include form-select; }
+
+  &__mode { display: flex; gap: 0.6rem; }
+
+  &__mode-btn { @include mode-btn; }
+
+  &__confirm { @include confirm-btn; }
+
+  &__back {
+    @include ghost-btn;
+    font-size: 0.85rem;
+    align-self: center;
+  }
+
+}

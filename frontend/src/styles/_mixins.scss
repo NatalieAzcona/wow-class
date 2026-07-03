@@ -3,11 +3,18 @@
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
-  font-family: 'Press Start 2P', cursive;
+  font-family: 'Nunito', sans-serif;
 }
 
 @mixin btn-pressed($color, $shadow-color) {
   background-color: $color;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.8rem;
+  cursor: pointer;
   box-shadow: 0 6px 0 $shadow-color;
   transition: transform 0.1s, box-shadow 0.1s;
 
@@ -15,4 +22,169 @@
     transform: translateY(4px);
     box-shadow: 0 2px 0 $shadow-color;
   }
+
+  &:active {
+    transform: translateY(6px);
+    box-shadow: none;
+  }
+}
+
+// --- Modal ---
+
+@mixin modal-base($width: 400px) {
+  border: none;
+  border-radius: 20px;
+  padding: 0;
+  width: $width;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@mixin modal-header {
+  background: var(--color-navy);
+  padding: 1.2rem 1.5rem;
+  border-radius: 20px 20px 0 0;
+  color: white;
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0;
+    line-height: 1;
+
+    &:hover { opacity: 1; }
+  }
+}
+
+@mixin modal-body($gap: 1rem) {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin modal-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  border: 2px solid var(--color-navy-100);
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.15s;
+
+  &:hover {
+    border-color: var(--color-navy);
+    background: var(--color-navy-50);
+  }
+}
+
+// --- Form elements ---
+
+@mixin form-select {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  border: 2px solid var(--color-navy-100);
+  border-radius: 10px;
+  padding: 0.5rem 0.7rem;
+  outline: none;
+  background: white;
+  cursor: pointer;
+
+  &:focus {
+    border-color: var(--color-navy);
+  }
+}
+
+@mixin mode-btn {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  background: white;
+  border: 2px solid var(--color-navy-100);
+  border-radius: 10px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  &:hover {
+    border-color: var(--color-navy);
+    background: var(--color-navy-50);
+  }
+
+  &--active {
+    background: var(--color-navy);
+    color: white;
+    border-color: var(--color-navy);
+  }
+}
+
+@mixin confirm-btn {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: white;
+  background: var(--color-turquoise);
+  border: none;
+  border-radius: 12px;
+  padding: 0.7rem;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:hover:not(:disabled) {
+    background: var(--color-turquoise-dark);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+@mixin ghost-btn {
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-subtle);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-navy);
+  }
+}
+
+// --- Page layout ---
+
+@mixin dashboard-page {
+  background-color: var(--color-navy-50);
+  min-height: 100%;
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@mixin section-title {
+  background: white;
+  border-radius: 16px;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-align: center;
 }
