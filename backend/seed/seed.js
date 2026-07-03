@@ -24,6 +24,8 @@ const seed = async () => {
         return { title, subject, level }
     })
 
+    await Module.deleteMany({})
+    console.log("Módulos anteriores eliminados")
     await Module.insertMany([...modules, ...modulesMates])
     console.log("Módulos insertados")
 

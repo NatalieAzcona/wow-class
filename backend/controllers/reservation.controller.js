@@ -35,7 +35,9 @@ const createReservation = async (req, res) => {
 const getReservation = async (req, res) => {
     try {
         const {id, role} = req.user
-        const roleVerification = role === "teacher" ? await Reservation.find({teacher: id}) : await Reservation.find({student: id})
+        const roleVerification = role === "teacher"
+            ? await Reservation.find({teacher: id}).populate('student', 'name email')
+            : await Reservation.find({student: id}).populate('teacher', 'name')
 
         return res.status(200).json(roleVerification);
 
