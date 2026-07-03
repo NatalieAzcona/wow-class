@@ -1,0 +1,33 @@
+@use '../../styles/mixins' as *;
+
+.subject-page {
+  min-height: 100%;
+  background-color: var(--color-navy-50);
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      background-color: white;
+      width: 100%;
+      text-align: center;
+      padding: 1rem 2rem;
+      border-radius: 16px;
+      margin: 0 0 1rem 0;
+    }
+  }
+
+  &__info {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin: 1.2rem 0 0;
+    line-height: 1.5;
+    text-align: center;
+  }
+}
