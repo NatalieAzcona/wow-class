@@ -1,0 +1,140 @@
+@use '../../styles/mixins' as *;
+
+.slot-action-modal {
+  @include modal-base(400px);
+
+  &__header { @include modal-header; }
+  &__body { @include modal-body; }
+
+  &__date {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__option {
+    @include modal-option;
+
+    &--meeting:hover {
+      border-color: var(--color-orange);
+      background: #fff5f0;
+    }
+
+    &--delete:hover {
+      border-color: var(--color-coral);
+      background: #fff0f5;
+    }
+  }
+
+  &__day {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--color-navy);
+    margin: 0;
+  }
+
+  &__range {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  &__option-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__time-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  &__time-input {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy-200);
+    border-radius: 8px;
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    flex: 1;
+    min-width: 90px;
+
+    &:focus { border-color: var(--color-navy); }
+  }
+
+  &__time-sep {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-text-subtle);
+  }
+
+  &__time-confirm {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: white;
+    background: var(--color-navy);
+    border: none;
+    border-radius: 8px;
+    padding: 0.35rem 0.8rem;
+    cursor: pointer;
+
+    &:hover { background: var(--color-navy-dark); }
+  }
+
+  &__icon { font-size: 1.4rem; }
+
+  &__label {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--color-navy);
+  }
+
+  &__desc {
+    font-size: 0.8rem;
+    color: var(--color-text-subtle);
+    font-weight: 600;
+  }
+
+  &__schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  &__label-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  &__select { @include form-select; }
+
+  &__mode { display: flex; gap: 0.6rem; }
+
+  &__mode-btn { @include mode-btn; }
+
+  &__confirm { @include confirm-btn; }
+
+  &__back {
+    @include ghost-btn;
+    font-size: 0.85rem;
+    align-self: center;
+  }
+
+}
