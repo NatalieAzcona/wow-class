@@ -91,10 +91,4 @@
     display: block;
   }
 
-  &__close {
-    @include btn-pressed(var(--color-navy-50), var(--color-navy-200));
-    color: var(--color-navy);
-    width: 100%;
-    display: block;
-  }
 }

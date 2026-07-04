@@ -17,6 +17,7 @@ const StudentReservationModal = ({ slot, reservation, onClose, onCancel }) => {
     <dialog ref={dialogRef} className="student-modal" onClose={onClose}>
       <div className="student-modal__header">
         <span>{isPending ? 'Solicitud pendiente' : 'Clase confirmada'}</span>
+        <button onClick={onClose}>✕</button>
       </div>
       <div className="student-modal__body">
         <div className="student-modal__row">
@@ -52,7 +53,6 @@ const StudentReservationModal = ({ slot, reservation, onClose, onCancel }) => {
         <button className="student-modal__cancel" onClick={() => onCancel(reservation._id)}>
           {isPending ? 'Cancelar solicitud' : 'Cancelar clase'}
         </button>
-        <button className="student-modal__close" onClick={onClose}>Cerrar</button>
       </div>
     </dialog>
   )
