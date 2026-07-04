@@ -22,6 +22,7 @@ const ReservedEventModal = ({ event, onClose, onCancel, isPending, onApprove, on
     <dialog ref={dialogRef} className="reserved-modal" onClose={onClose}>
       <div className="reserved-modal__header">
         <span>{isPending ? 'Solicitud pendiente' : 'Clase reservada'}</span>
+        <button onClick={onClose}>✕</button>
       </div>
       <div className="reserved-modal__body">
         <div className="reserved-modal__row">
@@ -92,7 +93,6 @@ const ReservedEventModal = ({ event, onClose, onCancel, isPending, onApprove, on
             <button className="reserved-modal__cancel" onClick={() => onCancel(reservation._id)}>
               Cancelar cita
             </button>
-            <button className="reserved-modal__close" onClick={onClose}>Cerrar</button>
           </>
         )}
       </div>
