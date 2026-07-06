@@ -1,0 +1,23 @@
+@use '../../styles/mixins' as *;
+
+.modules-page {
+  @include dashboard-page;
+
+  h2 { @include section-title; }
+
+  &__cards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+  }
+
+  &__soon {
+    text-align: center;
+    color: #888;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+}
