@@ -41,6 +41,38 @@
     padding-top: 0.5rem;
   }
 
+  &__address {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+  }
+
+  &__edit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.4rem 0;
+  }
+
+  &__input {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+    font-family: 'Nunito', sans-serif;
+    color: var(--color-navy);
+    outline: none;
+
+    &:focus {
+      border-color: var(--color-navy);
+    }
+  }
+
+  &__edit-actions {
+    display: flex;
+    gap: 0.3rem;
+  }
+
   &__btn {
     background: none;
     border: none;
@@ -53,6 +85,14 @@
 
     &:hover {
       color: var(--color-orange);
+    }
+
+    &--logout {
+      color: var(--color-coral);
+
+      &:hover {
+        color: var(--color-coral-dark);
+      }
     }
   }
 }
