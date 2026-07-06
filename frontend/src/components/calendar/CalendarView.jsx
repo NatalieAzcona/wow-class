@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Calendar, dateFnsLocalizer, Views } from 'react-big-calendar'
+import React from 'react'
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
@@ -19,10 +19,17 @@ const localizer = dateFnsLocalizer({
 })
 
 
-const CalendarView = ({events, onSelectEvent, onSelectSlot}) => {
-    const [view, setView] = useState(Views.WEEK)
-    
+const EventBlock = ({ event }) => {
+  const parts = event.title.split(' · ')
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', lineHeight: 1.3, width: '100%' }}>
+      <span style={{ fontWeight: 800 }}>{parts[0]}</span>
+      {parts[1] && <span style={{ fontSize: '0.75em', opacity: 0.75 }}>{parts[1]}</span>}
+    </div>
+  )
+}
 
+const CalendarView = ({ events, onSelectEvent, onSelectSlot, eventPropGetter, view, onView, date, onNavigate }) => {
   return (
     <div style={{ height: 600, cursor: 'pointer' }}>
       <Calendar
@@ -32,10 +39,14 @@ const CalendarView = ({events, onSelectEvent, onSelectSlot}) => {
         startAccessor="start"
         endAccessor="end"
         view={view}
-        onView={setView}
+        onView={onView}
+        date={date}
+        onNavigate={onNavigate}
         selectable={!!onSelectSlot}
         onSelectSlot={onSelectSlot}
         onSelectEvent={onSelectEvent}
+        eventPropGetter={eventPropGetter}
+        components={{ event: EventBlock }}
         step={60}
         timeslots={1}
         min={new Date(0, 0, 0, 7, 0)}
@@ -48,6 +59,10 @@ const CalendarView = ({events, onSelectEvent, onSelectSlot}) => {
           week: 'Semana',
           day: 'Día',
           agenda: 'Agenda',
+          date: 'Fecha',
+          time: 'Hora',
+          event: 'Evento',
+          noEventsInRange: 'Sin eventos',
         }}
       />
     </div>

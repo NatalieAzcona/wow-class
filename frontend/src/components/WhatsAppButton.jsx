@@ -8,6 +8,7 @@ const WhatsAppButton = () => {
       statusMessage="Normalmente respondemos en pocas horas"
       chatMessage="¡Hola! ¿En qué podemos ayudarte?"
       placeholder="Escríbenos tus dudas aquí..."
+      notification={false}
     />
   )
 }

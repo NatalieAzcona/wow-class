@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { Views } from 'react-big-calendar'
-import CalendarView from './CalendarView'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { AuthContext } from '../../context/AuthContext'
-import DeleteEventModal from './DeleteEventModal'
-import ReservedEventModal from './ReservedEventModal'
-import SlotActionModal from './SlotActionModal'
+import CalendarView from './CalendarView'
+import CalendarLegend from './CalendarLegend'
+import CalendarModals from './CalendarModals'
 
 const CalendarProfessor = () => {
   const { user } = useContext(AuthContext)
@@ -78,10 +77,7 @@ const CalendarProfessor = () => {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json()),
-    onSuccess: () => {
-      queryClient.invalidateQueries(['availability'])
-      setSelectedEvent(null)
-    }
+    onSuccess: () => { queryClient.invalidateQueries(['availability']); setSelectedEvent(null) }
   })
 
   const actionMutation = useMutation({
@@ -91,10 +87,7 @@ const CalendarProfessor = () => {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ status })
       }).then(res => res.json()),
-    onSuccess: () => {
-      queryClient.invalidateQueries(['reservations'])
-      setSelectedEvent(null)
-    }
+    onSuccess: () => { queryClient.invalidateQueries(['reservations']); setSelectedEvent(null) }
   })
 
   const cancelReservationMutation = useMutation({
@@ -140,17 +133,31 @@ const CalendarProfessor = () => {
     })
   }
 
-  const handleSelectSlot = ({ start, end }) => {
-    setSelectedTimeSlot({ start, end })
+  const handleScheduleMeeting = async ({ start, end, studentId, mode }) => {
+    const slotRes = await fetch('http://localhost:3000/api/v1/availability', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
+      body: JSON.stringify({ startTime: start, endTime: end, subject: user.subject })
+    })
+    const slot = await slotRes.json()
+    await fetch('http://localhost:3000/api/v1/reservation', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
+      body: JSON.stringify({ availability: slot._id, student: studentId, mode })
+    })
+    queryClient.invalidateQueries(['availability'])
+    queryClient.invalidateQueries(['reservations'])
+    setSelectedTimeSlot(null)
   }
 
   const eventPropGetter = (event) => ({
     style: {
-      backgroundColor: event.reserved ? '#2d9d6e' : event.pending ? 'var(--color-honey)' : 'var(--color-navy-100)',
-      color: event.pending ? '#333' : event.reserved ? 'white' : 'var(--color-navy)',
+      backgroundColor: event.reserved ? '#3ddabe' : event.pending ? '#ffe03d' : '#cce9e4',
+      color: '#141414',
       border: 'none',
       borderRadius: '8px',
       fontWeight: 700,
+      fontSize: '0.8rem',
     }
   })
 
@@ -165,7 +172,7 @@ const CalendarProfessor = () => {
     <div>
       <CalendarView
         events={visibleEvents}
-        onSelectSlot={handleSelectSlot}
+        onSelectSlot={({ start, end }) => setSelectedTimeSlot({ start, end })}
         onSelectEvent={setSelectedEvent}
         eventPropGetter={eventPropGetter}
         view={view}
@@ -173,72 +180,21 @@ const CalendarProfessor = () => {
         date={date}
         onNavigate={setDate}
       />
-      <div className="calendar-legend">
-        <div className="calendar-legend__item">
-          <span className="calendar-legend__chip calendar-legend__chip--available">Disponible</span>
-          <span className="calendar-legend__text">Elige tu horario en vista semana o mes para marcarlo como disponible</span>
-        </div>
-        <div className="calendar-legend__item">
-          <span className="calendar-legend__chip calendar-legend__chip--pending">Pendiente</span>
-          <span className="calendar-legend__text">Revisa tus solicitudes y confirma. Si es online, recuerda conectarte con Google</span>
-        </div>
-        <div className="calendar-legend__item">
-          <span className="calendar-legend__chip calendar-legend__chip--confirmed">Confirmada</span>
-          <span className="calendar-legend__text">Clase agendada. Haz clic para ver los detalles o cancelar</span>
-        </div>
-      </div>
-      {selectedTimeSlot && (
-        <SlotActionModal
-          slot={selectedTimeSlot}
-          existingTimeSlots={getTimeSlotsInRange(selectedTimeSlot.start, selectedTimeSlot.end)}
-          onMarkAvailable={({ start, end }) => {
-            createTimeSlotsFromRange(start, end)
-            setSelectedTimeSlot(null)
-          }}
-          onScheduleMeeting={async ({ start, end, studentId, mode }) => {
-            const slotRes = await fetch('http://localhost:3000/api/v1/availability', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
-              body: JSON.stringify({ startTime: start, endTime: end, subject: user.subject })
-            })
-            const slot = await slotRes.json()
-            await fetch('http://localhost:3000/api/v1/reservation', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
-              body: JSON.stringify({ availability: slot._id, student: studentId, mode })
-            })
-            queryClient.invalidateQueries(['availability'])
-            queryClient.invalidateQueries(['reservations'])
-            setSelectedTimeSlot(null)
-          }}
-          onDeleteRange={() => {
-            getTimeSlotsInRange(selectedTimeSlot.start, selectedTimeSlot.end)
-              .forEach(ts => deleteMutation.mutate(ts._id))
-            setSelectedTimeSlot(null)
-          }}
-          onCancel={() => setSelectedTimeSlot(null)}
-        />
-      )}
-      {selectedEvent && !selectedEvent.reserved && !selectedEvent.pending && (
-        <DeleteEventModal
-          eventData={selectedEvent}
-          onConfirm={() => deleteMutation.mutate(selectedEvent.id)}
-          onCancel={() => setSelectedEvent(null)}
-          onSchedule={({ studentId, mode }) => scheduleMutation.mutate({ studentId, mode })}
-        />
-      )}
-      {selectedEvent && (selectedEvent.reserved || selectedEvent.pending) && (
-        <ReservedEventModal
-          event={selectedEvent}
-          onClose={() => setSelectedEvent(null)}
-          onCancel={(reservationId) => cancelReservationMutation.mutate(reservationId)}
-          isPending={selectedEvent.pending}
-          onApprove={() => actionMutation.mutate({ id: selectedEvent.reservation._id, status: 'confirmada' })}
-          onReject={() => actionMutation.mutate({ id: selectedEvent.reservation._id, status: 'rechazada' })}
-          googleConnected={googleConnected}
-          isActing={actionMutation.isPending}
-        />
-      )}
+      <CalendarLegend />
+      <CalendarModals
+        selectedEvent={selectedEvent}
+        selectedTimeSlot={selectedTimeSlot}
+        getTimeSlotsInRange={getTimeSlotsInRange}
+        createTimeSlotsFromRange={createTimeSlotsFromRange}
+        onScheduleMeeting={handleScheduleMeeting}
+        deleteMutation={deleteMutation}
+        scheduleMutation={scheduleMutation}
+        actionMutation={actionMutation}
+        cancelReservationMutation={cancelReservationMutation}
+        googleConnected={googleConnected}
+        setSelectedEvent={setSelectedEvent}
+        setSelectedTimeSlot={setSelectedTimeSlot}
+      />
     </div>
   )
 }

@@ -89,7 +89,7 @@
   }
 
   &__slot {
-    @include btn-pressed(var(--color-orange), var(--color-orange-dark));
+    @include btn-pressed(var(--color-navy), var(--color-navy-dark));
     padding: 0.4rem 0.6rem;
     font-size: 0.8rem;
     border-radius: 8px;

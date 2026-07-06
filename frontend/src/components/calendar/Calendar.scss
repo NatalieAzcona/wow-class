@@ -2,68 +2,71 @@
   font-family: 'Nunito', sans-serif;
   border-radius: 16px;
   overflow: hidden;
+  border: 2px solid #ebebeb;
 }
 
 .rbc-toolbar {
   background-color: var(--color-navy);
-  padding: 0.8rem 1rem;
-  border-radius: 12px 12px 0 0;
+  padding: 0.8rem 1.2rem;
   margin-bottom: 0;
 
   .rbc-toolbar-label {
     color: white;
     font-weight: 800;
     font-size: 1.1rem;
+    letter-spacing: 0.02em;
   }
 
   button {
     color: white;
     background: transparent;
-    border: 2px solid rgba(255,255,255,0.4);
+    border: 2px solid rgba(255, 255, 255, 0.35);
     border-radius: 8px;
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.15s;
+    transition: background 0.15s, border-color 0.15s;
 
-    &:hover, &.rbc-active {
-      background: rgba(255,255,255,0.2);
+    &:hover,
+    &.rbc-active {
+      background: rgba(255, 255, 255, 0.18);
       border-color: white;
     }
   }
 }
 
 .rbc-header {
-  background-color: var(--color-navy-100);
+  background-color: white;
   color: var(--color-navy);
   font-weight: 800;
-  padding: 0.5rem;
-  border-color: var(--color-navy-200);
+  font-size: 0.82rem;
+  padding: 0.6rem 0.4rem;
+  border-color: #ebebeb;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .rbc-today {
-  background-color: #fff8e6;
+  background-color: #fffbf0;
 }
 
 .rbc-event {
-  background-color: var(--color-orange);
   border: none;
   border-radius: 8px;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   cursor: pointer;
+  padding: 2px 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
 
-  &:hover {
-    background-color: #e0734a;
+  &:focus {
+    outline: none;
   }
 }
 
 .rbc-event-content {
-  text-align: center;
   width: 100%;
   height: 100%;
   display: flex;
@@ -72,7 +75,7 @@
 }
 
 .rbc-agenda-view .rbc-event {
-  color: white;
+  color: var(--color-navy);
 }
 
 .rbc-time-view .rbc-event-label {
@@ -86,53 +89,68 @@
 
 .rbc-time-content,
 .rbc-time-header-content {
-  border-color: var(--color-navy-100);
+  border-color: #ebebeb;
 }
 
 .rbc-timeslot-group {
-  border-color: var(--color-navy-50);
+  border-color: #f5f5f5;
+  min-height: 48px;
+}
+
+.rbc-time-slot {
+  font-size: 0.78rem;
+  color: #999;
+}
+
+.rbc-time-header {
+  border-color: #ebebeb;
+}
+
+.rbc-day-bg + .rbc-day-bg,
+.rbc-month-row + .rbc-month-row {
+  border-color: #ebebeb;
 }
 
 .calendar-legend {
   display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+  flex-wrap: wrap;
+  gap: 1.2rem;
   margin-top: 1rem;
-  padding: 1rem 1.2rem;
+  padding: 0.9rem 1.2rem;
   background: white;
   border-radius: 12px;
 
   &__item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
   }
 
   &__chip {
     font-size: 0.78rem;
     font-weight: 700;
-    padding: 0.25rem 0.8rem;
+    padding: 0.28rem 0.85rem;
     border-radius: 20px;
     white-space: nowrap;
 
     &--available {
-      background: var(--color-navy-100);
+      background: #cce9e4;
       color: var(--color-navy);
     }
 
     &--pending {
-      background: var(--color-honey);
-      color: #333;
+      background: #ffe03d;
+      color: var(--color-navy);
     }
 
     &--confirmed {
-      background: #2d9d6e;
-      color: white;
+      background: #3ddabe;
+      color: var(--color-navy);
     }
   }
 
   &__text {
-    font-size: 0.83rem;
+    font-size: 0.82rem;
     color: var(--color-text-muted);
     font-weight: 600;
     line-height: 1.4;
