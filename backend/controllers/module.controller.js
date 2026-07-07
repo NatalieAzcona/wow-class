@@ -4,13 +4,9 @@ const Module = require("../models/Module")
 
 const createModule = async (req, res, next) => {
     try {
-        const {title, subject, level } = req.body
+        const { title, subject, level, order } = req.body
 
-        const newModule = new Module ({
-            title: title,
-            subject: subject,
-            level: level
-        })
+        const newModule = new Module({ title, subject, level, order: order ?? 0 })
 
         const savedModule = await newModule.save()
 
@@ -41,7 +37,7 @@ const getModuleById = async (req, res, next) => {
 const getModule = async (req, res, next) => {
  
     try { 
-        const allModules = await Module.find({})
+        const allModules = await Module.find({}).sort({ order: 1 })
 
         return res.status(200).json(allModules)
     } catch (error) {

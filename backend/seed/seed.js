@@ -13,15 +13,14 @@ const seed = async () => {
     const lines = csvIngles.split('\n').slice(1).filter(line => line.trim() !== '')
 
     const modules = lines.map(line => {
-    const [title, subject, level] = line.split(',')
-    return { title, subject, level }
-        
+        const [title, subject, level, order] = line.split(',')
+        return { title, subject, level, order: Number(order) }
     })
     const csvMates = fs.readFileSync('./modules_mates.csv', 'utf-8')
     const linesMates = csvMates.split('\n').slice(1).filter(line => line.trim() !== '')
     const modulesMates = linesMates.map(line => {
-        const [title, subject, level] = line.split(',')
-        return { title, subject, level }
+        const [title, subject, level, order] = line.split(',')
+        return { title, subject, level, order: Number(order) }
     })
 
     await Module.deleteMany({})

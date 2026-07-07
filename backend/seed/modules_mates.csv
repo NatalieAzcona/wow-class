@@ -1,61 +1,61 @@
-title,subject,level
-Unit 1 - Números hasta el 10,matemáticas,1º de Primaria
-Unit 2 - Sumas básicas,matemáticas,1º de Primaria
-Unit 3 - Restas básicas,matemáticas,1º de Primaria
-Unit 4 - Formas geométricas,matemáticas,1º de Primaria
-Unit 5 - Medidas y longitudes,matemáticas,1º de Primaria
-Unit 1 - Números hasta el 100,matemáticas,2º de Primaria
-Unit 2 - Sumas con llevada,matemáticas,2º de Primaria
-Unit 3 - Restas con llevada,matemáticas,2º de Primaria
-Unit 4 - Introducción a la multiplicación,matemáticas,2º de Primaria
-Unit 5 - Fracciones sencillas,matemáticas,2º de Primaria
-Unit 1 - Tablas de multiplicar,matemáticas,3º de Primaria
-Unit 2 - División exacta,matemáticas,3º de Primaria
-Unit 3 - Números hasta el 1000,matemáticas,3º de Primaria
-Unit 4 - Medidas de tiempo,matemáticas,3º de Primaria
-Unit 5 - Problemas de lógica,matemáticas,3º de Primaria
-Unit 1 - Números decimales,matemáticas,4º de Primaria
-Unit 2 - Fracciones,matemáticas,4º de Primaria
-Unit 3 - Áreas y perímetros,matemáticas,4º de Primaria
-Unit 4 - Estadística básica,matemáticas,4º de Primaria
-Unit 5 - Ángulos,matemáticas,4º de Primaria
-Unit 1 - Operaciones con decimales,matemáticas,5º de Primaria
-Unit 2 - Porcentajes,matemáticas,5º de Primaria
-Unit 3 - Geometría plana,matemáticas,5º de Primaria
-Unit 4 - Números negativos,matemáticas,5º de Primaria
-Unit 5 - Proporcionalidad,matemáticas,5º de Primaria
-Unit 1 - Números enteros,matemáticas,6º de Primaria
-Unit 2 - Álgebra básica,matemáticas,6º de Primaria
-Unit 3 - Geometría del espacio,matemáticas,6º de Primaria
-Unit 4 - Probabilidad,matemáticas,6º de Primaria
-Unit 5 - Repaso y preparación ESO,matemáticas,6º de Primaria
-Unit 1 - Números racionales,matemáticas,1º de ESO
-Unit 2 - Álgebra y ecuaciones,matemáticas,1º de ESO
-Unit 3 - Funciones,matemáticas,1º de ESO
-Unit 4 - Estadística y probabilidad,matemáticas,1º de ESO
-Unit 5 - Geometría,matemáticas,1º de ESO
-Unit 1 - Potencias y raíces,matemáticas,2º de ESO
-Unit 2 - Polinomios,matemáticas,2º de ESO
-Unit 3 - Sistemas de ecuaciones,matemáticas,2º de ESO
-Unit 4 - Semejanza y trigonometría,matemáticas,2º de ESO
-Unit 5 - Probabilidad avanzada,matemáticas,2º de ESO
-Unit 1 - Números reales,matemáticas,3º de ESO
-Unit 2 - Ecuaciones de segundo grado,matemáticas,3º de ESO
-Unit 3 - Inecuaciones,matemáticas,3º de ESO
-Unit 4 - Geometría analítica,matemáticas,3º de ESO
-Unit 5 - Estadística descriptiva,matemáticas,3º de ESO
-Unit 1 - Funciones y gráficas,matemáticas,4º de ESO
-Unit 2 - Trigonometría,matemáticas,4º de ESO
-Unit 3 - Geometría en el espacio,matemáticas,4º de ESO
-Unit 4 - Combinatoria,matemáticas,4º de ESO
-Unit 5 - Preparación PAU,matemáticas,4º de ESO
-Unit 1 - Análisis matemático,matemáticas,1º de Bachillerato
-Unit 2 - Álgebra lineal,matemáticas,1º de Bachillerato
-Unit 3 - Geometría analítica,matemáticas,1º de Bachillerato
-Unit 4 - Probabilidad y estadística,matemáticas,1º de Bachillerato
-Unit 5 - Cálculo diferencial,matemáticas,1º de Bachillerato
-Unit 1 - Cálculo integral,matemáticas,2º de Bachillerato
-Unit 2 - Ecuaciones diferenciales,matemáticas,2º de Bachillerato
-Unit 3 - Álgebra matricial,matemáticas,2º de Bachillerato
-Unit 4 - Selectividad Matemáticas,matemáticas,2º de Bachillerato
-Unit 5 - Repaso Selectividad,matemáticas,2º de Bachillerato
+title,subject,level,order
+Números hasta el 10,matemáticas,1º de Primaria,1
+Sumas básicas,matemáticas,1º de Primaria,2
+Restas básicas,matemáticas,1º de Primaria,3
+Formas geométricas,matemáticas,1º de Primaria,4
+Medidas y longitudes,matemáticas,1º de Primaria,5
+Números hasta el 100,matemáticas,2º de Primaria,1
+Sumas con llevada,matemáticas,2º de Primaria,2
+Restas con llevada,matemáticas,2º de Primaria,3
+Introducción a la multiplicación,matemáticas,2º de Primaria,4
+Fracciones sencillas,matemáticas,2º de Primaria,5
+Tablas de multiplicar,matemáticas,3º de Primaria,1
+División exacta,matemáticas,3º de Primaria,2
+Números hasta el 1000,matemáticas,3º de Primaria,3
+Medidas de tiempo,matemáticas,3º de Primaria,4
+Problemas de lógica,matemáticas,3º de Primaria,5
+Números decimales,matemáticas,4º de Primaria,1
+Fracciones,matemáticas,4º de Primaria,2
+Áreas y perímetros,matemáticas,4º de Primaria,3
+Estadística básica,matemáticas,4º de Primaria,4
+Ángulos,matemáticas,4º de Primaria,5
+Operaciones con decimales,matemáticas,5º de Primaria,1
+Porcentajes,matemáticas,5º de Primaria,2
+Geometría plana,matemáticas,5º de Primaria,3
+Números negativos,matemáticas,5º de Primaria,4
+Proporcionalidad,matemáticas,5º de Primaria,5
+Números enteros,matemáticas,6º de Primaria,1
+Álgebra básica,matemáticas,6º de Primaria,2
+Geometría del espacio,matemáticas,6º de Primaria,3
+Probabilidad,matemáticas,6º de Primaria,4
+Repaso y preparación ESO,matemáticas,6º de Primaria,5
+Números racionales,matemáticas,1º de ESO,1
+Álgebra y ecuaciones,matemáticas,1º de ESO,2
+Funciones,matemáticas,1º de ESO,3
+Estadística y probabilidad,matemáticas,1º de ESO,4
+Geometría,matemáticas,1º de ESO,5
+Potencias y raíces,matemáticas,2º de ESO,1
+Polinomios,matemáticas,2º de ESO,2
+Sistemas de ecuaciones,matemáticas,2º de ESO,3
+Semejanza y trigonometría,matemáticas,2º de ESO,4
+Probabilidad avanzada,matemáticas,2º de ESO,5
+Números reales,matemáticas,3º de ESO,1
+Ecuaciones de segundo grado,matemáticas,3º de ESO,2
+Inecuaciones,matemáticas,3º de ESO,3
+Geometría analítica,matemáticas,3º de ESO,4
+Estadística descriptiva,matemáticas,3º de ESO,5
+Funciones y gráficas,matemáticas,4º de ESO,1
+Trigonometría,matemáticas,4º de ESO,2
+Geometría en el espacio,matemáticas,4º de ESO,3
+Combinatoria,matemáticas,4º de ESO,4
+Preparación PAU,matemáticas,4º de ESO,5
+Análisis matemático,matemáticas,1º de Bachillerato,1
+Álgebra lineal,matemáticas,1º de Bachillerato,2
+Geometría analítica,matemáticas,1º de Bachillerato,3
+Probabilidad y estadística,matemáticas,1º de Bachillerato,4
+Cálculo diferencial,matemáticas,1º de Bachillerato,5
+Cálculo integral,matemáticas,2º de Bachillerato,1
+Ecuaciones diferenciales,matemáticas,2º de Bachillerato,2
+Álgebra matricial,matemáticas,2º de Bachillerato,3
+Selectividad Matemáticas,matemáticas,2º de Bachillerato,4
+Repaso Selectividad,matemáticas,2º de Bachillerato,5
