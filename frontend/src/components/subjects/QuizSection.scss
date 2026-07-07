@@ -1,0 +1,105 @@
+@use '../../styles/mixins' as *;
+
+.quiz-section {
+  @include flex-col;
+  gap: 1rem;
+
+  &__empty {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  &__card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.2rem 1.4rem;
+    @include flex-col;
+    gap: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  &__card-header {
+    @include flex-center;
+    gap: 0.8rem;
+  }
+
+  &__card-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-navy);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__card-question {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-navy);
+    margin: 0;
+  }
+
+  &__card-actions {
+    @include flex-center;
+    gap: 0.5rem;
+
+    button {
+      @include secondary-btn;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.78rem;
+
+      &:last-child {
+        border-color: var(--color-danger);
+        color: var(--color-danger);
+        &:hover { background: var(--color-danger); color: white; }
+      }
+    }
+  }
+
+  &__options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @include flex-col;
+    gap: 0.4rem;
+    padding-left: 2.8rem;
+  }
+
+  &__option {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    background: var(--color-navy-50);
+
+    &--correct {
+      background: var(--color-turquoise);
+      color: var(--color-navy);
+      font-weight: 800;
+    }
+  }
+
+  &__explanation {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin: 0;
+    padding-left: 2.8rem;
+    font-style: italic;
+  }
+
+  &__add-btn {
+    @include secondary-btn;
+    align-self: flex-end;
+  }
+}

@@ -46,6 +46,16 @@ const getQuizById = async (req, res) => {
     }
 }
 
+const getQuizByModule = async (req, res) => {
+    try {
+        const { moduleId } = req.params
+        const quiz = await Quiz.findOne({ module: moduleId })
+        return res.status(200).json(quiz)
+    } catch (error) {
+        return res.status(500).json({ message: "Error al obtener quiz del módulo" })
+    }
+}
+
 
 const updateQuiz = async (req, res) => {
     try {
@@ -79,4 +89,4 @@ const deleteQuiz = async (req, res) => {
 }
 
 
-module.exports = { createQuiz, getQuiz, getQuizById, updateQuiz, deleteQuiz}
+module.exports = { createQuiz, getQuiz, getQuizById, getQuizByModule, updateQuiz, deleteQuiz}

@@ -1,0 +1,104 @@
+@use '../../styles/mixins' as *;
+
+.quiz-form {
+  background: white;
+  border-radius: 16px;
+  padding: 1.4rem;
+  @include flex-col;
+  gap: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+  &__field {
+    @include flex-col;
+    gap: 0.4rem;
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__input {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy-100);
+    border-radius: 10px;
+    padding: 0.55rem 0.9rem;
+    outline: none;
+    background: white;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus { border-color: var(--color-navy); }
+  }
+
+  &__textarea {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-navy);
+    border: 2px solid var(--color-navy-100);
+    border-radius: 10px;
+    padding: 0.55rem 0.9rem;
+    outline: none;
+    background: white;
+    resize: vertical;
+    font-family: 'Nunito', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus { border-color: var(--color-navy); }
+  }
+
+  &__options {
+    @include flex-col;
+    gap: 0.6rem;
+  }
+
+  &__option-row {
+    @include flex-center;
+    gap: 0.7rem;
+  }
+
+  &__radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--color-navy-200);
+    background: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+
+    &--selected {
+      background: var(--color-navy);
+      border-color: var(--color-navy);
+    }
+  }
+
+  &__hint {
+    font-size: 0.75rem;
+    color: var(--color-text-subtle);
+    font-weight: 600;
+    margin: 0;
+    padding-left: 2rem;
+  }
+
+  &__actions {
+    @include flex-center;
+    gap: 0.8rem;
+    justify-content: flex-end;
+  }
+
+  &__save {
+    @include primary-btn;
+  }
+
+  &__cancel {
+    @include secondary-btn;
+    padding: 0.5rem 1.4rem;
+  }
+}
