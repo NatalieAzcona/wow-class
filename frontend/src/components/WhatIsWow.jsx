@@ -4,9 +4,9 @@ import './WhatIsWow.scss'
 const WhatIsWow = () => {
   return (
     <section className="what-is-wow">
-      <h2 className="what-is-wow__title">¿Qué es Wöw Class?</h2>
+      <h2 className="what-is-wow__title">¿Qué es W<span className="brand-o">ö</span>W Class?</h2>
       <p className="what-is-wow__text">
-        Wöw Class es más que una plataforma de clases online y presenciales para niños en Granada y Maracena.
+        W<span className="brand-o">ö</span>W Class es más que una plataforma de clases online y presenciales para niños en Granada y Maracena.
         Aprenderás inglés y matemáticas con profesores de amplia experiencia, a tu ritmo y con material + juegos y quizzes por lección.
       </p>
 

@@ -1,8 +1,45 @@
 :root {
-    --color-navy: #2E5FA3;
-    --color-orange: #FF8C61;
-    --color-honey: #FFD166;
-    --color-turquoise: #4ECDC4;
-    --color-coral: #FF6B9D;
-    --color-background: #F7F9FC;
+  /* Brand */
+  --color-navy: #141414;
+  --color-pink: #ff7aac;
+  --color-turquoise: #3ddabe;
+  --color-yellow: #ffe03d;
+  --color-blue: #2885fd;
+
+  /* Brand darks */
+  --color-navy-dark: #000000;
+  --color-pink-dark: #e05590;
+  --color-turquoise-dark: #25b89f;
+  --color-yellow-dark: #d4b800;
+  --color-blue-dark: #1a6de0;
+
+  /* Legacy aliases — mantienen compatibilidad con componentes existentes */
+  --color-orange: #ff7aac;
+  --color-orange-dark: #e05590;
+  --color-honey: #ffe03d;
+  --color-coral: #ff7aac;
+  --color-coral-dark: #e05590;
+
+  /* Neutrals */
+  --color-navy-50: #fff0f7;
+  --color-navy-100: #ffd6eb;
+  --color-navy-200: #cccccc;
+  --color-border: #ebebeb;
+
+  /* Danger */
+  --color-danger: #ef4444;
+  --color-danger-dark: #991b1b;
+  --color-danger-light: #fef2f2;
+  --color-danger-bg: #fecaca;
+
+  /* Semantic */
+  --color-turquoise-light: #cce9e4;
+  --color-success-light: #d5f5ee;
+  --color-success-dark: #0f6b54;
+  --color-today: #fffbf0;
+
+  /* Page */
+  --color-background: #ffffff;
+  --color-text-muted: #888;
+  --color-text-subtle: #999;
 }

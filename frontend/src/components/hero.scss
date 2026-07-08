@@ -2,7 +2,7 @@
 
 
 .hero {
-  background-color: var(--color-background);
+  background-color: var(--color-pink);
   min-height: 80vh;
   display: flex;
   align-items: center;
@@ -30,21 +30,28 @@
   }
 
   &__slogan {
-    color: var(--color-coral);
+    color: var(--color-navy);
     font-size: clamp(1rem, 2vw, 1.2rem);
     margin: 0;
+    opacity: 0.7;
   }
 
   &__cta {
     display: inline-block;
-    color: white;
     text-decoration: none;
-    padding: 1rem 2rem;
+    padding: 1rem 2.2rem;
     border-radius: 12px;
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 800;
     width: fit-content;
-    @include btn-pressed(var(--color-orange), #c45e2e);
+    background: var(--color-navy);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s;
 
+    &:hover {
+      opacity: 0.85;
+    }
   }
 }

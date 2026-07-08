@@ -1,3 +1,19 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 @mixin navbar-logo {
   color: white;
   font-size: 1.5rem;
@@ -27,6 +43,58 @@
     transform: translateY(6px);
     box-shadow: none;
   }
+}
+
+// --- Buttons ---
+
+@mixin primary-btn {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: white;
+  background: var(--color-navy);
+  border: 2px solid var(--color-navy);
+  border-radius: 12px;
+  padding: 0.5rem 1.4rem;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:hover:not(:disabled) { opacity: 0.8; }
+  &:disabled { opacity: 0.35; cursor: not-allowed; }
+}
+
+@mixin secondary-btn {
+  background: transparent;
+  border: 2px solid var(--color-navy);
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover { background: var(--color-navy); color: white; }
+  &:disabled { opacity: 0.35; cursor: not-allowed; }
+}
+
+@mixin danger-btn {
+  background: transparent;
+  border: 2px solid var(--color-danger);
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-danger);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+
+  &:hover { background: var(--color-danger); color: white; }
+  &:disabled { opacity: 0.35; cursor: not-allowed; }
+}
+
+@mixin danger-pressed-btn {
+  @include btn-pressed(#fff0f3, #f5c6cb);
+  color: #c0392b;
 }
 
 // --- Modal ---
@@ -133,40 +201,6 @@
     background: var(--color-navy);
     color: white;
     border-color: var(--color-navy);
-  }
-}
-
-@mixin confirm-btn {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: white;
-  background: var(--color-turquoise);
-  border: none;
-  border-radius: 12px;
-  padding: 0.7rem;
-  cursor: pointer;
-  transition: background 0.15s;
-
-  &:hover:not(:disabled) {
-    background: var(--color-turquoise-dark);
-  }
-
-  &:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
-}
-
-@mixin ghost-btn {
-  background: none;
-  border: none;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--color-text-subtle);
-  cursor: pointer;
-
-  &:hover {
-    color: var(--color-navy);
   }
 }
 

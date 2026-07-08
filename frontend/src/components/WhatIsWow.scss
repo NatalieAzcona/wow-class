@@ -27,10 +27,12 @@
 
     &--left {
       flex-direction: row;
+      .what-is-wow__teacher-photo { background-image: url('/Mary.png'); background-position: center 15%; }
     }
 
     &--right {
       flex-direction: row-reverse;
+      .what-is-wow__teacher-photo { background-image: url('/Enrique.png'); }
     }
   }
 
@@ -40,6 +42,9 @@
     min-height: 280px;
     border-radius: 16px;
     background-color: var(--color-turquoise);
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
   }
 
   &__teacher-bio {
