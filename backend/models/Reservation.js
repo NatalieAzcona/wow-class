@@ -6,7 +6,8 @@ const reservationSchema = new Schema (
         availability : {type: Schema.Types.ObjectId, ref: 'Availability', required: true },
         teacher: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         status: { type: String, enum: ["pendiente", "confirmada", "rechazada"]},
-        meetLink: { type: String}
+        meetLink: { type: String },
+        mode: { type: String, enum: ["presencial", "online"] }
     },
     {
         timestamps: true,

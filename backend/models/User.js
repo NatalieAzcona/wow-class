@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const userSchema = new Schema (
     {
         name: {type: String, required: true, trim: true},
-        email: {type: String, required: true, unique: true, lowercase: true, trim: true}, //unique para no dulplicar email
+        email: {type: String, required: true, unique: true, lowercase: true, trim: true}, 
         password: {type: String, required: true, trim: true, minlength: [8, "8 caracteres mínimo"]},
         role: {type: String, enum: ["student", "teacher", "admin"], default: "student"},
         avatar: {type: String, trim: true},
@@ -12,7 +12,9 @@ const userSchema = new Schema (
         birthDate: {type: Date},
         parentsConsent: {type: Boolean, default: false},
         googleAccessToken: {type: String},
-        googleRefreshToken: {type: String}
+        googleRefreshToken: {type: String},
+        address: {type: String, trim: true},
+        phone: {type: String, trim: true}
 
     },
     {
@@ -33,4 +35,3 @@ const User = model('User', userSchema)
 module.exports = User
 
 
-//dentro del presave, this es el documento. isModified es metodo 
