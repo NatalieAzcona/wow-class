@@ -1,45 +1,48 @@
 :root {
   /* Brand */
-  --color-navy: #141414;
+  --color-black: #141414;
   --color-pink: #ff7aac;
   --color-turquoise: #3ddabe;
   --color-yellow: #ffe03d;
-  --color-blue: #2885fd;
 
   /* Brand darks */
-  --color-navy-dark: #000000;
   --color-pink-dark: #e05590;
   --color-turquoise-dark: #25b89f;
   --color-yellow-dark: #d4b800;
-  --color-blue-dark: #1a6de0;
-
-  /* Legacy aliases — mantienen compatibilidad con componentes existentes */
-  --color-orange: #ff7aac;
-  --color-orange-dark: #e05590;
-  --color-honey: #ffe03d;
-  --color-coral: #ff7aac;
-  --color-coral-dark: #e05590;
 
   /* Neutrals */
-  --color-navy-50: #fff0f7;
-  --color-navy-100: #ffd6eb;
-  --color-navy-200: #cccccc;
-  --color-border: #ebebeb;
+  --color-pink-50: #fff0f7;
+  --color-pink-100: #ffd6eb;
+  --color-gray-600: #555555;
+  --color-gray-400: #888888;
+  --color-gray-200: #cccccc;
+  --color-gray-100: #eeeeee;
 
-  /* Danger */
-  --color-danger: #ef4444;
-  --color-danger-dark: #991b1b;
-  --color-danger-light: #fef2f2;
-  --color-danger-bg: #fecaca;
+  /* Error */
+  --color-error: #ef4444;
+  --color-error-dark: #991b1b;
+  --color-error-light: #fef2f2;
+  --color-error-bg: #fecaca;
 
-  /* Semantic */
+  /* Calendar */
   --color-turquoise-light: #cce9e4;
-  --color-success-light: #d5f5ee;
-  --color-success-dark: #0f6b54;
   --color-today: #fffbf0;
+  --color-badge-online-bg: #dff5ec;
+  --color-badge-online-text: #1a8a5a;
+  --color-badge-presencial-bg: #fff0e6;
+  --color-badge-presencial-text: #c95b18;
+
+  /* Quiz */
+  --color-success-dark: #0f6b54;
+
+  /* Status */
+  --color-warning-bg: #fff8e6;
+  --color-warning-border: #f5c842;
+  --color-warning-text: #7a5c00;
+  --color-connected-bg: #eafaf5;
+  --color-connected-border: #3ecf8e;
+  --color-connected-text: #1a7a50;
 
   /* Page */
   --color-background: #ffffff;
-  --color-text-muted: #888;
-  --color-text-subtle: #999;
 }
