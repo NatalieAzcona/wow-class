@@ -14,37 +14,40 @@
 
   &__key {
     font-size: 0.8rem;
-    color: var(--color-text-muted);
+    color: var(--color-gray-400);
     font-weight: 600;
     min-width: 72px;
   }
 
   &__mode {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     font-size: 0.8rem;
     font-weight: 700;
     padding: 0.2rem 0.7rem;
     border-radius: 20px;
 
     &--online {
-      background: #dff5ec;
-      color: #1a8a5a;
+      background: var(--color-badge-online-bg);
+      color: var(--color-badge-online-text);
     }
 
     &--presencial {
-      background: #fff0e6;
-      color: #c95b18;
+      background: var(--color-badge-presencial-bg);
+      color: var(--color-badge-presencial-text);
     }
   }
 
   &__date {
     font-size: 0.85rem;
-    color: #444;
+    color: var(--color-gray-400);
     font-weight: 600;
   }
 
   &__note {
     font-size: 0.83rem;
-    color: var(--color-text-muted);
+    color: var(--color-gray-400);
     font-style: italic;
     margin: 0;
     line-height: 1.4;
@@ -58,37 +61,23 @@
   }
 
   &__meet {
-    @include confirm-btn;
+    @include outline-btn(var(--color-black));
     display: block;
     text-align: center;
     text-decoration: none;
-    padding: 0.7rem;
   }
 
   &__whatsapp {
+    @include outline-btn(#25d366);
     display: block;
     text-align: center;
     text-decoration: none;
-    background: #25d366;
-    color: white;
-    font-weight: 700;
-    font-size: 0.95rem;
-    border-radius: 12px;
-    padding: 0.7rem;
-    box-shadow: 0 4px 0 #1aaa52;
-    transition: transform 0.1s, box-shadow 0.1s;
-
-    &:hover {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #1aaa52;
-    }
+    width: 100%;
   }
 
   &__cancel {
-    @include btn-pressed(#fff0f3, #f5c6cb);
-    color: #c0392b;
+    @include outline-btn(var(--color-error));
     width: 100%;
-    display: block;
   }
 
 }

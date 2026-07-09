@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import ModeModal from './ModeModal'
 import StudentReservationModal from './StudentReservationModal'
+import WeekNavigator from './WeekNavigator'
+import DayColumn from './DayColumn'
 import './CalendarStudent.scss'
 
 const getMonday = (date) => {
@@ -100,76 +102,28 @@ const CalendarStudent = ({ subject }) => {
     return `${weekStart.toLocaleDateString('es-ES', opts)} — ${weekEnd.toLocaleDateString('es-ES', opts)}`
   }
 
-  const renderSlot = (slot) => {
-    const time = new Date(slot.startTime).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
-    const reservation = getReservationForSlot(slot._id)
-
-    if (!reservation) {
-      return (
-        <button key={slot._id} className="week-picker__slot" onClick={() => setSelectedSlot(slot)}>
-          {time}
-        </button>
-      )
-    }
-
-    if (reservation.status === 'pendiente') {
-      return (
-        <button
-          key={slot._id}
-          className="week-picker__slot week-picker__slot--pending"
-          onClick={() => setSelectedReservation({ slot, reservation })}
-        >
-          <span>{time}</span>
-          <span>Solicitado</span>
-        </button>
-      )
-    }
-
-    if (reservation.status === 'confirmada') {
-      const modeLabel = reservation.mode === 'online' ? 'Online' : 'Presencial'
-      return (
-        <button
-          key={slot._id}
-          className="week-picker__slot week-picker__slot--confirmed"
-          onClick={() => setSelectedReservation({ slot, reservation })}
-        >
-          <span>{time}</span>
-          <span>Agendado · {modeLabel}</span>
-        </button>
-      )
-    }
-
-    return null
-  }
-
   if (isLoading) return <div>Cargando...</div>
 
   return (
     <div className="week-picker">
-      <div className="week-picker__nav">
-        <button onClick={prevWeek} className="week-picker__arrow">←</button>
-        <span className="week-picker__range">{formatWeekRange()}</span>
-        <button onClick={nextWeek} className="week-picker__arrow">→</button>
-      </div>
+      <WeekNavigator
+        onPrev={prevWeek}
+        onNext={nextWeek}
+        range={formatWeekRange()}
+      />
       <div className="week-picker__grid">
-        {weekDays.map((day, i) => {
-          const slots = timeSlotsForDay(day)
-          const isPast = day < new Date().setHours(0, 0, 0, 0)
-          return (
-            <div key={i} className={`week-picker__day ${isPast ? 'week-picker__day--past' : ''}`}>
-              <div className="week-picker__day-header">
-                <span className="week-picker__day-name">{DAYS[i]}</span>
-                <span className="week-picker__day-date">{day.getDate()}</span>
-              </div>
-              <div className="week-picker__slots">
-                {slots.length === 0
-                  ? <span className="week-picker__empty">Sin disponibilidad</span>
-                  : slots.map(slot => renderSlot(slot))
-                }
-              </div>
-            </div>
-          )
-        })}
+        {weekDays.map((day, i) => (
+          <DayColumn
+            key={i}
+            dayName={DAYS[i]}
+            dayDate={day.getDate()}
+            slots={timeSlotsForDay(day)}
+            isPast={day < new Date().setHours(0, 0, 0, 0)}
+            getReservationForSlot={getReservationForSlot}
+            onSelect={setSelectedSlot}
+            onSelectReservation={setSelectedReservation}
+          />
+        ))}
       </div>
       {selectedSlot && (
         <ModeModal
