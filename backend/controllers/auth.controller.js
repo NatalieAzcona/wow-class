@@ -37,7 +37,7 @@ const postRegister = async (req, res, next) => {
 
         const savedUser = await newUser.save();
 
-        const userWithoutPassword = savedUser.toObject();   // paso a objeto porque Mongo devuelve docu, para poder eliminar la passw
+        const userWithoutPassword = savedUser.toObject();  
         delete userWithoutPassword.password;
 
         return res.status(201).json(userWithoutPassword)
@@ -70,7 +70,7 @@ const loginUser = async (req, res, next) => {
 
         const token = generateToken(user._id) 
         
-        const userWithoutPassword = user.toObject();   // paso a objeto porque Mongo devuelve docu, para poder eliminar la passw
+        const userWithoutPassword = user.toObject();  
         delete userWithoutPassword.password;
 
 
@@ -80,4 +80,16 @@ const loginUser = async (req, res, next) => {
     }
 }
 
-module.exports = {postRegister, loginUser}
+const getMe = async (req, res) => {
+    try {
+        const user = req.user.toObject()
+        delete user.password
+        delete user.googleAccessToken
+        delete user.googleRefreshToken
+        return res.status(200).json({ ...user, googleConnected: !!req.user.googleAccessToken })
+    } catch (error) {
+        return res.status(500).json({ message: 'Error al obtener usuario' })
+    }
+}
+
+module.exports = {postRegister, loginUser, getMe}
