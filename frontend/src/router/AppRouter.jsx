@@ -10,27 +10,27 @@ import Footer from "../layout/public/Footer"
 import WhatsAppButton from "../components/WhatsAppButton"
 import PrivateRoute from "./PrivateRoute"
 import Dashboard from "../pages/Dashboard"
-import CalendarPage from "../pages/dashboards/CalendarPage"
 import ModulesPage from "../pages/dashboards/ModulesPage"
 import SubjectPage from "../components/subjects/SubjectPage"
 import LevelPage from "../components/subjects/LevelPage"
 import ModulePage from "../components/subjects/ModulePage"
+import ProfilePage from "../pages/dashboards/ProfilePage"
 
 const AppRouter = () => {
-  const { token, user } = useContext(AuthContext)
+  const { token } = useContext(AuthContext)
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div className="app-layout">
       {token ? <NavBarPrivate /> : <NavBarPublic />}
-      <main style={{ flex: 1 }}>
+      <main className="app-main">
         <Routes>
           <Route path="/" element={token ? <Navigate to="/dashboard" replace /> : <Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
-            <Route index element={<Navigate to={user?.role === 'teacher' ? 'calendar' : 'modules'} replace />} />
-            <Route path="calendar" element={<CalendarPage />} />
-            <Route path="modules" element={<ModulesPage />} />
+            <Route index element={<Navigate to="subjects" replace />} />
+            <Route path="subjects" element={<ModulesPage />} />
+            <Route path="profile" element={<ProfilePage />} />
             <Route path="subject/:subject" element={<SubjectPage />} />
             <Route path="subject/:subject/:level" element={<LevelPage />} />
             <Route path="subject/:subject/:level/:moduleId" element={<ModulePage />} />
