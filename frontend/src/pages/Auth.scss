@@ -2,7 +2,7 @@
 
 .auth {
   min-height: 100vh;
-  background-color: var(--color-background);
+  background-color: var(--color-pink);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
 
   &__form {
     background-color: white;
-    border: 2px solid var(--color-navy);
+    border: 2px solid var(--color-black);
     border-radius: 16px;
     padding: clamp(2rem, 5vw, 3rem);
     width: 100%;
@@ -21,7 +21,7 @@
   }
 
   &__title {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: clamp(1.3rem, 3vw, 1.8rem);
     text-align: center;
     margin: 0;
@@ -34,13 +34,13 @@
   }
 
   &__label {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: 0.9rem;
     font-weight: 600;
   }
 
   &__input {
-    border: 1.5px solid var(--color-navy);
+    border: 1.5px solid var(--color-black);
     border-radius: 8px;
     padding: 0.7rem 1rem;
     font-size: 1rem;
@@ -48,7 +48,7 @@
     transition: border-color 0.2s;
 
     &:focus {
-      border-color: var(--color-turquoise);
+      border-color: var(--color-black);
     }
   }
 
@@ -61,6 +61,6 @@
     font-weight: 700;
     color: white;
     margin-top: 0.5rem;
-    @include btn-pressed(var(--color-orange), #c45e2e);
+    @include btn-pressed(var(--color-black), var(--color-black));
   }
 }

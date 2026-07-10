@@ -4,8 +4,6 @@ import { useMutation } from '@tanstack/react-query'
 import {useForm} from "react-hook-form"
 import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
-import AdminDashboard from './dashboards/adminDashboard'
-
 
 const Login = () => {
 
@@ -54,14 +52,3 @@ const submit = (formData) => {
 }
 
 export default Login
-/* {
-
-Alumno
-  "name": "Test User",
-  "email": "test@test.com",
-  "password": "12345678"
-} */
-
-//admin admin@admin.com clave: Admin1234
-
-//professor professor@professor.com clave Professor1234
