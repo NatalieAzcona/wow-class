@@ -17,20 +17,20 @@
   }
 
   &__title {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: clamp(2rem, 5vw, 3.5rem);
     line-height: 1.2;
     margin: 0;
   }
 
   &__subtitle {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     margin: 0;
   }
 
   &__slogan {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: clamp(1rem, 2vw, 1.2rem);
     margin: 0;
     opacity: 0.7;
@@ -44,7 +44,7 @@
     font-size: 1.1rem;
     font-weight: 800;
     width: fit-content;
-    background: var(--color-navy);
+    background: var(--color-black);
     color: white;
     border: none;
     cursor: pointer;

@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero__content">
-        <h1 className="hero__title">Wöw Class</h1>
+        <h1 className="hero__title">W<span className="brand-o">ö</span>W Class</h1>
         <p className="hero__subtitle">
           ¡Tu momento de apuntar al 10!
         </p>

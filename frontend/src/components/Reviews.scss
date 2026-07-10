@@ -1,5 +1,5 @@
 .reviews {
-  background-color: var(--color-navy);
+  background-color: var(--color-black);
   padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 4rem);
   text-align: center;
 
@@ -29,7 +29,7 @@
   }
 
   &__text {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: 1rem;
     line-height: 1.6;
     margin: 0;
@@ -37,7 +37,7 @@
   }
 
   &__name {
-    color: var(--color-orange);
+    color: var(--color-pink);
     font-weight: 700;
     font-size: 0.9rem;
   }
