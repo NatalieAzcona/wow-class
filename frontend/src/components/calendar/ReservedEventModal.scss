@@ -1,11 +1,6 @@
 @use '../../styles/mixins' as *;
 
 .reserved-modal {
-  @include modal-base(360px);
-
-  &__header { @include modal-header; }
-  &__body { @include modal-body(0.6rem); }
-
   &__row {
     display: flex;
     align-items: center;
@@ -14,24 +9,27 @@
 
   &__key {
     font-size: 0.8rem;
-    color: var(--color-text-muted);
+    color: var(--color-gray-400);
     font-weight: 600;
     min-width: 72px;
   }
 
   &__val {
     font-size: 0.95rem;
-    color: var(--color-navy);
+    color: var(--color-black);
     font-weight: 700;
   }
 
   &__date-val {
     font-size: 0.85rem;
-    color: #444;
+    color: var(--color-gray-400);
     font-weight: 600;
   }
 
   &__mode {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     font-size: 0.8rem;
     font-weight: 700;
     padding: 0.2rem 0.7rem;
@@ -39,13 +37,13 @@
     text-decoration: none;
 
     &--online {
-      background: #dff5ec;
-      color: #1a8a5a;
+      background: var(--color-badge-online-bg);
+      color: var(--color-badge-online-text);
     }
 
     &--presencial {
-      background: #fff0e6;
-      color: #c95b18;
+      background: var(--color-badge-presencial-bg);
+      color: var(--color-badge-presencial-text);
     }
   }
 
@@ -58,21 +56,21 @@
 
   &__address-label {
     font-size: 0.75rem;
-    color: var(--color-text-muted);
+    color: var(--color-gray-400);
     font-weight: 600;
     margin: 0 0 0.2rem 0;
   }
 
   &__address {
     font-size: 0.9rem;
-    color: var(--color-navy);
+    color: var(--color-black);
     font-weight: 700;
     margin: 0 0 0.4rem 0;
   }
 
   &__maps {
     font-size: 0.8rem;
-    color: var(--color-orange);
+    color: var(--color-pink);
     font-weight: 700;
     text-decoration: none;
 
@@ -81,16 +79,9 @@
 
   &__no-address {
     font-size: 0.85rem;
-    color: var(--color-text-subtle);
+    color: var(--color-gray-400);
     margin: 0;
     font-style: italic;
-  }
-
-  &__footer {
-    padding: 0 1.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
   }
 
   &__approve-wrap {
@@ -100,28 +91,23 @@
   }
 
   &__approve {
-    @include confirm-btn;
+    @include outline-btn(var(--color-black));
     width: 100%;
-  }
-
-  &__reject {
-    @include btn-pressed(#fff0f3, #f5c6cb);
-    color: #c0392b;
-    width: 100%;
-    display: block;
   }
 
   &__hint {
     font-size: 0.75rem;
-    color: var(--color-orange);
+    color: var(--color-pink);
     font-weight: 600;
   }
 
-  &__cancel {
-    @include btn-pressed(#fff0f3, #f5c6cb);
-    color: #c0392b;
+  &__reject {
+    @include outline-btn(var(--color-error));
     width: 100%;
-    display: block;
   }
 
+  &__cancel {
+    @include outline-btn(var(--color-error));
+    width: 100%;
+  }
 }

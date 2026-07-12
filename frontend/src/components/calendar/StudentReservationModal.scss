@@ -1,11 +1,6 @@
 @use '../../styles/mixins' as *;
 
 .student-modal {
-  @include modal-base(340px);
-
-  &__header { @include modal-header; }
-  &__body { @include modal-body(0.6rem); }
-
   &__row {
     display: flex;
     align-items: center;
@@ -53,13 +48,6 @@
     line-height: 1.4;
   }
 
-  &__footer {
-    padding: 0 1.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
   &__meet {
     @include outline-btn(var(--color-black));
     display: block;
@@ -79,5 +67,4 @@
     @include outline-btn(var(--color-error));
     width: 100%;
   }
-
 }

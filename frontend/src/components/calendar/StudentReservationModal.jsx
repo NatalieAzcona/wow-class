@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faVideo, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import './SlotActionModal.scss'
 import './StudentReservationModal.scss'
 
 const WHATSAPP_NUMBER = '34600000000'
@@ -14,15 +17,16 @@ const StudentReservationModal = ({ slot, reservation, onClose, onCancel }) => {
   }, [])
 
   return (
-    <dialog ref={dialogRef} className="student-modal" onClose={onClose}>
-      <div className="student-modal__header">
+    <dialog ref={dialogRef} className="slot-action-modal" onClose={onClose}>
+      <div className="slot-action-modal__header">
         <span>{isPending ? 'Solicitud pendiente' : 'Clase confirmada'}</span>
         <button onClick={onClose}>✕</button>
       </div>
-      <div className="student-modal__body">
+      <div className="slot-action-modal__body">
         <div className="student-modal__row">
           <span className="student-modal__key">Formato</span>
           <span className={`student-modal__mode student-modal__mode--${reservation.mode}`}>
+            <FontAwesomeIcon icon={reservation.mode === 'online' ? faVideo : faLocationDot} />
             {reservation.mode === 'online' ? 'Online' : 'Presencial'}
           </span>
         </div>
@@ -34,7 +38,7 @@ const StudentReservationModal = ({ slot, reservation, onClose, onCancel }) => {
           <p className="student-modal__note">Tu solicitud está en revisión. El profesor la confirmará pronto.</p>
         )}
       </div>
-      <div className="student-modal__footer">
+      <div className="slot-action-modal__footer">
         {!isPending && reservation.mode === 'online' && reservation.meetLink && (
           <a className="student-modal__meet" href={reservation.meetLink} target="_blank" rel="noreferrer">
             Unirse a la clase

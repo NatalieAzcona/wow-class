@@ -9,7 +9,7 @@
   &__date {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-text-muted);
+    color: var(--color-gray-400);
     margin: 0;
   }
 
@@ -21,29 +21,19 @@
 
   &__option {
     @include modal-option;
-
-    &--meeting:hover {
-      border-color: var(--color-orange);
-      background: #fff5f0;
-    }
-
-    &--delete:hover {
-      border-color: var(--color-coral);
-      background: #fff0f5;
-    }
   }
 
   &__day {
     font-size: 0.95rem;
     font-weight: 800;
-    color: var(--color-navy);
+    color: var(--color-black);
     margin: 0;
   }
 
   &__range {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--color-text-muted);
+    color: var(--color-gray-400);
     margin: 0;
   }
 
@@ -64,34 +54,34 @@
   &__time-input {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-navy);
-    border: 2px solid var(--color-navy-200);
+    color: var(--color-black);
+    border: 2px solid var(--color-gray-200);
     border-radius: 8px;
     padding: 0.3rem 0.5rem;
     outline: none;
     flex: 1;
     min-width: 90px;
 
-    &:focus { border-color: var(--color-navy); }
+    &:focus { border-color: var(--color-black); }
   }
 
   &__time-sep {
     font-size: 0.85rem;
     font-weight: 700;
-    color: var(--color-text-subtle);
+    color: var(--color-gray-400);
   }
 
   &__time-confirm {
     font-size: 0.85rem;
     font-weight: 800;
     color: white;
-    background: var(--color-navy);
+    background: var(--color-black);
     border: none;
     border-radius: 8px;
     padding: 0.35rem 0.8rem;
     cursor: pointer;
 
-    &:hover { background: var(--color-navy-dark); }
+    &:hover { background: var(--color-black); }
   }
 
   &__icon { font-size: 1.4rem; }
@@ -99,12 +89,12 @@
   &__label {
     font-weight: 800;
     font-size: 1rem;
-    color: var(--color-navy);
+    color: var(--color-black);
   }
 
   &__desc {
     font-size: 0.8rem;
-    color: var(--color-text-subtle);
+    color: var(--color-gray-400);
     font-weight: 600;
   }
 
@@ -120,19 +110,32 @@
     gap: 0.3rem;
     font-size: 0.8rem;
     font-weight: 700;
-    color: var(--color-text-muted);
+    color: var(--color-gray-400);
   }
 
   &__select { @include form-select; }
 
   &__mode { display: flex; gap: 0.6rem; }
 
-  &__mode-btn { @include mode-btn; }
+  &__mode-btn {
+    @include mode-btn;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
 
-  &__confirm { @include confirm-btn; }
+  &__footer {
+    padding: 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  &__confirm { @include primary-btn; }
 
   &__back {
-    @include ghost-btn;
+    @include outline-btn(var(--color-black));
     font-size: 0.85rem;
     align-self: center;
   }

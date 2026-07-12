@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faVideo, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import './SlotActionModal.scss'
 import './ReservedEventModal.scss'
 
 const ReservedEventModal = ({ event, onClose, onCancel, isPending, onApprove, onReject, googleConnected, isActing }) => {
@@ -19,12 +22,12 @@ const ReservedEventModal = ({ event, onClose, onCancel, isPending, onApprove, on
   const blockedByGoogle = isPending && mode === 'online' && !googleConnected
 
   return (
-    <dialog ref={dialogRef} className="reserved-modal" onClose={onClose}>
-      <div className="reserved-modal__header">
+    <dialog ref={dialogRef} className="slot-action-modal" onClose={onClose}>
+      <div className="slot-action-modal__header">
         <span>{isPending ? 'Solicitud pendiente' : 'Clase reservada'}</span>
         <button onClick={onClose}>✕</button>
       </div>
-      <div className="reserved-modal__body">
+      <div className="slot-action-modal__body">
         <div className="reserved-modal__row">
           <span className="reserved-modal__key">Estudiante</span>
           <span className="reserved-modal__val">{student?.name || '—'}</span>
@@ -38,10 +41,11 @@ const ReservedEventModal = ({ event, onClose, onCancel, isPending, onApprove, on
               target="_blank"
               rel="noreferrer"
             >
-              Online →
+              <FontAwesomeIcon icon={faVideo} /> Online →
             </a>
           ) : (
             <span className={`reserved-modal__mode reserved-modal__mode--${mode}`}>
+              <FontAwesomeIcon icon={mode === 'online' ? faVideo : faLocationDot} />
               {mode === 'online' ? 'Online' : 'Presencial'}
             </span>
           )}
@@ -65,7 +69,7 @@ const ReservedEventModal = ({ event, onClose, onCancel, isPending, onApprove, on
           <p className="reserved-modal__no-address">El estudiante no ha guardado su dirección aún</p>
         )}
       </div>
-      <div className="reserved-modal__footer">
+      <div className="slot-action-modal__footer">
         {isPending ? (
           <>
             <div className="reserved-modal__approve-wrap">
@@ -89,11 +93,9 @@ const ReservedEventModal = ({ event, onClose, onCancel, isPending, onApprove, on
             </button>
           </>
         ) : (
-          <>
-            <button className="reserved-modal__cancel" onClick={() => onCancel(reservation._id)}>
-              Cancelar cita
-            </button>
-          </>
+          <button className="reserved-modal__cancel" onClick={() => onCancel(reservation._id)}>
+            Cancelar cita
+          </button>
         )}
       </div>
     </dialog>
