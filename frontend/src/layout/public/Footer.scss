@@ -1,7 +1,7 @@
 @use '../../styles/mixins' as *;
 
 .footer {
-  background-color: var(--color-navy);
+  background-color: var(--color-black);
   color: white;
   padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem);
   display: flex;
@@ -11,8 +11,9 @@
   text-align: center;
 
   &__logo {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 1.2rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
   }
 
   &__tagline {

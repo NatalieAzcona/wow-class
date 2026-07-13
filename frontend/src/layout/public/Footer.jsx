@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__brand">
-        <span className="footer__logo">WöW</span>
+        <span className="footer__logo">W<span className="brand-o">ö</span>W</span>
         <p className="footer__tagline">Clases de inglés y matemáticas para niños</p>
       </div>
 

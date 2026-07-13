@@ -7,7 +7,7 @@ const NavBarPrivate = () => {
 
     return (
         <nav className="navbar">
-          <NavLink to="/" className="navbar__logo">WöW</NavLink>
+          <NavLink to="/" className="navbar__logo">W<span className="brand-o">ö</span>W</NavLink>
           <div className="navbar__links">
             <AvatarMenu/>
           </div>
