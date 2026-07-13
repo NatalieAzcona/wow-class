@@ -6,7 +6,7 @@ import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import es from 'date-fns/locale/es'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import './calendar.scss'
+import './Calendar.scss'
 
 
 const locales = { es }
@@ -22,16 +22,16 @@ const localizer = dateFnsLocalizer({
 const EventBlock = ({ event }) => {
   const parts = event.title.split(' · ')
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', lineHeight: 1.3, width: '100%' }}>
-      <span style={{ fontWeight: 800 }}>{parts[0]}</span>
-      {parts[1] && <span style={{ fontSize: '0.75em', opacity: 0.75 }}>{parts[1]}</span>}
+    <div className="event-block">
+      <span className="event-block__title">{parts[0]}</span>
+      {parts[1] && <span className="event-block__mode">{parts[1]}</span>}
     </div>
   )
 }
 
 const CalendarView = ({ events, onSelectEvent, onSelectSlot, eventPropGetter, view, onView, date, onNavigate }) => {
   return (
-    <div style={{ height: 600, cursor: 'pointer' }}>
+    <div className="calendar-wrapper">
       <Calendar
         culture='es'
         localizer={localizer}

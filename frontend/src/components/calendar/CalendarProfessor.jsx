@@ -5,6 +5,7 @@ import { AuthContext } from '../../context/AuthContext'
 import CalendarView from './CalendarView'
 import CalendarLegend from './CalendarLegend'
 import CalendarModals from './CalendarModals'
+import GoogleCalendarBanner from './GoogleCalendarBanner'
 
 const CalendarProfessor = () => {
   const { user } = useContext(AuthContext)
@@ -152,8 +153,8 @@ const CalendarProfessor = () => {
 
   const eventPropGetter = (event) => ({
     style: {
-      backgroundColor: event.reserved ? '#3ddabe' : event.pending ? '#ffe03d' : '#cce9e4',
-      color: '#141414',
+      backgroundColor: event.reserved ? 'var(--color-turquoise)' : event.pending ? 'var(--color-yellow)' : 'var(--color-turquoise-light)',
+      color: 'var(--color-black)',
       border: 'none',
       borderRadius: '8px',
       fontWeight: 700,
@@ -170,6 +171,7 @@ const CalendarProfessor = () => {
 
   return (
     <div>
+      <GoogleCalendarBanner />
       <CalendarView
         events={visibleEvents}
         onSelectSlot={({ start, end }) => setSelectedTimeSlot({ start, end })}
