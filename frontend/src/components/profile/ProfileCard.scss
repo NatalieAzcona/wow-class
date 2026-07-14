@@ -8,26 +8,22 @@
   gap: 0.5rem;
   min-width: 220px;
 
-  &__avatar {
-    display: none;
-  }
-
   &__name {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: 1rem;
     font-weight: 700;
     margin: 0;
   }
 
   &__email {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: 0.85rem;
     opacity: 0.6;
     margin: 0;
   }
 
   &__role {
-    color: var(--color-navy);
+    color: var(--color-black);
     font-size: 0.8rem;
     opacity: 0.5;
     margin: 0;
@@ -36,41 +32,21 @@
   &__actions {
     display: flex;
     flex-direction: column;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--color-gray-100);
     margin-top: 0.5rem;
     padding-top: 0.5rem;
+    gap: 0.2rem;
   }
 
-  &__address {
-    font-size: 0.8rem;
-    color: #666;
-    margin: 0;
-  }
+  &__link {
+    display: block;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-pink);
+    text-decoration: none;
 
-  &__edit {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    padding: 0.4rem 0;
-  }
-
-  &__input {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 0.4rem 0.6rem;
-    font-size: 0.85rem;
-    font-family: 'Nunito', sans-serif;
-    color: var(--color-navy);
-    outline: none;
-
-    &:focus {
-      border-color: var(--color-navy);
-    }
-  }
-
-  &__edit-actions {
-    display: flex;
-    gap: 0.3rem;
+    &:hover { text-decoration: underline; }
   }
 
   &__btn {
@@ -80,19 +56,14 @@
     text-align: left;
     padding: 0.5rem 0;
     font-size: 0.9rem;
-    color: var(--color-navy);
+    color: var(--color-black);
     font-weight: 600;
 
-    &:hover {
-      color: var(--color-orange);
-    }
+    &:hover { color: var(--color-pink); }
 
     &--logout {
-      color: var(--color-coral);
-
-      &:hover {
-        color: var(--color-coral-dark);
-      }
+      color: var(--color-pink);
+      &:hover { color: var(--color-pink-dark); }
     }
   }
 }
