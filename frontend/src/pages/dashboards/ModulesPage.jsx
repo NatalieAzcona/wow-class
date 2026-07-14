@@ -17,7 +17,7 @@ const ModulesPage = () => {
 
   return (
     <div className="modules-page">
-      <h2>Módulos</h2>
+      <h2>{user.role === 'student' ? '¿Qué quieres estudiar hoy?' : 'Mis clases'}</h2>
       <div className="modules-page__cards">
         {cards.map(c => (
           <SubjectCard key={c.key} subject={c.subject} path={c.path} />

@@ -1,0 +1,70 @@
+@use '../../styles/mixins' as *;
+
+.profile-page {
+  @include dashboard-page;
+  align-items: center;
+
+  &__back {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-gray-400);
+    text-decoration: none;
+    align-self: flex-start;
+
+    &:hover { color: var(--color-black); }
+  }
+
+  &__title {
+    @include section-title;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  &__note {
+    font-size: 0.85rem;
+    color: var(--color-gray-400);
+    margin: 0;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  &__form {
+    @include content-card;
+    @include flex-col;
+    gap: 1.2rem;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 480px;
+  }
+
+  &__label {
+    @include flex-col;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-gray-400);
+  }
+
+  &__input {
+    border: 2px solid var(--color-pink-100);
+    border-radius: 10px;
+    padding: 0.5rem 0.8rem;
+    font-size: 0.95rem;
+    font-family: 'Nunito', sans-serif;
+    color: var(--color-black);
+    outline: none;
+
+    &:focus { border-color: var(--color-black); }
+
+    &--readonly {
+      background: var(--color-gray-100);
+      color: var(--color-gray-400);
+      cursor: not-allowed;
+    }
+  }
+
+  &__save {
+    @include primary-btn;
+    align-self: flex-end;
+  }
+}
