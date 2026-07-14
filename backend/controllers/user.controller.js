@@ -11,11 +11,11 @@ const getStudents = async (req, res) => {
 
 const updateProfile = async (req, res) => {
   try {
-    const { name, address } = req.body
+    const { name, address, phone } = req.body
     const updated = await User.findByIdAndUpdate(
       req.user.id,
-      { name, address },
-      { new: true, select: 'name email role subject address' }
+      { name, address, phone },
+      { new: true, select: 'name email role subject address phone' }
     )
     res.status(200).json(updated)
   } catch (error) {

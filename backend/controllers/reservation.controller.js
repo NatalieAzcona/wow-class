@@ -91,6 +91,9 @@ const createReservation = async (req, res) => {
         const teacher = isTeacher ? req.user.id : req.body.teacher
         const status = isTeacher ? 'confirmada' : 'pendiente'
 
+        const existing = await Reservation.findOne({ availability })
+        if (existing) return res.status(409).json({ message: 'Ya existe una reserva para este horario' })
+
         const newReservation = new Reservation({ student, availability, teacher, status, mode })
         const savedReservation = await newReservation.save()
 
