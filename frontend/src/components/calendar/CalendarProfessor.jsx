@@ -6,6 +6,7 @@ import CalendarView from './CalendarView'
 import CalendarLegend from './CalendarLegend'
 import CalendarModals from './CalendarModals'
 import GoogleCalendarBanner from './GoogleCalendarBanner'
+import { API } from '../../config/api'
 
 const CalendarProfessor = () => {
   const { user } = useContext(AuthContext)
@@ -17,21 +18,21 @@ const CalendarProfessor = () => {
 
   const { data: availabilityData, isLoading } = useQuery({
     queryKey: ['availability'],
-    queryFn: () => fetch('http://localhost:3000/api/v1/availability', {
+    queryFn: () => fetch(`${API}/availability`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json())
   })
 
   const { data: reservationData } = useQuery({
     queryKey: ['reservations'],
-    queryFn: () => fetch('http://localhost:3000/api/v1/reservation', {
+    queryFn: () => fetch(`${API}/reservation`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json())
   })
 
   const { data: meData } = useQuery({
     queryKey: ['me'],
-    queryFn: () => fetch('http://localhost:3000/api/v1/auth/me', {
+    queryFn: () => fetch(`${API}/auth/me`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json())
   })
@@ -65,7 +66,7 @@ const CalendarProfessor = () => {
 
   const mutation = useMutation({
     mutationFn: ({ start, end }) =>
-      fetch('http://localhost:3000/api/v1/availability', {
+      fetch(`${API}/availability`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ startTime: start, endTime: end, subject: user.subject })
@@ -74,7 +75,7 @@ const CalendarProfessor = () => {
   })
 
   const deleteMutation = useMutation({
-    mutationFn: (id) => fetch(`http://localhost:3000/api/v1/availability/${id}`, {
+    mutationFn: (id) => fetch(API + `/availability/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json()),
@@ -83,7 +84,7 @@ const CalendarProfessor = () => {
 
   const actionMutation = useMutation({
     mutationFn: ({ id, status }) =>
-      fetch(`http://localhost:3000/api/v1/reservation/${id}`, {
+      fetch(API + `/reservation/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ status })
@@ -92,7 +93,7 @@ const CalendarProfessor = () => {
   })
 
   const cancelReservationMutation = useMutation({
-    mutationFn: (reservationId) => fetch(`http://localhost:3000/api/v1/reservation/${reservationId}`, {
+    mutationFn: (reservationId) => fetch(API + `/reservation/${reservationId}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json()),
@@ -104,7 +105,7 @@ const CalendarProfessor = () => {
   })
 
   const scheduleMutation = useMutation({
-    mutationFn: ({ studentId, mode }) => fetch('http://localhost:3000/api/v1/reservation', {
+    mutationFn: ({ studentId, mode }) => fetch(`${API}/reservation`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify({ availability: selectedEvent?.id, student: studentId, mode })
@@ -135,13 +136,13 @@ const CalendarProfessor = () => {
   }
 
   const handleScheduleMeeting = async ({ start, end, studentId, mode }) => {
-    const slotRes = await fetch('http://localhost:3000/api/v1/availability', {
+    const slotRes = await fetch(`${API}/availability`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify({ startTime: start, endTime: end, subject: user.subject })
     })
     const slot = await slotRes.json()
-    await fetch('http://localhost:3000/api/v1/reservation', {
+    await fetch(`${API}/reservation`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
       body: JSON.stringify({ availability: slot._id, student: studentId, mode })
@@ -184,18 +185,10 @@ const CalendarProfessor = () => {
       />
       <CalendarLegend />
       <CalendarModals
-        selectedEvent={selectedEvent}
-        selectedTimeSlot={selectedTimeSlot}
-        getTimeSlotsInRange={getTimeSlotsInRange}
-        createTimeSlotsFromRange={createTimeSlotsFromRange}
-        onScheduleMeeting={handleScheduleMeeting}
-        deleteMutation={deleteMutation}
-        scheduleMutation={scheduleMutation}
-        actionMutation={actionMutation}
-        cancelReservationMutation={cancelReservationMutation}
+        selection={{ selectedEvent, selectedTimeSlot, setSelectedEvent, setSelectedTimeSlot }}
+        mutations={{ deleteMutation, scheduleMutation, actionMutation, cancelReservationMutation }}
+        handlers={{ getTimeSlotsInRange, createTimeSlotsFromRange, onScheduleMeeting: handleScheduleMeeting }}
         googleConnected={googleConnected}
-        setSelectedEvent={setSelectedEvent}
-        setSelectedTimeSlot={setSelectedTimeSlot}
       />
     </div>
   )
