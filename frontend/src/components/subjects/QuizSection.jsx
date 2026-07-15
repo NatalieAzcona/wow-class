@@ -3,10 +3,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import QuizQuestionForm from './QuizQuestionForm'
 import QuizQuestionCard from './QuizQuestionCard'
 import QuizStudent from './QuizStudent'
+import { API } from '../../config/api'
 import './QuizSection.scss'
 
 const TOKEN = () => localStorage.getItem('token')
-const BASE = 'http://localhost:3000/api/v1'
 
 const QuizSection = ({ module, isTeacher }) => {
   const queryClient = useQueryClient()
@@ -16,7 +16,7 @@ const QuizSection = ({ module, isTeacher }) => {
   const { data: quiz } = useQuery({
     queryKey: ['quiz', module._id],
     queryFn: () =>
-      fetch(`${BASE}/quiz/module/${module._id}`, {
+      fetch(`${API}/quiz/module/${module._id}`, {
         headers: { Authorization: `Bearer ${TOKEN()}` },
       }).then(res => res.json()),
   })
@@ -24,13 +24,13 @@ const QuizSection = ({ module, isTeacher }) => {
   const saveMutation = useMutation({
     mutationFn: ({ questions }) => {
       if (quiz?._id) {
-        return fetch(`${BASE}/quiz/${quiz._id}`, {
+        return fetch(`${API}/quiz/${quiz._id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${TOKEN()}` },
           body: JSON.stringify({ module: module._id, questions }),
         }).then(res => res.json())
       }
-      return fetch(`${BASE}/quiz`, {
+      return fetch(`${API}/quiz`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${TOKEN()}` },
         body: JSON.stringify({ module: module._id, questions }),

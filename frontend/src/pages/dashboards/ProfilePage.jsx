@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { API } from '../../config/api'
 import { AuthContext } from '../../context/AuthContext'
 import './ProfilePage.scss'
 
@@ -12,7 +13,7 @@ const ProfilePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await fetch('http://localhost:3000/api/v1/users/profile', {
+    const res = await fetch(`${API}/users/profile`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({ name, phone, address })

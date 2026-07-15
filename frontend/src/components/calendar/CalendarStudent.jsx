@@ -4,6 +4,7 @@ import ModeModal from './ModeModal'
 import StudentReservationModal from './StudentReservationModal'
 import WeekNavigator from './WeekNavigator'
 import DayColumn from './DayColumn'
+import { API } from '../../config/api'
 import './CalendarStudent.scss'
 
 const getMonday = (date) => {
@@ -24,21 +25,21 @@ const CalendarStudent = ({ subject }) => {
 
   const { data: availabilityData, isLoading } = useQuery({
     queryKey: ['availabilityStudent'],
-    queryFn: () => fetch('http://localhost:3000/api/v1/availability', {
+    queryFn: () => fetch(`${API}/availability`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json())
   })
 
   const { data: reservations } = useQuery({
     queryKey: ['reservationsStudent'],
-    queryFn: () => fetch('http://localhost:3000/api/v1/reservation', {
+    queryFn: () => fetch(`${API}/reservation`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json())
   })
 
   const bookMutation = useMutation({
     mutationFn: ({ availability, teacher, mode }) =>
-      fetch('http://localhost:3000/api/v1/reservation', {
+      fetch(`${API}/reservation`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ availability, teacher, mode })
@@ -51,7 +52,7 @@ const CalendarStudent = ({ subject }) => {
 
   const cancelMutation = useMutation({
     mutationFn: (reservationId) =>
-      fetch(`http://localhost:3000/api/v1/reservation/${reservationId}`, {
+      fetch(API + `/reservation/${reservationId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       }).then(res => res.json()),

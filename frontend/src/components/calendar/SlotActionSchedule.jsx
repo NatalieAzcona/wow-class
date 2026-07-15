@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVideo, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { API } from '../../config/api'
 
 const SlotActionSchedule = ({ slot, onScheduleMeeting, onBack }) => {
   const isFullDay = (slot.end - slot.start) >= 23 * 3600 * 1000
@@ -13,7 +14,7 @@ const SlotActionSchedule = ({ slot, onScheduleMeeting, onBack }) => {
 
   const { data: students } = useQuery({
     queryKey: ['students'],
-    queryFn: () => fetch('http://localhost:3000/api/v1/users/students', {
+    queryFn: () => fetch(`${API}/users/students`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json()),
   })

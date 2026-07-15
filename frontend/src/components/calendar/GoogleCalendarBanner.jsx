@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { API } from '../../config/api'
 import { useLocation } from 'react-router-dom'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
@@ -8,7 +9,7 @@ const GoogleCalendarBanner = () => {
 
   const { data: me } = useQuery({
     queryKey: ['me'],
-    queryFn: () => fetch('http://localhost:3000/api/v1/auth/me', {
+    queryFn: () => fetch(`${API}/auth/me`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json())
   })
@@ -20,11 +21,11 @@ const GoogleCalendarBanner = () => {
 
   const handleConnect = () => {
     const token = localStorage.getItem('token')
-    window.location.href = `http://localhost:3000/api/v1/auth/google?token=${token}`
+    window.location.href = API + `/auth/google?token=${token}`
   }
 
   const handleChange = async () => {
-    await fetch('http://localhost:3000/api/v1/auth/google', {
+    await fetch(`${API}/auth/google`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })

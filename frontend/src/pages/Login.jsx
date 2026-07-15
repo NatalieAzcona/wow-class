@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { API } from '../config/api'
 import './Auth.scss'
 import { useMutation } from '@tanstack/react-query'
 import {useForm} from "react-hook-form"
@@ -13,7 +14,7 @@ const navigate = useNavigate()
 
 const mutation = useMutation({
     mutationFn: (formData) => 
-      fetch("http://localhost:3000/api/v1/auth/login", {
+      fetch(`${API}/auth/login`, {
         method: "POST",
         headers: { "Content-type": "application/json"},
         body: JSON.stringify(formData)
