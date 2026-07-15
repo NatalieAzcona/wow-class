@@ -1,31 +1,42 @@
 .subject-card {
-  border-radius: 16px;
+  border-radius: 24px;
   overflow: hidden;
-  border: 2px solid var(--color-navy);
-  max-width: 280px;
-  cursor: pointer;
   text-decoration: none;
+  cursor: pointer;
+  width: 220px;
+  height: 280px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  box-shadow: 0 8px 0 rgba(0,0,0,0.15);
+  transition: transform 0.1s, box-shadow 0.1s;
 
-  &__image {
-    height: 160px;
-    background-color: #ccc;
-    background-size: cover;
-    background-position: center;
+  &:hover {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 rgba(0,0,0,0.15);
   }
 
-  h3 {
-    color: var(--color-navy);
-    font-size: 1.2rem;
-    font-weight: 700;
-    padding: 1rem;
-    margin: 0;
+  &__label {
+    background-color: white;
+    border-radius: 0;
+    padding: 0.8rem 1.2rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+
+    h3 {
+      color: var(--color-black);
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
   }
 
-  &--english &__image {
-    background-color: var(--color-orange);
+  &--english {
+    background-color: var(--color-pink);
   }
 
-  &--math &__image {
+  &--math {
     background-color: var(--color-turquoise);
   }
 }

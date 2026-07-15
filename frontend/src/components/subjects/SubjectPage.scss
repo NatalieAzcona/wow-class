@@ -2,15 +2,13 @@
 
 .subject-page {
   min-height: 100%;
-  background-color: var(--color-navy-50);
+  background-color: var(--color-pink-50);
   padding: 2rem 4rem;
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 2.5rem;
 
   &__section {
-    display: flex;
-    flex-direction: column;
+    @include flex-col;
 
     h2 {
       background-color: white;
@@ -22,9 +20,34 @@
     }
   }
 
+  &__tabs {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__tab {
+    @include outline-btn(var(--color-black));
+    padding: 0.4rem 1.2rem;
+    font-size: 0.9rem;
+
+    &--active {
+      background: var(--color-black);
+      color: white;
+    }
+  }
+
+  &__calendar {
+    width: 100%;
+    max-width: 860px;
+    align-self: center;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
   &__info {
     font-size: 0.88rem;
-    color: var(--color-text-muted);
+    color: var(--color-gray-400);
     font-weight: 600;
     margin: 1.2rem 0 0;
     line-height: 1.5;
