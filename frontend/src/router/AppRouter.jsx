@@ -15,6 +15,9 @@ import SubjectPage from "../components/subjects/SubjectPage"
 import LevelPage from "../components/subjects/LevelPage"
 import ModulePage from "../components/subjects/ModulePage"
 import ProfilePage from "../pages/dashboards/ProfilePage"
+import AvisoLegal from "../pages/legal/AvisoLegal"
+import Privacidad from "../pages/legal/Privacidad"
+import Cookies from "../pages/legal/Cookies"
 
 const AppRouter = () => {
   const { token } = useContext(AuthContext)
@@ -27,6 +30,9 @@ const AppRouter = () => {
           <Route path="/" element={token ? <Navigate to="/dashboard" replace /> : <Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/aviso-legal" element={<AvisoLegal />} />
+          <Route path="/privacidad" element={<Privacidad />} />
+          <Route path="/cookies" element={<Cookies />} />
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
             <Route index element={<Navigate to="subjects" replace />} />
             <Route path="subjects" element={<ModulesPage />} />

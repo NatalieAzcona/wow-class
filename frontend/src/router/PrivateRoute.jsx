@@ -9,7 +9,7 @@ const {token} = useContext(AuthContext)
 
   return (
     <>
-      {token ? children : <Navigate to="/login" />}
+      {token ? children : <Navigate to="/" />}
     </>
   )
 }
