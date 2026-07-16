@@ -27,12 +27,12 @@
 
     &--left {
       flex-direction: row;
-      .what-is-wow__teacher-photo { background-image: url('/Mary.png'); background-position: center 15%; }
+      .what-is-wow__teacher-photo { background-image: url('/prof-mary.png'); background-position: center 15%; }
     }
 
     &--right {
       flex-direction: row-reverse;
-      .what-is-wow__teacher-photo { background-image: url('/Enrique.png'); }
+      .what-is-wow__teacher-photo { background-image: url('/prof-enrique.png'); }
     }
   }
 
@@ -45,6 +45,7 @@
     background-size: cover;
     background-position: center top;
     background-repeat: no-repeat;
+    box-shadow: 0 0 0 4px var(--color-pink), 0 0 0 8px var(--color-black);
   }
 
   &__teacher-bio {

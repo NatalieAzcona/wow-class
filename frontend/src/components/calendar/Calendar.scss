@@ -1,7 +1,11 @@
+@use '../../styles/mixins' as *;
+
 .calendar-wrapper {
   height: 600px;
   cursor: pointer;
 }
+
+.calendar-professor__title { @include section-title; }
 
 .event-block {
   display: flex;

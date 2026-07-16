@@ -6,8 +6,8 @@ const WhatIsWow = () => {
     <section className="what-is-wow">
       <h2 className="what-is-wow__title">¿Qué es W<span className="brand-o">ö</span>W Class?</h2>
       <p className="what-is-wow__text">
-        W<span className="brand-o">ö</span>W Class es más que una plataforma de clases online y presenciales para niños en Granada y Maracena.
-        Aprenderás inglés y matemáticas con profesores de amplia experiencia, a tu ritmo y con material + juegos y quizzes por lección.
+      Regístrate y estudia a tu ritmo con lecciones, videos y quizzes totalmente gratis. Cuando necesites un empujón, reserva una clase con un profe que conoce tu temario y trabajará contigo para que apruebes :).
+
       </p>
 
       <div className="what-is-wow__teacher what-is-wow__teacher--left">

@@ -5,15 +5,15 @@
   background-color: var(--color-pink);
   min-height: 80vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
   padding: clamp(2rem, 5vw, 6rem);
+  justify-content: center;
 
-  &__content {
-    max-width: 700px;
+  &__text {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   &__title {
@@ -29,11 +29,12 @@
     margin: 0;
   }
 
-  &__slogan {
-    color: var(--color-black);
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    margin: 0;
-    opacity: 0.7;
+  &__image {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 16px;
+    display: block;
+    box-shadow: 0 0 0 4px white, 0 0 0 8px var(--color-black);
   }
 
   &__cta {
@@ -42,5 +43,19 @@
     width: fit-content;
     font-size: 1.1rem;
     @include btn-pressed(var(--color-black), var(--color-gray-600));
+  }
+
+  @media (min-width: 700px) {
+    position: relative;
+    padding-right: calc(45% + 3rem);
+
+    .hero__image {
+      position: absolute;
+      right: clamp(2rem, 5vw, 6rem);
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42%;
+      max-width: none;
+    }
   }
 }

@@ -107,6 +107,7 @@ const CalendarStudent = ({ subject }) => {
 
   return (
     <div className="week-picker">
+      <h2 className="week-picker__title">Agenda</h2>
       <WeekNavigator
         onPrev={prevWeek}
         onNext={nextWeek}

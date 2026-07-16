@@ -172,6 +172,7 @@ const CalendarProfessor = () => {
 
   return (
     <div>
+      <h2 className="calendar-professor__title">Agenda</h2>
       <GoogleCalendarBanner />
       <CalendarView
         events={visibleEvents}
