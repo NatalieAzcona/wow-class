@@ -70,7 +70,7 @@
     cursor: pointer;
     border-radius: 12px;
     padding: 0.8rem 2rem;
-    @include btn-pressed(var(--color-black), var(--color-black));
+    @include btn-pressed(var(--color-black), var(--color-gray-600));
 
     a {
       color: white;

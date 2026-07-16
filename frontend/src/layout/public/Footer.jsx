@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Footer.scss'
 
 
@@ -11,13 +12,13 @@ const Footer = () => {
 
       <div className="footer__links">
         <ul>
-          <li className="footer__link">Aviso legal</li>
-          <li className="footer__link">Política de privacidad</li>
-          <li className="footer__link">Cookies</li>
+          <li><Link to="/aviso-legal" className="footer__link">Aviso legal</Link></li>
+          <li><Link to="/privacidad" className="footer__link">Política de privacidad</Link></li>
+          <li><Link to="/cookies" className="footer__link">Cookies</Link></li>
         </ul>
       </div>
 
-      <p className="footer__copy">© 2026 Wöw Class. Todos los derechos reservados.</p>
+      <p className="footer__copy">© 2026 WöW Class. Todos los derechos reservados.</p>
     </footer>
   )
 }

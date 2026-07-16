@@ -39,19 +39,8 @@
   &__cta {
     display: inline-block;
     text-decoration: none;
-    padding: 1rem 2.2rem;
-    border-radius: 12px;
-    font-size: 1.1rem;
-    font-weight: 800;
     width: fit-content;
-    background: var(--color-black);
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.15s;
-
-    &:hover {
-      opacity: 0.85;
-    }
+    font-size: 1.1rem;
+    @include btn-pressed(var(--color-black), var(--color-gray-600));
   }
 }
