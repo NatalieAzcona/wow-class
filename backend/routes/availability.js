@@ -1,12 +1,12 @@
 const express = require("express");
-const {createAvailability, getAvailability, updateAvailability, deleteAvailability} = require("../controllers/availability.controller")
-const { isAuth, isTeacherOrAdmin } = require("../middlewares/auth")
+const {createAvailability, getAvailability, deleteAvailability} = require("../controllers/availability.controller")
+const { isAuth, isTeacher } = require("../middlewares/auth")
 
 const availabilityRouter = express.Router()
 
-availabilityRouter.post("/", isAuth, isTeacherOrAdmin, createAvailability);
+availabilityRouter.post("/", isAuth, isTeacher, createAvailability);
 availabilityRouter.get("/", isAuth, getAvailability)
-availabilityRouter.put("/:id", isAuth, isTeacherOrAdmin, updateAvailability)
-availabilityRouter.delete("/:id", isAuth, isTeacherOrAdmin, deleteAvailability)
+
+availabilityRouter.delete("/:id", isAuth, isTeacher, deleteAvailability)
 
 module.exports = availabilityRouter

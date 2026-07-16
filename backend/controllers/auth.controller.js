@@ -7,10 +7,14 @@ const bcrypt = require('bcrypt')
 const postRegister = async (req, res, next) => {
 
     try {
-        const {name, email, password } = req.body;
+        const {name, email, password, parentsConsent } = req.body;
 
         if(!name || !email || !password) {
             return  res.status(400).json({message: "Faltan datos por rellenar" })
+        }
+
+        if(!parentsConsent) {
+            return res.status(400).json({message: "Se requiere el consentimiento del tutor legal"})
         }
 
         if (typeof name !== 'string') {
@@ -33,6 +37,7 @@ const postRegister = async (req, res, next) => {
             name,
             email,
             password,
+            parentsConsent: true,
         })
 
         const savedUser = await newUser.save();

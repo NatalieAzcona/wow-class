@@ -18,20 +18,12 @@ const isAuth = async (req, res, next) => {
 
 }
 
-const isAdmin = (req, res, next) => { 
-    if (req.user.role !== 'admin') {       
-       return res.status(403).json({message: "solo un admin puede hacer esto"})
-    }
-     next()
- }
- 
-
-const isTeacherOrAdmin = (req, res, next) => { 
-   if (req.user.role !== 'teacher' && req.user.role !== 'admin') {       
-      return res.status(403).json({message: "solo un profesor o admin puede hacer esto"})
+const isTeacher = (req, res, next) => {
+   if (req.user.role !== 'teacher') {
+      return res.status(403).json({message: "solo un profesor puede hacer esto"})
    }
     next()
 }
 
 
-module.exports = {isAdmin, isTeacherOrAdmin, isAuth};
+module.exports = { isTeacher, isAuth };

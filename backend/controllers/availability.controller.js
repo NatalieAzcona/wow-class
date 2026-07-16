@@ -42,20 +42,6 @@ const getAvailability = async (req, res ) => {
 }
 
 
-const updateAvailability = async (req, res ) => {
-    try {
-        const daysTaken = req.params.id
-
-        const daysChanged = await Availability.findByIdAndUpdate(daysTaken, req.body, {new:true})
-
-        return res.status(200).json(daysChanged)
-    } catch (error) {
-        return res.status(400).json({ message: "No se pueden actualizar los días disponibles" })
-    }
-}
-
-
-
 const deleteAvailability = async (req, res ) => {
     try {
         const daysToDelete = req.params.id
@@ -69,6 +55,6 @@ const deleteAvailability = async (req, res ) => {
 }
 
 
-module.exports = {createAvailability, getAvailability, updateAvailability, deleteAvailability}
+module.exports = {createAvailability, getAvailability, deleteAvailability}
 
 
