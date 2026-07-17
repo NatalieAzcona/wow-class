@@ -32,7 +32,7 @@ const QuizQuestionForm = ({ initial, onSave, onCancel, isPending }) => {
   return (
     <div className="quiz-form">
       <div className="quiz-form__field">
-        <label className="quiz-form__label">Pregunta</label>
+        <label className="quiz-form__label">PREGUNTA</label>
         <input
           className="quiz-form__input"
           value={question}
@@ -61,7 +61,7 @@ const QuizQuestionForm = ({ initial, onSave, onCancel, isPending }) => {
       </div>
 
       <div className="quiz-form__field">
-        <label className="quiz-form__label">Explicación</label>
+        <label className="quiz-form__label">EXPLICACIÓN</label>
         <textarea
           className="quiz-form__textarea"
           value={explanation}

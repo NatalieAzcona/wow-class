@@ -16,16 +16,15 @@
   &__label {
     font-size: 0.78rem;
     font-weight: 700;
-    color: var(--color-text-muted);
-    text-transform: uppercase;
+    color: var(--color-gray-400);
     letter-spacing: 0.05em;
   }
 
   &__input {
     font-size: 0.95rem;
     font-weight: 600;
-    color: var(--color-navy);
-    border: 2px solid var(--color-navy-100);
+    color: var(--color-black);
+    border: 2px solid var(--color-pink-100);
     border-radius: 10px;
     padding: 0.55rem 0.9rem;
     outline: none;
@@ -33,14 +32,14 @@
     width: 100%;
     box-sizing: border-box;
 
-    &:focus { border-color: var(--color-navy); }
+    &:focus { border-color: var(--color-black); }
   }
 
   &__textarea {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--color-navy);
-    border: 2px solid var(--color-navy-100);
+    color: var(--color-black);
+    border: 2px solid var(--color-pink-100);
     border-radius: 10px;
     padding: 0.55rem 0.9rem;
     outline: none;
@@ -50,7 +49,7 @@
     width: 100%;
     box-sizing: border-box;
 
-    &:focus { border-color: var(--color-navy); }
+    &:focus { border-color: var(--color-black); }
   }
 
   &__options {
@@ -67,21 +66,21 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid var(--color-navy-200);
+    border: 2px solid var(--color-gray-200);
     background: white;
     cursor: pointer;
     flex-shrink: 0;
     transition: background 0.15s, border-color 0.15s;
 
     &--selected {
-      background: var(--color-navy);
-      border-color: var(--color-navy);
+      background: var(--color-black);
+      border-color: var(--color-black);
     }
   }
 
   &__hint {
     font-size: 0.75rem;
-    color: var(--color-text-subtle);
+    color: var(--color-gray-400);
     font-weight: 600;
     margin: 0;
     padding-left: 2rem;
@@ -98,7 +97,7 @@
   }
 
   &__cancel {
-    @include secondary-btn;
+    @include outline-btn(var(--color-black));
     padding: 0.5rem 1.4rem;
   }
 }
