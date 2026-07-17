@@ -1,0 +1,52 @@
+@use '../../styles/mixins' as *;
+
+.module-header {
+  @include flex-col;
+  gap: 0.6rem;
+
+  &__title-wrap {
+    @include flex-center;
+    gap: 1rem;
+  }
+
+  &__title {
+    @include section-title;
+    margin: 0;
+    flex: 1;
+  }
+
+  &__edit-btn {
+    @include outline-btn(var(--color-black));
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-black);
+    text-align: center;
+    border: 2px solid var(--color-black);
+    border-radius: 14px;
+    padding: 0.8rem 1.2rem;
+    outline: none;
+    background: white;
+  }
+
+  &__actions {
+    @include flex-center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  &__save {
+    @include primary-btn;
+    padding: 0.4rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  &__cancel {
+    @include outline-btn(var(--color-black));
+  }
+}

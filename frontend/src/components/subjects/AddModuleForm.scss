@@ -1,0 +1,46 @@
+@use '../../styles/mixins' as *;
+
+.add-module-form {
+    @include flex-center;
+    gap: 1rem;
+    background: white;
+    border-radius: 16px;
+    padding: 1rem 1.4rem;
+    border: 2px dashed var(--color-gray-200);
+
+    &__num {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--color-pink-100);
+        color: var(--color-black);
+        font-size: 1rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    &__input {
+        flex: 1;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--color-black);
+        border: none;
+        outline: none;
+        background: transparent;
+
+        &::placeholder { color: var(--color-gray-400); font-weight: 600; }
+    }
+
+    &__save {
+        @include primary-btn;
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    &__cancel {
+        @include outline-btn(var(--color-black));
+    }
+}

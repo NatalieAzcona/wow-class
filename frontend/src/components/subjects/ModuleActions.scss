@@ -1,0 +1,15 @@
+@use '../../styles/mixins' as *;
+
+.module-actions {
+  @include flex-center;
+  gap: 1rem;
+
+  &__save {
+    @include primary-btn;
+  }
+
+  &__cancel {
+    @include outline-btn(var(--color-black));
+    padding: 0.5rem 1.4rem;
+  }
+}
