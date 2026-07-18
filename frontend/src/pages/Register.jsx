@@ -10,16 +10,19 @@ const Register = () => {
 const navigate = useNavigate()  
 
 const mutation = useMutation({
-    mutationFn: (formData) => 
-      fetch(`${API}/auth/register`, {
+    mutationFn: async (formData) => {
+      const res = await fetch(`${API}/auth/register`, {
         method: "POST",
         headers: { "Content-type": "application/json"},
         body: JSON.stringify(formData)
-      }).then(res=> res.json()),
-
-onSuccess: (data) => {
-  navigate("/login")
- }
+      })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.message)
+      return json
+    },
+    onSuccess: () => {
+      navigate("/login", { state: { registered: true } })
+    }
 })
 
 
@@ -36,15 +39,20 @@ return (
       <h1 className="auth__title">Crear cuenta</h1>
       <div className="auth__field">
         <label className="auth__label">Nombre</label>
-        <input className="auth__input" type='text' {...register("name")} />
+        <input className="auth__input" type='text' {...register("name", { required: true })} />
+        {errors.name && <p className="auth__error">El nombre es obligatorio.</p>}
       </div>
       <div className="auth__field">
         <label className="auth__label">Email</label>
-        <input className="auth__input" type='email' {...register("email")} />
+        <input className="auth__input" type='email' {...register("email", { required: true })} />
+        {errors.email && <p className="auth__error">El email es obligatorio.</p>}
       </div>
       <div className="auth__field">
         <label className="auth__label">Contraseña</label>
-        <input className="auth__input" type='password' {...register("password")} />
+        <input className="auth__input" type='password' {...register("password", { required: true, minLength: 6 })} />
+        <p className="auth__hint">Mínimo 6 caracteres.</p>
+        {errors.password?.type === 'required' && <p className="auth__error">La contraseña es obligatoria.</p>}
+        {errors.password?.type === 'minLength' && <p className="auth__error">La contraseña debe tener al menos 6 caracteres.</p>}
       </div>
       <div className="auth__consent">
         <label className="auth__consent-label">
@@ -53,7 +61,16 @@ return (
         </label>
         {errors.parentsConsent && <p className="auth__error">Debes aceptar antes de continuar.</p>}
       </div>
-      <button className="auth__btn" type="submit">Registrarse</button>
+      {mutation.isError && (
+        <p className="auth__error">
+          {mutation.error.message === 'Este email ya está registrado en la base de datos'
+            ? 'Este email ya está registrado.'
+            : 'No se pudo crear la cuenta. Revisa los datos e inténtalo de nuevo.'}
+        </p>
+      )}
+      <button className="auth__btn" type="submit" disabled={mutation.isPending}>
+        {mutation.isPending ? 'Creando cuenta...' : 'Registrarse'}
+      </button>
     </form>
   </div>
 )
