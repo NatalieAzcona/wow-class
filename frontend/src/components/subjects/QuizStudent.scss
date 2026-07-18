@@ -1,0 +1,109 @@
+@use '../../styles/mixins' as *;
+
+.quiz-student {
+  @include flex-col;
+  gap: 1.2rem;
+  max-width: 560px;
+  align-self: center;
+  width: 100%;
+
+  &__question {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-black);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  &__options {
+    @include flex-col;
+    gap: 0.6rem;
+  }
+
+  &__option {
+    background: white;
+    border: 2px solid var(--color-pink-100);
+    border-radius: 12px;
+    padding: 0.75rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-black);
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: 'Nunito', sans-serif;
+
+    &:hover:not(:disabled) {
+      border-color: var(--color-black);
+      background: var(--color-pink-50);
+    }
+
+    &:disabled { cursor: default; }
+
+    &--correct {
+      background: var(--color-turquoise);
+      border-color: var(--color-turquoise);
+      color: var(--color-black);
+    }
+
+    &--wrong {
+      background: var(--color-error-bg);
+      border-color: var(--color-error);
+      color: var(--color-error-dark);
+    }
+  }
+
+  &__feedback {
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    @include flex-col;
+    gap: 0.3rem;
+
+    span {
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    p {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 0;
+      opacity: 0.85;
+    }
+
+    &--correct {
+      background: var(--color-badge-online-bg);
+      color: var(--color-success-dark);
+    }
+
+    &--wrong {
+      background: var(--color-error-light);
+      color: var(--color-error-dark);
+    }
+  }
+
+  &__next {
+    @include primary-btn;
+    align-self: flex-end;
+  }
+
+  &__result {
+    @include flex-col;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 2rem 0;
+  }
+
+  &__score-msg {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin: 0;
+    text-align: center;
+  }
+
+  &__restart {
+    @include outline-btn(var(--color-black));
+    padding: 0.5rem 1.4rem;
+  }
+}
