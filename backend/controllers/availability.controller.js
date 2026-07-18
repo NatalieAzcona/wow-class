@@ -1,4 +1,5 @@
 const Availability = require("../models/Availability");
+const Reservation = require("../models/Reservation");
 
 
 const createAvailability = async (req, res, next) => {
@@ -32,7 +33,9 @@ const getAvailability = async (req, res ) => {
             const daysAvailable = await Availability.find({ teacher: req.user._id })
             return res.status(200).json(daysAvailable);
           } else {
-            const daysAvailable = await Availability.find({})
+            const reservations = await Reservation.find({ status: { $in: ['pendiente', 'confirmada'] } })
+            const reservedIds = reservations.map(r => r.availability.toString())
+            const daysAvailable = await Availability.find({ _id: { $nin: reservedIds } })
             return res.status(200).json(daysAvailable);
           }
           
