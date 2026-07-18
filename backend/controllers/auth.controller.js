@@ -25,8 +25,8 @@ const postRegister = async (req, res, next) => {
             return res.status(400).json({message: "La contraseña debe ser texto"})
         }
 
-        if(password.length < 6) {
-            return res.status(400).json({message: "La contraseña debe tener al menos 6 caracteres"})
+        if(password.length < 8) {
+            return res.status(400).json({message: "La contraseña debe tener al menos 8 caracteres"})
         }
 
         if (await User.findOne({email})) {

@@ -49,10 +49,10 @@ return (
       </div>
       <div className="auth__field">
         <label className="auth__label">Contraseña</label>
-        <input className="auth__input" type='password' {...register("password", { required: true, minLength: 6 })} />
-        <p className="auth__hint">Mínimo 6 caracteres.</p>
+        <input className="auth__input" type='password' {...register("password", { required: true, minLength: 8 })} />
+        <p className="auth__hint">Mínimo 8 caracteres.</p>
         {errors.password?.type === 'required' && <p className="auth__error">La contraseña es obligatoria.</p>}
-        {errors.password?.type === 'minLength' && <p className="auth__error">La contraseña debe tener al menos 6 caracteres.</p>}
+        {errors.password?.type === 'minLength' && <p className="auth__error">La contraseña debe tener al menos 8 caracteres.</p>}
       </div>
       <div className="auth__consent">
         <label className="auth__consent-label">
