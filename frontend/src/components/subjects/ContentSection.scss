@@ -1,0 +1,11 @@
+@use '../../styles/mixins' as *;
+
+.content-section {
+  @include flex-col;
+  gap: 1rem;
+
+  &__edit-btn {
+    @include outline-btn(var(--color-black));
+    align-self: flex-end;
+  }
+}

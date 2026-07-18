@@ -1,0 +1,55 @@
+@use '../../styles/mixins' as *;
+
+.content-editor {
+  @include content-card;
+  overflow: hidden;
+
+  &__toolbar {
+    @include flex-center;
+    gap: 0.3rem;
+    padding: 0.6rem 1rem;
+    border-bottom: 2px solid var(--color-pink-100);
+    flex-wrap: wrap;
+
+    button {
+      background: none;
+      border: 1.5px solid var(--color-pink-100);
+      border-radius: 8px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-black);
+      cursor: pointer;
+      transition: all 0.1s;
+
+      &:hover { background: var(--color-pink-50); }
+      &.active {
+        background: var(--color-black);
+        color: white;
+        border-color: var(--color-black);
+      }
+    }
+  }
+
+  &__body {
+    padding: 1.5rem;
+    min-height: 120px;
+
+    &--active { min-height: 200px; }
+
+    .tiptap {
+      outline: none;
+      font-size: 1rem;
+      color: var(--color-black);
+      line-height: 1.7;
+
+      p { margin: 0 0 0.8rem; }
+      h2 { font-size: 1.3rem; font-weight: 800; margin: 1.2rem 0 0.5rem; }
+      h3 { font-size: 1.1rem; font-weight: 700; margin: 1rem 0 0.4rem; }
+      ul, ol { padding-left: 1.4rem; margin: 0 0 0.8rem; }
+      li { margin-bottom: 0.3rem; }
+      strong { font-weight: 800; }
+      em { font-style: italic; }
+    }
+  }
+}
