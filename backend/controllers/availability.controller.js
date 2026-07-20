@@ -33,9 +33,14 @@ const getAvailability = async (req, res ) => {
             const daysAvailable = await Availability.find({ teacher: req.user._id })
             return res.status(200).json(daysAvailable);
           } else {
-            const reservations = await Reservation.find({ status: { $in: ['pendiente', 'confirmada'] } })
-            const reservedIds = reservations.map(r => r.availability.toString())
-            const daysAvailable = await Availability.find({ _id: { $nin: reservedIds } })
+            const studentId = req.user._id
+            const allReservations = await Reservation.find({ status: { $in: ['pendiente', 'confirmada'] } })
+            const myReservations = await Reservation.find({ student: studentId, status: { $in: ['pendiente', 'confirmada'] } })
+            const myAvailabilityIds = myReservations.map(r => r.availability.toString())
+            const otherReservedIds = allReservations
+              .filter(r => !myAvailabilityIds.includes(r.availability.toString()))
+              .map(r => r.availability.toString())
+            const daysAvailable = await Availability.find({ _id: { $nin: otherReservedIds } })
             return res.status(200).json(daysAvailable);
           }
           

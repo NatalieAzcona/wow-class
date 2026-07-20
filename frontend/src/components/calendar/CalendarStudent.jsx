@@ -47,6 +47,7 @@ const CalendarStudent = ({ subject }) => {
     onSuccess: () => {
       setSelectedSlot(null)
       queryClient.invalidateQueries(['reservationsStudent'])
+      queryClient.invalidateQueries(['availabilityStudent'])
     }
   })
 
