@@ -1,5 +1,6 @@
 const oauth2Client = require('../config/google');
 const User = require('../models/User');
+const { google } = require('googleapis');
 const { verifyJwt } = require('../utils/token');
 
 //Readme - OAuth2 client - google api nodejs client
@@ -10,7 +11,8 @@ const googleAuth = (req, res) => {
 
     const { token } = req.query
     const scopes = [
-        'https://www.googleapis.com/auth/calendar'
+        'https://www.googleapis.com/auth/calendar',
+        'https://www.googleapis.com/auth/userinfo.email'
       ];
       
       const url = oauth2Client.generateAuthUrl({
@@ -33,13 +35,18 @@ const googleCallback = async (req, res) => {
         const verifiedState = verifyJwt(state)
 
         const id = verifiedState.id
-        const {access_token, refresh_token } = tokens
-        await User.findByIdAndUpdate(id,  {
+        const { access_token, refresh_token } = tokens
+
+        const oauth2 = google.oauth2({ version: 'v2', auth: oauth2Client })
+        const { data } = await oauth2.userinfo.get()
+
+        await User.findByIdAndUpdate(id, {
             googleAccessToken: access_token,
-            googleRefreshToken: refresh_token
+            googleRefreshToken: refresh_token,
+            googleEmail: data.email
         })
 
-        res.redirect('http://localhost:5173/dashboard?google=connected')
+        res.redirect(`${process.env.FRONTEND_URL}/dashboard?google=connected`)
 
     } catch (error) {
         res.status(500).json({message: 'Error al conectar'})

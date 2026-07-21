@@ -140,20 +140,25 @@ const CalendarProfessor = () => {
       onError?.()
       return
     }
-    const slotRes = await fetch(`${API}/availability`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
-      body: JSON.stringify({ startTime: start, endTime: end, subject: user.subject })
-    })
-    const slot = await slotRes.json()
-    await fetch(`${API}/reservation`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
-      body: JSON.stringify({ availability: slot._id, student: studentId, mode })
-    })
-    queryClient.invalidateQueries(['availability'])
-    queryClient.invalidateQueries(['reservations'])
-    setSelectedTimeSlot(null)
+    try {
+      const slotRes = await fetch(`${API}/availability`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
+        body: JSON.stringify({ startTime: start, endTime: end, subject: user.subject })
+      })
+      const slot = await slotRes.json()
+      const resRes = await fetch(`${API}/reservation`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
+        body: JSON.stringify({ availability: slot._id, student: studentId, mode })
+      })
+      if (!resRes.ok) { onError?.(); return }
+      queryClient.invalidateQueries(['availability'])
+      queryClient.invalidateQueries(['reservations'])
+      setSelectedTimeSlot(null)
+    } catch {
+      onError?.()
+    }
   }
 
   const eventPropGetter = (event) => ({

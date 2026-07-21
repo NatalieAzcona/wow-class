@@ -43,7 +43,7 @@ const GoogleCalendarBanner = () => {
 
   return (
     <div className="calendar-google-connected">
-      <span>Google conectado</span>
+      <span>Google conectado · {me.googleEmail}</span>
       <button onClick={handleChange}>Cambiar cuenta</button>
     </div>
   )

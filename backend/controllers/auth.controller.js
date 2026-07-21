@@ -91,7 +91,7 @@ const getMe = async (req, res) => {
         delete user.password
         delete user.googleAccessToken
         delete user.googleRefreshToken
-        return res.status(200).json({ ...user, googleConnected: !!req.user.googleAccessToken })
+        return res.status(200).json({ ...user, googleConnected: !!req.user.googleAccessToken, googleEmail: req.user.googleEmail || null })
     } catch (error) {
         return res.status(500).json({ message: 'Error al obtener usuario' })
     }

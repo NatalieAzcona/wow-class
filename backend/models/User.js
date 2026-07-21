@@ -11,6 +11,7 @@ const userSchema = new Schema (
         parentsConsent: {type: Boolean, default: false},
         googleAccessToken: {type: String},
         googleRefreshToken: {type: String},
+        googleEmail: {type: String},
         address: {type: String, trim: true},
         phone: {type: String, trim: true}
 
