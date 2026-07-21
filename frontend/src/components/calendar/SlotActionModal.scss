@@ -132,6 +132,14 @@
     gap: 0.5rem;
   }
 
+  &__error {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: red;
+    margin: 0;
+    text-align: center;
+  }
+
   &__confirm { @include primary-btn; }
 
   &__back {

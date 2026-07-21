@@ -135,7 +135,11 @@ const CalendarProfessor = () => {
     })
   }
 
-  const handleScheduleMeeting = async ({ start, end, studentId, mode }) => {
+  const handleScheduleMeeting = async ({ start, end, studentId, mode, onError }) => {
+    if (mode === 'online' && !googleConnected) {
+      onError?.()
+      return
+    }
     const slotRes = await fetch(`${API}/availability`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },

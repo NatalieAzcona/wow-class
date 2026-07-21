@@ -11,6 +11,7 @@ const SlotActionSchedule = ({ slot, onScheduleMeeting, onBack }) => {
   const [selectedStudentId, setSelectedStudentId] = useState('')
   const [selectedMode, setSelectedMode] = useState('online')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [googleError, setGoogleError] = useState(false)
 
   const { data: students } = useQuery({
     queryKey: ['students'],
@@ -33,8 +34,12 @@ const SlotActionSchedule = ({ slot, onScheduleMeeting, onBack }) => {
   const handleConfirm = () => {
     if (!selectedStudentId || isSubmitting) return
     setIsSubmitting(true)
+    setGoogleError(false)
     const { start, end } = getEffectiveRange()
-    onScheduleMeeting({ start, end, studentId: selectedStudentId, mode: selectedMode })
+    onScheduleMeeting({
+      start, end, studentId: selectedStudentId, mode: selectedMode,
+      onError: () => { setIsSubmitting(false); setGoogleError(true) }
+    })
   }
 
   return (
@@ -73,17 +78,20 @@ const SlotActionSchedule = ({ slot, onScheduleMeeting, onBack }) => {
       <div className="slot-action-modal__mode">
         <button
           className={`slot-action-modal__mode-btn ${selectedMode === 'online' ? 'slot-action-modal__mode-btn--active' : ''}`}
-          onClick={() => setSelectedMode('online')}
+          onClick={() => { setSelectedMode('online'); setGoogleError(false) }}
         >
           <FontAwesomeIcon icon={faVideo} /> Online
         </button>
         <button
           className={`slot-action-modal__mode-btn ${selectedMode === 'presencial' ? 'slot-action-modal__mode-btn--active' : ''}`}
-          onClick={() => setSelectedMode('presencial')}
+          onClick={() => { setSelectedMode('presencial'); setGoogleError(false) }}
         >
           <FontAwesomeIcon icon={faLocationDot} /> Presencial
         </button>
       </div>
+      {googleError && (
+        <p className="slot-action-modal__error">Debes conectar tu cuenta de Google antes de crear una clase online.</p>
+      )}
       <button
         className="slot-action-modal__confirm"
         onClick={handleConfirm}

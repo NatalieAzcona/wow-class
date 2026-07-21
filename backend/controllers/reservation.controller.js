@@ -91,6 +91,13 @@ const createReservation = async (req, res) => {
         const teacher = isTeacher ? req.user.id : req.body.teacher
         const status = isTeacher ? 'confirmada' : 'pendiente'
 
+        if (mode === 'online' && isTeacher) {
+            const teacherUser = await User.findById(teacher)
+            if (!teacherUser.googleAccessToken) {
+                return res.status(400).json({ message: 'Debes conectar tu cuenta de Google antes de crear una clase online' })
+            }
+        }
+
         const existing = await Reservation.findOne({ availability })
         if (existing) return res.status(409).json({ message: 'Ya existe una reserva para este horario' })
 
@@ -129,6 +136,15 @@ const updateReservation = async (req, res) => {
     try {
         const { id } = req.params
         const { status } = req.body
+
+        const reservation = await Reservation.findById(id)
+
+        if (status === 'confirmada' && reservation.mode === 'online') {
+            const teacherUser = await User.findById(req.user.id)
+            if (!teacherUser.googleAccessToken) {
+                return res.status(400).json({ message: 'Debes conectar tu cuenta de Google antes de confirmar una clase online' })
+            }
+        }
 
         await Reservation.findByIdAndUpdate(id, { status }, { new: true })
 
