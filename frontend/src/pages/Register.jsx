@@ -4,10 +4,16 @@ import './Auth.scss'
 import { useMutation } from '@tanstack/react-query'
 import {useForm} from "react-hook-form"
 import {useNavigate, Link} from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from '../context/AuthContext'
+
 
 const Register = () => {
 
 const navigate = useNavigate()  
+const { login } = useContext(AuthContext)
+const { register, handleSubmit, formState: { errors }, getValues } = useForm()
+
 
 const mutation = useMutation({
     mutationFn: async (formData) => {
@@ -20,13 +26,17 @@ const mutation = useMutation({
       if (!res.ok) throw new Error(json.message)
       return json
     },
-    onSuccess: () => {
-      navigate("/login", { state: { registered: true } })
+    onSuccess: async (data) => {
+      const res = await fetch(`${API}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.email, password: getValues('password') })
+      })
+      const json = await res.json()
+      login(json.token, json.user)
+      navigate('/dashboard')
     }
-})
-
-
-const { register, handleSubmit, formState: { errors } } = useForm()
+  })
 
 const submit = (formData) => {
   mutation.mutate(formData)

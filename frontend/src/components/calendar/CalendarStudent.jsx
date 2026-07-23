@@ -79,7 +79,7 @@ const CalendarStudent = ({ subject }) => {
       return (
         slot.subject === subject &&
         slotDate.toDateString() === day.toDateString() &&
-        slotDate > new Date()
+        slotDate > new Date(Date.now() + 24 * 60 * 60 * 1000)
       )
     }).sort((a, b) => new Date(a.startTime) - new Date(b.startTime))
   }

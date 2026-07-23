@@ -46,9 +46,7 @@ const SubjectPage = () => {
           </div>
           {user.role === 'student' && (
             <p className="subject-page__info">
-              Las clases pueden ser online o presenciales si estás en Granada / Maracena.
-              Se deben solicitar con al menos 48 horas de anticipación.
-              Escríbenos al WhatsApp si tienes dudas :)
+              Elige si prefieres clase online o presencial. Las clases presenciales solo pueden ser en Granada - Maracena.
             </p>
           )}
         </section>
