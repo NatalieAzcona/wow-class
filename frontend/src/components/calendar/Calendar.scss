@@ -1,7 +1,7 @@
 @use '../../styles/mixins' as *;
 
 .calendar-wrapper {
-  height: 600px;
+  height: 700px;
   cursor: pointer;
 }
 
@@ -137,6 +137,29 @@
 .rbc-day-bg + .rbc-day-bg,
 .rbc-month-row + .rbc-month-row {
   border-color: var(--color-gray-200);
+}
+
+.rbc-month-view {
+  .rbc-event {
+    padding: 1px 4px;
+  }
+
+  .event-block__mode {
+    display: none;
+  }
+
+  .rbc-month-row {
+    min-height: 100px;
+  }
+}
+
+.rbc-show-more {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-black);
+  padding: 0 4px;
+  white-space: nowrap;
+  background: none;
 }
 
 .calendar-google-banner {

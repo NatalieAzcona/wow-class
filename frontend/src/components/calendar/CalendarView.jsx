@@ -63,7 +63,10 @@ const CalendarView = ({ events, onSelectEvent, onSelectSlot, eventPropGetter, vi
           time: 'Hora',
           event: 'Evento',
           noEventsInRange: 'Sin eventos',
+          showMore: (total) => `+${total} más`,
         }}
+        doShowMoreDrillDown={false}
+        popup
       />
     </div>
   )
