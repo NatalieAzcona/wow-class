@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt')
 const postRegister = async (req, res, next) => {
 
     try {
-        const {name, email, password, parentsConsent } = req.body;
+        const {name, email, password, parentsConsent, level } = req.body;
 
         if(!name || !email || !password) {
             return  res.status(400).json({message: "Faltan datos por rellenar" })
@@ -38,6 +38,7 @@ const postRegister = async (req, res, next) => {
             email,
             password,
             parentsConsent: true,
+            level,
         })
 
         const savedUser = await newUser.save();

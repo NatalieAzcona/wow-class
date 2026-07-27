@@ -58,6 +58,25 @@ return (
         {errors.email && <p className="auth__error">El email es obligatorio.</p>}
       </div>
       <div className="auth__field">
+        <label className="auth__label">Nivel</label>
+        <select className="auth__input" {...register("level", { required: true })}>
+          <option value="">Selecciona tu nivel</option>
+          <option>1º de Primaria</option>
+          <option>2º de Primaria</option>
+          <option>3º de Primaria</option>
+          <option>4º de Primaria</option>
+          <option>5º de Primaria</option>
+          <option>6º de Primaria</option>
+          <option>1º de ESO</option>
+          <option>2º de ESO</option>
+          <option>3º de ESO</option>
+          <option>4º de ESO</option>
+          <option>1º de Bachillerato</option>
+          <option>2º de Bachillerato</option>
+        </select>
+        {errors.level && <p className="auth__error">El nivel es obligatorio.</p>}
+      </div>
+      <div className="auth__field">
         <label className="auth__label">Contraseña</label>
         <input className="auth__input" type='password' {...register("password", { required: true, minLength: 8 })} />
         <p className="auth__hint">Mínimo 8 caracteres.</p>

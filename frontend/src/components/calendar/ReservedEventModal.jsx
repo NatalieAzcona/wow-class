@@ -32,6 +32,12 @@ const ReservedEventModal = ({ event, onClose, onCancel, isPending, onApprove, on
           <span className="reserved-modal__key">Estudiante</span>
           <span className="reserved-modal__val">{student?.name || '—'}</span>
         </div>
+        {student?.level && (
+          <div className="reserved-modal__row">
+            <span className="reserved-modal__key">Nivel</span>
+            <span className="reserved-modal__val">{student.level}</span>
+          </div>
+        )}
         <div className="reserved-modal__row">
           <span className="reserved-modal__key">Formato</span>
           {!isPending && mode === 'online' && meetLink ? (

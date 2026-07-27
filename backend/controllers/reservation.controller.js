@@ -66,21 +66,23 @@ const sendConfirmation = async (reservationId) => {
         </div>
     `
 
-    await transporter.sendMail({
+    const updatedReservation = await Reservation.findById(reservationId)
+
+    transporter.sendMail({
         from: process.env.GMAIL_USER,
         to: student.email,
         subject: '¡Tu clase está confirmada! — WöW Class',
         html: template(`Tienes clase de <strong>${slot.subject}</strong> con <strong>Prof. ${teacher.name}</strong>`)
     })
 
-    await transporter.sendMail({
+    transporter.sendMail({
         from: process.env.GMAIL_USER,
         to: teacher.email,
         subject: 'Nueva clase confirmada — WöW Class',
         html: template(`Tienes clase de <strong>${slot.subject}</strong> con <strong>${student.name}</strong>`)
     })
 
-    return await Reservation.findById(reservationId)
+    return updatedReservation
 }
 
 const createReservation = async (req, res) => {
@@ -121,7 +123,7 @@ const getReservation = async (req, res) => {
         const { id, role } = req.user
         const reservations = role === "teacher"
             ? await Reservation.find({ teacher: id })
-                .populate('student', 'name email address')
+                .populate('student', 'name email address level')
                 .populate('availability', 'startTime endTime')
             : await Reservation.find({ student: id }).populate('teacher', 'name')
 

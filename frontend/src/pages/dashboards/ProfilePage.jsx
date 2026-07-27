@@ -9,6 +9,7 @@ const ProfilePage = () => {
   const [name, setName] = useState(user?.name || '')
   const [phone, setPhone] = useState(user?.phone || '')
   const [address, setAddress] = useState(user?.address || '')
+  const [level, setLevel] = useState(user?.level || '')
   const [saved, setSaved] = useState(false)
 
   const handleSubmit = async (e) => {
@@ -16,10 +17,10 @@ const ProfilePage = () => {
     const res = await fetch(`${API}/users/profile`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ name, phone, address })
+      body: JSON.stringify({ name, phone, address, level })
     })
     const updated = await res.json()
-    updateUser({ ...user, name: updated.name, phone: updated.phone, address: updated.address })
+    updateUser({ ...user, name: updated.name, phone: updated.phone, address: updated.address, level: updated.level })
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
   }
@@ -47,6 +48,28 @@ const ProfilePage = () => {
             value={user?.email || ''}
             readOnly
           />
+        </label>
+        <label className="profile-page__label">
+          Nivel
+          <select
+            className="profile-page__input"
+            value={level}
+            onChange={e => setLevel(e.target.value)}
+          >
+            <option value="">Selecciona tu nivel</option>
+            <option>1º de Primaria</option>
+            <option>2º de Primaria</option>
+            <option>3º de Primaria</option>
+            <option>4º de Primaria</option>
+            <option>5º de Primaria</option>
+            <option>6º de Primaria</option>
+            <option>1º de ESO</option>
+            <option>2º de ESO</option>
+            <option>3º de ESO</option>
+            <option>4º de ESO</option>
+            <option>1º de Bachillerato</option>
+            <option>2º de Bachillerato</option>
+          </select>
         </label>
         <label className="profile-page__label">
           Teléfono

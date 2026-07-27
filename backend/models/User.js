@@ -13,7 +13,8 @@ const userSchema = new Schema (
         googleRefreshToken: {type: String},
         googleEmail: {type: String},
         address: {type: String, trim: true},
-        phone: {type: String, trim: true}
+        phone: {type: String, trim: true},
+        level: {type: String, enum: ["1º de Primaria", "2º de Primaria", "3º de Primaria", "4º de Primaria", "5º de Primaria", "6º de Primaria", "1º de ESO", "2º de ESO", "3º de ESO", "4º de ESO", "1º de Bachillerato", "2º de Bachillerato"]}
 
     },
     {
