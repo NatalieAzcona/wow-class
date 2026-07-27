@@ -4,15 +4,13 @@ import './Auth.scss'
 import { useMutation } from '@tanstack/react-query'
 import {useForm} from "react-hook-form"
 import { AuthContext } from '../context/AuthContext'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
 const { login } = useContext(AuthContext)
 
 const navigate = useNavigate()
-const location = useLocation()
-const registered = location.state?.registered
 
 const mutation = useMutation({
     mutationFn: async (formData) => {
@@ -43,7 +41,6 @@ const submit = (formData) => {
     <div className="auth">
       <form className="auth__form" onSubmit={handleSubmit(submit)}>
         <h1 className="auth__title">Iniciar sesión</h1>
-        {registered && <p className="auth__success">Cuenta creada con éxito. Haz login para continuar.</p>}
         <div className="auth__field">
           <label className="auth__label">Email</label>
           <input className="auth__input" type='email' {...register("email")} />

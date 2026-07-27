@@ -55,7 +55,7 @@ const SubjectPage = () => {
       {tab === 'modules' && (
         <section className="subject-page__section">
           <h2>Módulos</h2>
-          {Array.isArray(data) && <LevelPath data={data} subject={subject} />}
+          {Array.isArray(data) && <LevelPath data={data} subject={subject} userLevel={user.level} />}
         </section>
       )}
     </div>
