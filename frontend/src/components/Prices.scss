@@ -18,6 +18,12 @@
     margin-bottom: 3rem;
   }
 
+  &__note {
+    font-size: 0.85rem;
+    color: var(--color-gray-400);
+    margin-top: 1.5rem;
+  }
+
   &__cards {
     display: flex;
     flex-wrap: wrap;

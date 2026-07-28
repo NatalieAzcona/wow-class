@@ -1,0 +1,97 @@
+@use '../../styles/mixins' as *;
+
+.revenue-page {
+  width: 100%;
+  max-width: 860px;
+  align-self: center;
+  @include flex-col;
+  gap: 2rem;
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  &__nav-label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-black);
+    text-transform: capitalize;
+    min-width: 140px;
+    text-align: center;
+  }
+
+  &__nav-btn {
+    @include outline-btn(var(--color-black));
+    padding: 0.3rem 0.8rem;
+    font-size: 1rem;
+  }
+
+  &__section {
+    margin-bottom: 3rem;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-black);
+    margin-bottom: 1rem;
+  }
+
+  &__empty {
+    color: var(--color-gray-400);
+    font-size: 0.9rem;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+
+    th {
+      text-align: left;
+      padding: 0.6rem 1rem;
+      background: var(--color-black);
+      color: white;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--color-gray-100);
+      color: var(--color-black);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  &__select {
+    @include form-select;
+    font-size: 0.85rem;
+  }
+
+  &__price {
+    font-weight: 700;
+    color: var(--color-black);
+  }
+
+  &__total {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--color-black);
+    text-align: right;
+
+    strong {
+      font-size: 1.2rem;
+    }
+  }
+}

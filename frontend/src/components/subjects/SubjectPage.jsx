@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../context/AuthContext'
 import SubjectCalendar from '../calendar/SubjectCalendar'
 import LevelPath from './LevelPath'
+import RevenuePage from '../../pages/dashboards/RevenuePage'
 import { API } from '../../config/api'
 import './SubjectPage.scss'
 
@@ -37,6 +38,14 @@ const SubjectPage = () => {
         >
           {user.role === 'teacher' ? 'Calendario' : 'Agenda'}
         </button>
+        {user.role === 'teacher' && (
+          <button
+            className={`subject-page__tab${tab === 'revenue' ? ' subject-page__tab--active' : ''}`}
+            onClick={() => setTab('revenue')}
+          >
+            Finanzas
+          </button>
+        )}
       </nav>
 
       {tab === 'agenda' && (
@@ -49,6 +58,12 @@ const SubjectPage = () => {
               Elige si prefieres clase online o presencial. Las clases presenciales solo pueden ser en Granada - Maracena.
             </p>
           )}
+        </section>
+      )}
+
+      {tab === 'revenue' && (
+        <section className="subject-page__section">
+          <RevenuePage />
         </section>
       )}
 

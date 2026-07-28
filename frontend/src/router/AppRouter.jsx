@@ -15,6 +15,7 @@ import SubjectPage from "../components/subjects/SubjectPage"
 import LevelPage from "../components/subjects/LevelPage"
 import ModulePage from "../components/subjects/ModulePage"
 import ProfilePage from "../pages/dashboards/ProfilePage"
+import RevenuePage from "../pages/dashboards/RevenuePage"
 import AvisoLegal from "../pages/legal/AvisoLegal"
 import Privacidad from "../pages/legal/Privacidad"
 import Cookies from "../pages/legal/Cookies"
@@ -40,6 +41,7 @@ const AppRouter = () => {
             <Route path="subject/:subject" element={<SubjectPage />} />
             <Route path="subject/:subject/:level" element={<LevelPage />} />
             <Route path="subject/:subject/:level/:moduleId" element={<ModulePage />} />
+            <Route path="revenue" element={<RevenuePage />} />
           </Route>
         </Routes>
       </main>

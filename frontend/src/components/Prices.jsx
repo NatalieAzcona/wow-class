@@ -22,6 +22,7 @@ const Prices = () => {
           <button className="prices__card-btn" onClick={() => navigate('/register')}>Empezar</button>
         </div>
       </div>
+      <p className="prices__note">Para optar por el descuento de dos materias, estas deben reservarse la misma semana.</p>
     </section>
   )
 }

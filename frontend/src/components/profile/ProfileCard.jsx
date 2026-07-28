@@ -18,11 +18,9 @@ const ProfileCard = () => {
       <p className="profile-card__email">{user?.email}</p>
       <p className="profile-card__role">{user?.role}</p>
       <div className="profile-card__actions">
-        {user?.role === 'student' && (
-          <Link to="/dashboard/profile" className="profile-card__link">
-            Editar información
-          </Link>
-        )}
+        <Link to="/dashboard/profile" className="profile-card__link">
+          Editar información
+        </Link>
         <button className="profile-card__btn profile-card__btn--logout" onClick={handleLogout}>
           Cerrar sesión
         </button>
