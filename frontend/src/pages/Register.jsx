@@ -6,6 +6,7 @@ import {useForm} from "react-hook-form"
 import {useNavigate, Link} from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
+import { LEVELS } from '../data/levels'
 
 
 const Register = () => {
@@ -61,18 +62,7 @@ return (
         <label className="auth__label">Nivel</label>
         <select className="auth__input" {...register("level", { required: true })}>
           <option value="">Selecciona tu nivel</option>
-          <option>1º de Primaria</option>
-          <option>2º de Primaria</option>
-          <option>3º de Primaria</option>
-          <option>4º de Primaria</option>
-          <option>5º de Primaria</option>
-          <option>6º de Primaria</option>
-          <option>1º de ESO</option>
-          <option>2º de ESO</option>
-          <option>3º de ESO</option>
-          <option>4º de ESO</option>
-          <option>1º de Bachillerato</option>
-          <option>2º de Bachillerato</option>
+          {LEVELS.map(l => <option key={l}>{l}</option>)}
         </select>
         {errors.level && <p className="auth__error">El nivel es obligatorio.</p>}
       </div>

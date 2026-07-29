@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../context/AuthContext'
 import SubjectCalendar from '../calendar/SubjectCalendar'
-import LevelPath from './LevelPath'
+import LevelTeacher from './LevelPath'
+import LevelStudent from './LevelStudent'
 import RevenuePage from '../../pages/dashboards/RevenuePage'
 import { API } from '../../config/api'
 import './SubjectPage.scss'
@@ -69,8 +70,12 @@ const SubjectPage = () => {
 
       {tab === 'modules' && (
         <section className="subject-page__section">
-          <h2>Módulos</h2>
-          {Array.isArray(data) && <LevelPath data={data} subject={subject} userLevel={user.level} />}
+          <h2>Niveles</h2>
+          {Array.isArray(data) && (
+            user.role === 'teacher'
+              ? <LevelTeacher data={data} subject={subject} />
+              : <LevelStudent data={data} subject={subject} userLevel={user.level} />
+          )}
         </section>
       )}
     </div>

@@ -1,7 +1,7 @@
 @use '../../styles/mixins' as *;
 
 .subject-page {
-  min-height: 100%;
+  flex: 1;
   background-color: var(--color-pink-50);
   padding: 2rem 4rem;
   @include flex-col;

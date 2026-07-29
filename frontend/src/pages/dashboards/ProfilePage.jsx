@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { API } from '../../config/api'
 import { AuthContext } from '../../context/AuthContext'
+import { LEVELS } from '../../data/levels'
 import './ProfilePage.scss'
 
 const ProfilePage = () => {
@@ -53,23 +54,13 @@ const ProfilePage = () => {
           <label className="profile-page__label">
             Nivel
             <select
-              className="profile-page__input"
+              className="profile-page__input profile-page__input--readonly"
               value={level}
               onChange={e => setLevel(e.target.value)}
+              disabled
             >
               <option value="">Selecciona tu nivel</option>
-              <option>1º de Primaria</option>
-              <option>2º de Primaria</option>
-              <option>3º de Primaria</option>
-              <option>4º de Primaria</option>
-              <option>5º de Primaria</option>
-              <option>6º de Primaria</option>
-              <option>1º de ESO</option>
-              <option>2º de ESO</option>
-              <option>3º de ESO</option>
-              <option>4º de ESO</option>
-              <option>1º de Bachillerato</option>
-              <option>2º de Bachillerato</option>
+              {LEVELS.map(l => <option key={l}>{l}</option>)}
             </select>
           </label>
         )}
