@@ -1,6 +1,7 @@
 const Reservation = require("../models/Reservation")
 const User = require("../models/User")
 const Availability = require("../models/Availability")
+const Notification = require("../models/Notification")
 const oauth2Cliente = require("../config/google")
 const { google } = require('googleapis')
 const transporter = require("../config/nodemailer")
@@ -134,12 +135,19 @@ const getReservation = async (req, res) => {
     }
 }
 
+const buildNotificationMessage = (availability, action) => {
+    const date = new Date(availability.startTime)
+    const dateStr = date.toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })
+    const timeStr = date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })
+    return `Tu clase de ${availability.subject} ha sido ${action}.|${dateStr} a las ${timeStr}`
+}
+
 const updateReservation = async (req, res) => {
     try {
         const { id } = req.params
         const { status } = req.body
 
-        const reservation = await Reservation.findById(id)
+        const reservation = await Reservation.findById(id).populate('availability', 'startTime subject')
 
         if (status === 'confirmada' && reservation.mode === 'online') {
             const teacherUser = await User.findById(req.user.id)
@@ -152,7 +160,12 @@ const updateReservation = async (req, res) => {
 
         if (status === "confirmada") {
             const finalReservation = await sendConfirmation(id)
+            new Notification({ user: reservation.student, message: buildNotificationMessage(reservation.availability, 'confirmada') }).save()
             return res.status(200).json(finalReservation)
+        }
+
+        if (status === "rechazada") {
+            new Notification({ user: reservation.student, message: buildNotificationMessage(reservation.availability, 'rechazada') }).save()
         }
 
         const updatedReservation = await Reservation.findById(id)
@@ -166,6 +179,10 @@ const updateReservation = async (req, res) => {
 const deleteReservation = async (req, res) => {
     try {
         const { id } = req.params
+        const reservation = await Reservation.findById(id).populate('availability', 'startTime subject')
+        if (reservation.status === 'confirmada') {
+            new Notification({ user: reservation.student, message: buildNotificationMessage(reservation.availability, 'cancelada') }).save()
+        }
         const deletedReservation = await Reservation.findByIdAndDelete(id)
         res.status(200).json(deletedReservation)
     } catch (error) {
