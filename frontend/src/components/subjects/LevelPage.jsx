@@ -28,7 +28,7 @@ const LevelPage = () => {
         : []
 
     return (
-        <div className="level-page">
+        <div className={`level-page${subject === 'matemáticas' ? ' level-page--matematicas' : ''}`}>
             <Link to={`/dashboard/subject/${subject}`} className="level-page__back">
                 ← {subject}
             </Link>

@@ -35,7 +35,7 @@ const ModulePage = () => {
   if (isError || !module) return <div className="module-page"><p>Error al cargar el módulo.</p></div>
 
   return (
-    <div className="module-page">
+    <div className={`module-page${subject === 'matemáticas' ? ' module-page--matematicas' : ''}`}>
       <Link to={`/dashboard/subject/${subject}/${level}`} className="module-page__back">
         ← {level}
       </Link>

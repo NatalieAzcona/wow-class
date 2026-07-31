@@ -1,5 +1,10 @@
 @use '../../styles/mixins' as *;
 
+.module-page--matematicas {
+  --color-subject-light: var(--color-math-light);
+  --color-subject-dark: var(--color-math);
+}
+
 .module-page {
   @include dashboard-page;
 
@@ -35,7 +40,7 @@
       height: 72px;
       border-radius: 50%;
       background: white;
-      box-shadow: 0 5px 0 var(--color-pink-dark);
+      box-shadow: 0 5px 0 var(--color-subject-dark);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -54,13 +59,13 @@
 
     &:hover &-icon {
       transform: translateY(3px);
-      box-shadow: 0 2px 0 var(--color-pink-dark);
+      box-shadow: 0 2px 0 var(--color-subject-dark);
     }
 
     &--active &-icon {
       background: var(--color-black);
       color: white;
-      box-shadow: 0 5px 0 var(--color-pink-dark);
+      box-shadow: 0 5px 0 var(--color-subject-dark);
     }
 
     &--active &-label {

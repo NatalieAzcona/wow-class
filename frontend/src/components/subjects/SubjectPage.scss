@@ -1,8 +1,13 @@
 @use '../../styles/mixins' as *;
 
+.subject-page--matematicas {
+  --color-subject-light: var(--color-math-light);
+  --color-subject-dark: var(--color-math);
+}
+
 .subject-page {
   flex: 1;
-  background-color: var(--color-pink-50);
+  background-color: var(--color-subject-light);
   padding: 2rem 4rem;
   @include flex-col;
   gap: 2.5rem;
@@ -16,6 +21,16 @@
       padding: 1rem 2rem;
       margin: 0 0 1rem 0;
     }
+  }
+
+  &__back {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-gray-400);
+    text-decoration: none;
+    align-self: flex-start;
+
+    &:hover { color: var(--color-black); }
   }
 
   &__tabs {

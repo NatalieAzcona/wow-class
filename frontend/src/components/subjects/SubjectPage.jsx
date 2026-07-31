@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../context/AuthContext'
 import SubjectCalendar from '../calendar/SubjectCalendar'
@@ -25,7 +25,8 @@ const SubjectPage = () => {
   if (isError) return <div>Ocurrió un error</div>
 
   return (
-    <div className="subject-page">
+    <div className={`subject-page${subject === 'matemáticas' ? ' subject-page--matematicas' : ''}`}>
+      <Link to="/dashboard/subjects" className="subject-page__back">← Volver</Link>
       <nav className="subject-page__tabs">
         <button
           className={`subject-page__tab${tab === 'modules' ? ' subject-page__tab--active' : ''}`}

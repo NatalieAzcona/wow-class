@@ -1,5 +1,12 @@
 @use '../../styles/mixins' as *;
 
+.subject-page--matematicas .week-picker__arrow {
+  @include outline-btn(var(--color-black));
+  width: 40px;
+  height: 40px;
+  padding: 0;
+}
+
 .week-picker {
   @include flex-col;
   gap: 1.2rem;
@@ -28,6 +35,7 @@
       background: var(--color-pink-100);
     }
   }
+
 
   &__range {
     font-weight: 800;
