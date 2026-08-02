@@ -101,7 +101,7 @@ const createReservation = async (req, res) => {
             }
         }
 
-        const existing = await Reservation.findOne({ availability })
+        const existing = await Reservation.findOne({ availability, status: { $in: ['pendiente', 'confirmada'] } })
         if (existing) return res.status(409).json({ message: 'Ya existe una reserva para este horario' })
 
         const newReservation = new Reservation({ student, availability, teacher, status, mode })

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faBookOpen, faQuestion } from '@fortawesome/free-solid-svg-icons'
@@ -22,6 +22,10 @@ const ModulePage = () => {
   const { user } = useContext(AuthContext)
   const isTeacher = user?.role === 'teacher'
   const [activeSection, setActiveSection] = useState('video')
+
+  if (user?.role === 'student' && level !== user?.level) {
+    return <Navigate to={`/dashboard/subject/${subject}`} replace />
+  }
 
   const { data: module, isLoading, isError } = useQuery({
     queryKey: ['module', moduleId],

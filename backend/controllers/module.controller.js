@@ -35,10 +35,9 @@ const getModuleById = async (req, res, next) => {
 
 
 const getModule = async (req, res, next) => {
- 
-    try { 
-        const allModules = await Module.find({}).sort({ order: 1 })
-
+    try {
+        const filter = req.user.role === 'student' ? { level: req.user.level } : {}
+        const allModules = await Module.find(filter).sort({ order: 1 })
         return res.status(200).json(allModules)
     } catch (error) {
         return res.status(500).json({

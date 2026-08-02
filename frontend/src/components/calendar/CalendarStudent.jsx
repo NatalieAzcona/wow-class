@@ -43,10 +43,18 @@ const CalendarStudent = ({ subject }) => {
         method: 'POST',
         headers: { 'Content-type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ availability, teacher, mode })
-      }).then(res => res.json()),
+      }).then(async res => {
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.message)
+        return data
+      }),
     onSuccess: () => {
       setSelectedSlot(null)
       queryClient.invalidateQueries(['reservationsStudent'])
+      queryClient.invalidateQueries(['availabilityStudent'])
+    },
+    onError: () => {
+      setSelectedSlot(null)
       queryClient.invalidateQueries(['availabilityStudent'])
     }
   })

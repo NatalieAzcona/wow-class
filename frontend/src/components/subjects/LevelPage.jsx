@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../context/AuthContext'
 import ModuleCard from './ModuleCard'
@@ -12,6 +12,10 @@ const LevelPage = () => {
     const { user } = useContext(AuthContext)
     const isTeacher = user?.role === 'teacher'
     const [adding, setAdding] = useState(false)
+
+    if (user?.role === 'student' && level !== user?.level) {
+        return <Navigate to={`/dashboard/subject/${subject}`} replace />
+    }
 
     const { data, isLoading, isError } = useQuery({
         queryKey: ['modules', subject, level],

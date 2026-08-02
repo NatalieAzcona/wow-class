@@ -6,7 +6,7 @@ import './QuizStudent.scss'
 const QuizStudent = ({ quiz }) => {
   const [current, setCurrent] = useState(0)
   const [selected, setSelected] = useState(null)
-  const [score, setScore] = useState(0)
+  const [answers, setAnswers] = useState([])
   const [finished, setFinished] = useState(false)
 
   const questions = quiz.questions
@@ -16,14 +16,16 @@ const QuizStudent = ({ quiz }) => {
 
   const handleSelect = (opt) => {
     if (answered) return
-    if (opt === question.correctAnswer) setScore(s => s + 1)
     setSelected(opt)
   }
 
   const handleNext = () => {
+    const newAnswers = [...answers, { isCorrect: selected === question.correctAnswer }]
     if (current + 1 >= questions.length) {
+      setAnswers(newAnswers)
       setFinished(true)
     } else {
+      setAnswers(newAnswers)
       setCurrent(c => c + 1)
       setSelected(null)
     }
@@ -32,14 +34,17 @@ const QuizStudent = ({ quiz }) => {
   const handleRestart = () => {
     setCurrent(0)
     setSelected(null)
-    setScore(0)
+    setAnswers([])
     setFinished(false)
   }
 
-  if (finished) return <QuizResult score={score} total={questions.length} onRestart={handleRestart} />
+  if (finished) return (
+    <QuizResult answers={answers} questions={questions} onRestart={handleRestart} />
+  )
 
   return (
     <div className="quiz-student">
+      <p className="quiz-student__progress">Pregunta {current + 1} de {questions.length}</p>
       <p className="quiz-student__question">{question.question}</p>
 
       <div className="quiz-student__options">
@@ -65,7 +70,7 @@ const QuizStudent = ({ quiz }) => {
 
       {answered && (
         <button className="quiz-student__next" onClick={handleNext}>
-          Siguiente →
+          {current + 1 >= questions.length ? 'Ver resultado' : 'Siguiente →'}
         </button>
       )}
     </div>

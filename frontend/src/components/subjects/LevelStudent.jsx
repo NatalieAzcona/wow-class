@@ -6,11 +6,7 @@ import { LEVELS } from '../../data/levels'
 import './LevelStudent.scss'
 
 const LevelStudent = ({ data, subject, userLevel }) => {
-  const levels = LEVELS
-
-  const visibleLevels = levels.filter(level =>
-    data.some(m => m.subject === subject && m.level === level)
-  )
+  const visibleLevels = LEVELS
 
   const initialIndex = userLevel ? Math.max(0, visibleLevels.indexOf(userLevel)) : 0
   const [activeIndex, setActiveIndex] = useState(initialIndex)
