@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 import QuizQuestionForm from './QuizQuestionForm'
 import QuizQuestionCard from './QuizQuestionCard'
 import QuizStudent from './QuizStudent'
@@ -8,10 +9,12 @@ import './QuizSection.scss'
 
 const TOKEN = () => localStorage.getItem('token')
 
-const QuizSection = ({ module, isTeacher }) => {
+const QuizSection = ({ module, isTeacher, onPass, levelPath, isCompleted }) => {
   const queryClient = useQueryClient()
+  const navigate = useNavigate()
   const [adding, setAdding] = useState(false)
   const [editingQuestion, setEditingQuestion] = useState(null)
+  const [practiceMode, setPracticeMode] = useState(false)
 
   const { data: quiz } = useQuery({
     queryKey: ['quiz', module._id],
@@ -62,7 +65,23 @@ const QuizSection = ({ module, isTeacher }) => {
 
   if (!isTeacher) {
     if (questions.length === 0) return <p className="quiz-section__empty">No hay preguntas aún.</p>
-    return <QuizStudent quiz={quiz} />
+    if (isCompleted && !practiceMode) {
+      return (
+        <div className="quiz-section__completed">
+          <p className="quiz-section__completed-title">Completado</p>
+          <p className="quiz-section__completed-sub">Has aprobado este modulo.</p>
+          <div className="quiz-section__completed-actions">
+            <button className="quiz-section__practice-btn" onClick={() => setPracticeMode(true)}>
+              Repetir quiz
+            </button>
+            <button className="quiz-section__continue-btn" onClick={() => navigate(levelPath)}>
+              Continuar →
+            </button>
+          </div>
+        </div>
+      )
+    }
+    return <QuizStudent quiz={quiz} onPass={onPass} levelPath={levelPath} />
   }
 
   return (

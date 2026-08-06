@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const QuizResult = ({ answers, questions, onRestart }) => {
+const QuizResult = ({ answers, questions, onRestart, levelPath }) => {
+  const navigate = useNavigate()
   const score = answers.filter(a => a.isCorrect).length
   const total = questions.length
   const passed = score === total
@@ -8,7 +10,7 @@ const QuizResult = ({ answers, questions, onRestart }) => {
   return (
     <div className="quiz-student__result">
       <p className={`quiz-student__score-msg${passed ? ' quiz-student__score-msg--passed' : ''}`}>
-        {passed ? '¡Aprobado!' : `${score} de ${total} correctas`}
+        {passed ? 'Completado' : `${score} de ${total} correctas`}
       </p>
 
       <div className="quiz-student__breakdown">
@@ -22,6 +24,18 @@ const QuizResult = ({ answers, questions, onRestart }) => {
           </div>
         ))}
       </div>
+
+      <p className="quiz-student__unlock-msg">
+        {passed
+          ? 'Has aprobado este modulo'
+          : 'Intenta de nuevo para desbloquear el siguiente modulo'}
+      </p>
+
+      {passed && levelPath && (
+        <button className="quiz-student__restart" onClick={() => navigate(levelPath)}>
+          Volver a modulos
+        </button>
+      )}
 
       {!passed && (
         <button className="quiz-student__restart" onClick={onRestart}>

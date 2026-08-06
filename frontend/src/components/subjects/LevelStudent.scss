@@ -70,7 +70,7 @@
     }
 
     &--locked {
-      background: var(--color-gray-100);
+      background: var(--color-subject-light);
       box-shadow: none;
       cursor: default;
     }
@@ -78,7 +78,8 @@
 
   &__lock {
     font-size: 1.2rem;
-    color: var(--color-gray-400);
+    color: var(--color-subject-dark);
+    opacity: 0.5;
   }
 
   &__hint {

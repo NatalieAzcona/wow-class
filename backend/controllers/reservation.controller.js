@@ -124,7 +124,7 @@ const getReservation = async (req, res) => {
         const { id, role } = req.user
         const reservations = role === "teacher"
             ? await Reservation.find({ teacher: id })
-                .populate('student', 'name email address level')
+                .populate('student', 'name email address level plan')
                 .populate('availability', 'startTime endTime subject')
             : await Reservation.find({ student: id }).populate('teacher', 'name')
 

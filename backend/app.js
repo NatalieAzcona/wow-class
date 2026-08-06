@@ -15,6 +15,7 @@ const moduleRouter = require('./routes/module')
 const quizRouter = require('./routes/quiz')
 const usersRouter = require('./routes/users')
 const notificationRouter = require('./routes/notification')
+const progressRouter = require('./routes/progress')
 
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/availability", availabilityRouter)
@@ -23,6 +24,7 @@ app.use("/api/v1/module", moduleRouter)
 app.use("/api/v1/quiz", quizRouter)
 app.use("/api/v1/users", usersRouter)
 app.use("/api/v1/notification", notificationRouter)
+app.use("/api/v1/progress", progressRouter)
 
 
 module.exports = app

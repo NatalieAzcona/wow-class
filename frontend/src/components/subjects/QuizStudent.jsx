@@ -3,7 +3,7 @@ import QuizResult from './QuizResult'
 import QuizFeedback from './QuizFeedback'
 import './QuizStudent.scss'
 
-const QuizStudent = ({ quiz }) => {
+const QuizStudent = ({ quiz, onPass, levelPath }) => {
   const [current, setCurrent] = useState(0)
   const [selected, setSelected] = useState(null)
   const [answers, setAnswers] = useState([])
@@ -24,6 +24,8 @@ const QuizStudent = ({ quiz }) => {
     if (current + 1 >= questions.length) {
       setAnswers(newAnswers)
       setFinished(true)
+      const passed = newAnswers.every(a => a.isCorrect)
+      if (passed && onPass) onPass()
     } else {
       setAnswers(newAnswers)
       setCurrent(c => c + 1)
@@ -39,7 +41,7 @@ const QuizStudent = ({ quiz }) => {
   }
 
   if (finished) return (
-    <QuizResult answers={answers} questions={questions} onRestart={handleRestart} />
+    <QuizResult answers={answers} questions={questions} onRestart={handleRestart} levelPath={levelPath} />
   )
 
   return (

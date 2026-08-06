@@ -100,4 +100,41 @@
     @include outline-btn(var(--color-black));
     align-self: flex-end;
   }
+
+  &__completed {
+    @include flex-col;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 2.5rem 1rem;
+  }
+
+  &__completed-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-badge-online-text);
+    margin: 0;
+  }
+
+  &__completed-sub {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-gray-400);
+    margin: 0;
+  }
+
+  &__completed-actions {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__continue-btn {
+    @include primary-btn;
+  }
+
+  &__practice-btn {
+    @include outline-btn(var(--color-black));
+  }
 }

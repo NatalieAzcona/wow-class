@@ -24,6 +24,14 @@ const LevelPage = () => {
         }).then(res => res.json())
     })
 
+    const { data: completedIds = [] } = useQuery({
+        queryKey: ['progress'],
+        queryFn: () => fetch(`${API}/progress`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        }).then(res => res.json()),
+        enabled: !isTeacher
+    })
+
     if (isLoading) return <div>Cargando...</div>
     if (isError) return <div>Ocurrió un error</div>
 
@@ -41,15 +49,23 @@ const LevelPage = () => {
                 {modulos.length === 0 && (
                     <p className="level-page__empty">No hay módulos disponibles para este nivel.</p>
                 )}
-                {modulos.map(module => (
-                    <ModuleCard
-                        key={module._id}
-                        module={module}
-                        subject={subject}
-                        level={level}
-                        isTeacher={isTeacher}
-                    />
-                ))}
+                {modulos.map((module, i) => {
+                    const isPlanLocked = !isTeacher && user?.plan === 'clases' && i > 0
+                    const isLocked = !isTeacher && !isPlanLocked && i > 0 && !completedIds.includes(modulos[i - 1]._id)
+                    const isCompleted = !isTeacher && completedIds.includes(module._id)
+                    return (
+                        <ModuleCard
+                            key={module._id}
+                            module={module}
+                            subject={subject}
+                            level={level}
+                            isTeacher={isTeacher}
+                            isLocked={isLocked}
+                            isCompleted={isCompleted}
+                            isPlanLocked={isPlanLocked}
+                        />
+                    )
+                })}
                 {isTeacher && adding && (
                     <AddModuleForm
                         nextOrder={modulos.length + 1}
