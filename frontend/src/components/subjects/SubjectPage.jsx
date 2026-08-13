@@ -6,6 +6,7 @@ import SubjectCalendar from '../calendar/SubjectCalendar'
 import LevelTeacher from './LevelPath'
 import LevelStudent from './LevelStudent'
 import RevenuePage from '../../pages/dashboards/RevenuePage'
+import PlansManager from './PlansManager'
 import { API } from '../../config/api'
 import './SubjectPage.scss'
 
@@ -48,6 +49,14 @@ const SubjectPage = () => {
             Finanzas
           </button>
         )}
+        {user.role === 'teacher' && (
+          <button
+            className={`subject-page__tab${tab === 'plans' ? ' subject-page__tab--active' : ''}`}
+            onClick={() => setTab('plans')}
+          >
+            Planes
+          </button>
+        )}
       </nav>
 
       {tab === 'agenda' && (
@@ -66,6 +75,12 @@ const SubjectPage = () => {
       {tab === 'revenue' && (
         <section className="subject-page__section">
           <RevenuePage />
+        </section>
+      )}
+
+      {tab === 'plans' && (
+        <section className="subject-page__section">
+          <PlansManager />
         </section>
       )}
 

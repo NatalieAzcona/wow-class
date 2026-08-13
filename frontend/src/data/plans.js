@@ -1,0 +1,46 @@
+export const PLANS = [
+  {
+    key: 'clases',
+    name: 'Solo clases',
+    price: '15€',
+    period: 'por clase',
+    classPrice: 15,
+    features: [
+      'Reserva solo las clases que desees ver con el profesor',
+      'Elige online o presencial',
+    ],
+    cta: 'Reservar clase',
+    highlighted: false,
+  },
+  {
+    key: 'contenido',
+    name: 'Contenido',
+    price: '9,99€',
+    period: 'al mes',
+    classPrice: 15,
+    features: [
+      'Acceso al curso de tu elección con clases pregrabadas a tu ritmo',
+      'Progresión por quiz',
+      'No se incluyen clases en vivo',
+    ],
+    cta: 'Contratar',
+    highlighted: false,
+  },
+  {
+    key: 'completo',
+    name: 'Completo',
+    price: '49,99€',
+    originalPrice: '79,99€',
+    period: 'al mes',
+    classPrice: 10,
+    badge: 'Más completo',
+    features: [
+      'Acceso al curso con clases pregrabadas a tu ritmo',
+      'Progresión por quiz',
+      '4 clases one to one en vivo con el profesor, orientadas a tus objetivos',
+      'Clases adicionales a 10€',
+    ],
+    cta: 'Contratar',
+    highlighted: true,
+  },
+]

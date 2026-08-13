@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { API } from '../../config/api'
 import { AuthContext } from '../../context/AuthContext'
 import { LEVELS } from '../../data/levels'
+import { PLANS } from '../../data/plans'
 import './ProfilePage.scss'
 
 const ProfilePage = () => {
@@ -62,6 +63,16 @@ const ProfilePage = () => {
               <option value="">Selecciona tu nivel</option>
               {LEVELS.map(l => <option key={l}>{l}</option>)}
             </select>
+          </label>
+        )}
+        {user?.role === 'student' && (
+          <label className="profile-page__label">
+            Plan actual
+            <input
+              className="profile-page__input profile-page__input--readonly"
+              value={PLANS.find(p => p.key === user?.plan)?.name ?? 'Solo clases'}
+              readOnly
+            />
           </label>
         )}
         <label className="profile-page__label">

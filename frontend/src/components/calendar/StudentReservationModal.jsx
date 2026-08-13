@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVideo, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { WHATSAPP } from '../../config/api'
 import './SlotActionModal.scss'
 import './StudentReservationModal.scss'
-
-const WHATSAPP_NUMBER = '34600000000'
 
 const StudentReservationModal = ({ slot, reservation, onClose, onCancel }) => {
   const dialogRef = useRef(null)
@@ -47,7 +46,7 @@ const StudentReservationModal = ({ slot, reservation, onClose, onCancel }) => {
         {!isPending && reservation.mode === 'presencial' && (
           <a
             className="student-modal__whatsapp"
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`}
+            href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(waText)}`}
             target="_blank"
             rel="noreferrer"
           >

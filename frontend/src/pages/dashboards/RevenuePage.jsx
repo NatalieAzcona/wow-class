@@ -2,15 +2,13 @@ import React, { useState, useContext } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { AuthContext } from '../../context/AuthContext'
 import { API } from '../../config/api'
+import { PLANS } from '../../data/plans'
 import './RevenuePage.scss'
-
-const DISCOUNT_OPTIONS = [
-  { label: 'Sin descuento', price: 15 },
-  { label: 'Dos materias', price: 12 },
-]
 
 const formatDate = (dateStr) =>
   new Date(dateStr).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+
+const getPlan = (key) => PLANS.find(p => p.key === key) ?? PLANS[0]
 
 const RevenuePage = () => {
   const { token } = useContext(AuthContext)
@@ -37,12 +35,14 @@ const RevenuePage = () => {
     return d.getMonth() === currentMonth.getMonth() && d.getFullYear() === currentMonth.getFullYear()
   }) : []
 
-  const getPrice = (id) => {
-    const option = DISCOUNT_OPTIONS.find(o => o.label === discounts[id])
-    return option ? option.price : 15
+  const getDiscount = (id) => parseFloat(discounts[id]) || 0
+
+  const getPrice = (r) => {
+    const base = getPlan(r.student?.plan).classPrice
+    return Math.max(0, base - getDiscount(r._id))
   }
 
-  const total = confirmed.reduce((sum, r) => sum + getPrice(r._id), 0)
+  const total = confirmed.reduce((sum, r) => sum + getPrice(r), 0)
   const subject = confirmed[0]?.availability?.subject || ''
 
   return (
@@ -66,6 +66,7 @@ const RevenuePage = () => {
                 <th>Estudiante</th>
                 <th>Fecha</th>
                 <th>Formato</th>
+                <th>Plan</th>
                 <th>Descuento</th>
                 <th>Precio</th>
               </tr>
@@ -76,18 +77,21 @@ const RevenuePage = () => {
                   <td>{r.student?.name || '—'}</td>
                   <td>{r.availability?.startTime ? formatDate(r.availability.startTime) : '—'}</td>
                   <td>{r.mode === 'online' ? 'Online' : 'Presencial'}</td>
+                  <td>{getPlan(r.student?.plan).name}</td>
                   <td>
-                    <select
-                      className="revenue-page__select"
-                      value={discounts[r._id] || 'Sin descuento'}
-                      onChange={e => setDiscounts(prev => ({ ...prev, [r._id]: e.target.value }))}
-                    >
-                      {DISCOUNT_OPTIONS.map(o => (
-                        <option key={o.label}>{o.label}</option>
-                      ))}
-                    </select>
+                    <div className="revenue-page__discount-wrap">
+                      <input
+                        className="revenue-page__discount-input"
+                        type="number"
+                        min="0"
+                        placeholder="0"
+                        value={discounts[r._id] ?? ''}
+                        onChange={e => setDiscounts(prev => ({ ...prev, [r._id]: e.target.value }))}
+                      />
+                      <span className="revenue-page__discount-symbol">€</span>
+                    </div>
                   </td>
-                  <td className="revenue-page__price">{getPrice(r._id)}€</td>
+                  <td className="revenue-page__price">{getPrice(r)}€</td>
                 </tr>
               ))}
             </tbody>

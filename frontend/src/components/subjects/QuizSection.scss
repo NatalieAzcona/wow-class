@@ -131,7 +131,7 @@
   }
 
   &__continue-btn {
-    @include primary-btn;
+    @include outline-btn(var(--color-black));
   }
 
   &__practice-btn {

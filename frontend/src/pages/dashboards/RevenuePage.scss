@@ -74,9 +74,26 @@
     }
   }
 
-  &__select {
+  &__discount-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  &__discount-input {
     @include form-select;
+    width: 64px;
     font-size: 0.85rem;
+    text-align: right;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button { opacity: 1; }
+  }
+
+  &__discount-symbol {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-gray-400);
   }
 
   &__price {

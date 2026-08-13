@@ -64,7 +64,7 @@
   }
 
   &__save {
-    @include primary-btn;
+    @include outline-btn(var(--color-black));
     align-self: flex-end;
   }
 }
