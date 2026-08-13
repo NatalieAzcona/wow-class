@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { STEPS } from '../data/steps'
 import './Prices.scss'
 
 const Prices = () => {
@@ -6,23 +7,20 @@ const Prices = () => {
 
   return (
     <section className="prices">
-      <h2 className="prices__title">Precios</h2>
-      <p className="prices__subtitle">Sin suscripciones. Pagas solo por las clases que quieres.</p>
+      <h2 className="prices__title">¿Cómo funciona?</h2>
+      <p className="prices__subtitle">Tres pasos para empezar.</p>
       <div className="prices__cards">
-        <div className="prices__card">
-          <h3 className="prices__card-title">Una materia</h3>
-          <p className="prices__card-info">Inglés o Matemáticas</p>
-          <p className="prices__card-price">15€ /clase</p>
-          <button className="prices__card-btn" onClick={() => navigate('/register')}>Empezar</button>
-        </div>
-        <div className="prices__card">
-          <h3 className="prices__card-title">Las dos materias</h3>
-          <p className="prices__card-info">Inglés + Matemáticas</p>
-          <p className="prices__card-price">12€ /clase</p>
-          <button className="prices__card-btn" onClick={() => navigate('/register')}>Empezar</button>
-        </div>
+        {STEPS.map(step => (
+          <div key={step.num} className="prices__card">
+            <span className="prices__card-num">{step.num}</span>
+            <h3 className="prices__card-title">{step.title}</h3>
+            <p className="prices__card-desc">{step.desc}</p>
+          </div>
+        ))}
       </div>
-      <p className="prices__note">Para optar por el descuento de dos materias, estas deben reservarse la misma semana.</p>
+      <button className="prices__cta" onClick={() => navigate('/register')}>
+        Crear cuenta
+      </button>
     </section>
   )
 }
