@@ -71,7 +71,7 @@ const CalendarProfessor = () => {
         headers: { 'Content-type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ startTime: start, endTime: end, subject: user.subject })
       }).then(res => res.json()),
-    onSuccess: () => queryClient.invalidateQueries(['availability'])
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['availability'] })
   })
 
   const deleteMutation = useMutation({
@@ -79,7 +79,7 @@ const CalendarProfessor = () => {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json()),
-    onSuccess: () => { queryClient.invalidateQueries(['availability']); setSelectedEvent(null) }
+    onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['availability'] }); setSelectedEvent(null) }
   })
 
   const actionMutation = useMutation({
@@ -89,7 +89,7 @@ const CalendarProfessor = () => {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}` },
         body: JSON.stringify({ status })
       }).then(res => res.json()),
-    onSuccess: () => { queryClient.invalidateQueries(['reservations']); setSelectedEvent(null) }
+    onSuccess: () => { queryClient.invalidateQueries({ queryKey: ['reservations'] }); setSelectedEvent(null) }
   })
 
   const cancelReservationMutation = useMutation({
@@ -98,8 +98,8 @@ const CalendarProfessor = () => {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     }).then(res => res.json()),
     onSuccess: () => {
-      queryClient.invalidateQueries(['reservations'])
-      queryClient.invalidateQueries(['availability'])
+      queryClient.invalidateQueries({ queryKey: ['reservations'] })
+      queryClient.invalidateQueries({ queryKey: ['availability'] })
       setSelectedEvent(null)
     }
   })
@@ -111,8 +111,8 @@ const CalendarProfessor = () => {
       body: JSON.stringify({ availability: selectedEvent?.id, student: studentId, mode })
     }).then(res => res.json()),
     onSuccess: () => {
-      queryClient.invalidateQueries(['reservations'])
-      queryClient.invalidateQueries(['availability'])
+      queryClient.invalidateQueries({ queryKey: ['reservations'] })
+      queryClient.invalidateQueries({ queryKey: ['availability'] })
       setSelectedEvent(null)
     }
   })
@@ -153,8 +153,8 @@ const CalendarProfessor = () => {
         body: JSON.stringify({ availability: slot._id, student: studentId, mode })
       })
       if (!resRes.ok) { onError?.(); return }
-      queryClient.invalidateQueries(['availability'])
-      queryClient.invalidateQueries(['reservations'])
+      queryClient.invalidateQueries({ queryKey: ['availability'] })
+      queryClient.invalidateQueries({ queryKey: ['reservations'] })
       setSelectedTimeSlot(null)
     } catch {
       onError?.()

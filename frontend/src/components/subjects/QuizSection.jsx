@@ -40,7 +40,7 @@ const QuizSection = ({ module, isTeacher, onPass, levelPath, isCompleted }) => {
       }).then(res => res.json())
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['quiz', module._id])
+      queryClient.invalidateQueries({ queryKey: ['quiz', module._id] })
       setAdding(false)
       setEditingQuestion(null)
     },

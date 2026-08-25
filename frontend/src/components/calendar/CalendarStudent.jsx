@@ -50,12 +50,12 @@ const CalendarStudent = ({ subject }) => {
       }),
     onSuccess: () => {
       setSelectedSlot(null)
-      queryClient.invalidateQueries(['reservationsStudent'])
-      queryClient.invalidateQueries(['availabilityStudent'])
+      queryClient.invalidateQueries({ queryKey: ['reservationsStudent'] })
+      queryClient.invalidateQueries({ queryKey: ['availabilityStudent'] })
     },
     onError: () => {
       setSelectedSlot(null)
-      queryClient.invalidateQueries(['availabilityStudent'])
+      queryClient.invalidateQueries({ queryKey: ['availabilityStudent'] })
     }
   })
 
@@ -67,7 +67,7 @@ const CalendarStudent = ({ subject }) => {
       }).then(res => res.json()),
     onSuccess: () => {
       setSelectedReservation(null)
-      queryClient.invalidateQueries(['reservationsStudent'])
+      queryClient.invalidateQueries({ queryKey: ['reservationsStudent'] })
     }
   })
 

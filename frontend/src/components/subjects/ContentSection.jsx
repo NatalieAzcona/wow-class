@@ -38,7 +38,7 @@ const ContentSection = ({ module, isTeacher }) => {
         }),
       }).then(res => res.json()),
     onSuccess: () => {
-      queryClient.invalidateQueries(['module', module._id])
+      queryClient.invalidateQueries({ queryKey: ['module', module._id] })
       editor.setEditable(false)
       setEditing(false)
     },

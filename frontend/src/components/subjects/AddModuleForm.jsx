@@ -18,7 +18,7 @@ const AddModuleForm = ({ nextOrder, subject, level, onCancel }) => {
                 body: JSON.stringify({ title: title.trim(), subject, level, order: nextOrder }),
             }).then(res => res.json()),
         onSuccess: () => {
-            queryClient.invalidateQueries(['modules', subject, level])
+            queryClient.invalidateQueries({ queryKey: ['modules', subject, level] })
             onCancel()
         },
     })

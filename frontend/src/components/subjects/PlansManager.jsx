@@ -48,7 +48,7 @@ const PlansManager = () => {
     if (changes.plan !== undefined) promises.push(planMutation.mutateAsync({ id: student._id, plan: changes.plan }))
     if (changes.level !== undefined) promises.push(levelMutation.mutateAsync({ id: student._id, level: changes.level }))
     await Promise.all(promises)
-    queryClient.invalidateQueries(['students'])
+    queryClient.invalidateQueries({ queryKey: ['students'] })
     setPending(prev => { const next = { ...prev }; delete next[student._id]; return next })
   }
 

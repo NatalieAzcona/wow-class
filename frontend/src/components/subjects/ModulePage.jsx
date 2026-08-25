@@ -40,7 +40,7 @@ const ModulePage = () => {
       method: 'POST',
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
-    queryClient.invalidateQueries(['progress'])
+    queryClient.invalidateQueries({ queryKey: ['progress'] })
   }
 
   if (user?.role === 'student' && level !== user?.level) {

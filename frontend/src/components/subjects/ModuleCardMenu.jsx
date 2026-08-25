@@ -23,7 +23,7 @@ const ModuleCardMenu = ({ moduleId, subject, level }) => {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       }).then(res => res.json()),
-    onSuccess: () => queryClient.invalidateQueries(['modules', subject, level]),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['modules', subject, level] }),
   })
 
   if (confirmDelete) return (

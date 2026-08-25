@@ -16,7 +16,7 @@ const GoogleCalendarBanner = () => {
 
   const justConnected = new URLSearchParams(location.search).get('google') === 'connected'
   useEffect(() => {
-    if (justConnected) queryClient.invalidateQueries(['me'])
+    if (justConnected) queryClient.invalidateQueries({ queryKey: ['me'] })
   }, [justConnected])
 
   const handleConnect = () => {

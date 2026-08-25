@@ -27,7 +27,7 @@ const VideoSection = ({ module, isTeacher }) => {
         }),
       }).then(res => res.json()),
     onSuccess: () => {
-      queryClient.invalidateQueries(['module', module._id])
+      queryClient.invalidateQueries({ queryKey: ['module', module._id] })
       setEditing(false)
     },
   })
