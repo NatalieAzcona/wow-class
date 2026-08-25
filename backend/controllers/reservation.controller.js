@@ -180,6 +180,10 @@ const deleteReservation = async (req, res) => {
     try {
         const { id } = req.params
         const reservation = await Reservation.findById(id).populate('availability', 'startTime subject')
+        if (!reservation) return res.status(404).json({ message: 'Reserva no encontrada' })
+        if (req.user.role !== 'teacher' && reservation.student.toString() !== req.user.id) {
+            return res.status(403).json({ message: 'No tienes permiso para cancelar esta reserva' })
+        }
         if (reservation.status === 'confirmada') {
             new Notification({ user: reservation.student, message: buildNotificationMessage(reservation.availability, 'cancelada') }).save()
         }
