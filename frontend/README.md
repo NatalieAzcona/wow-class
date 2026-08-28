@@ -26,11 +26,13 @@ frontend/src/
 │   ├── subjects/   # Niveles, módulos, quizzes, editor de contenido
 │   └── profile/    # Avatar, tarjeta de perfil
 ├── context/        # AuthContext (token, user, login, logout)
+├── data/           # PLANS, LEVELS, STEPS — fuente única de datos estáticos
+├── hooks/          # Custom hooks reutilizables
 ├── layout/
 │   ├── public/     # NavBarPublic, Footer
 │   └── private/    # NavBarPrivate
 ├── pages/
-│   ├── dashboards/ # ProfilePage, ModulesPage
+│   ├── dashboards/ # ProfilePage, ModulesPage, PlansPage, RevenuePage
 │   ├── legal/      # AvisoLegal, Privacidad, Cookies
 │   ├── Home.jsx    # Landing page
 │   ├── Login.jsx
@@ -67,18 +69,39 @@ SCSS con variables CSS globales definidas en `src/index.css`:
 
 Mixins compartidos en `src/styles/mixins.scss`: `outline-btn($color)`, `primary-btn`, `btn-pressed`, `section-title`, etc. Todos los componentes importan los mixins con `@use '../../styles/mixins' as *` y siguen nomenclatura BEM.
 
-## Hooks avanzados utilizados
+Las asignaturas aplican tematización por CSS custom properties (`--color-subject-light`, `--color-subject-dark`) que cambian según la clase del contenedor, de forma que módulos, niveles y estados bloqueados adoptan el color de la asignatura automáticamente.
+
+## Custom hooks
+
+| Hook | Para qué |
+|---|---|
+| `useAuth` | Acceso al contexto de autenticación. Expone `user`, `token`, `login`, `logout`, `updateUser`, `isTeacher`, `isStudent` sin necesidad de importar `AuthContext` directamente. |
+
+## Hooks de React utilizados
 
 | Hook | Dónde | Para qué |
 |---|---|---|
-| `useContext` | Toda la app | Acceso global a `AuthContext` (token, user, login, logout) |
+| `useContext` | Encapsulado en `useAuth` | Acceso global a `AuthContext` |
 | `useRef` | Modales del calendario, menú de módulos | Control de `<dialog>` nativo y detección de click fuera del menú |
-| `useQuery` | Fetching de datos | Obtener disponibilidades, reservas, módulos y quizzes con caché automática |
+| `useQuery` | Fetching de datos | Obtener disponibilidades, reservas, módulos, quizzes y progreso con caché automática |
 | `useMutation` | Formularios | Crear reservas, guardar módulos, responder quizzes con invalidación de caché |
-| `useQueryClient` | Tras mutaciones | `invalidateQueries` para refrescar datos sin recargar la página |
-| `useNavigate` | Logout, formularios | Redirección programática tras acciones |
+| `useQueryClient` | Tras mutaciones | `invalidateQueries({ queryKey })` para refrescar datos sin recargar la página |
+| `useNavigate` | Logout, formularios, retroceso dinámico | Redirección programática tras acciones |
 | `useParams` | Rutas anidadas | Extraer `subject`, `level`, `moduleId` de la URL |
 | `useLocation` | Google OAuth | Detectar `?connected=true` al volver del flujo de autorización |
+
+## Sistema de planes
+
+Los estudiantes tienen tres planes: `clases`, `contenido` y `completo`. El plan determina qué módulos son accesibles:
+
+- **clases**: solo el primer módulo de cada nivel es libre, el resto muestra un acceso bloqueado con enlace a `/dashboard/plans`.
+- **contenido** y **completo**: acceso completo a todos los módulos.
+
+El profesor puede cambiar el plan y el nivel de cualquier estudiante desde el panel de gestión de planes (`PlansManager`).
+
+## Progresión por quiz
+
+Dentro de cada módulo hay un quiz. Al aprobarlo, el módulo queda marcado como completado y el siguiente se desbloquea. Si el estudiante vuelve a entrar a un módulo ya completado, ve una pantalla de confirmación con la opción de repetir el quiz en modo práctica (sin afectar el progreso ya guardado).
 
 ## Librerías fuera del temario del curso
 

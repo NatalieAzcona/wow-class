@@ -1,6 +1,6 @@
 # Backend — WöW Class
 
-API REST construida con Node.js + Express 5. Gestiona autenticación, disponibilidades, reservas, módulos y quizzes.
+API REST construida con Node.js + Express 5. Gestiona autenticación, disponibilidades, reservas, módulos, quizzes y progreso de estudiantes.
 
 ## Tecnologías
 
@@ -63,28 +63,30 @@ node seed/seed.js
 
 ## Colecciones de la base de datos
 
-El proyecto tiene cinco colecciones relacionadas entre sí:
-
 ### User
-Usuarios con dos roles posibles: `student`, `teacher`. Almacena datos de contacto, credenciales cifradas, tokens de Google OAuth, el email de la cuenta de Google conectada y el nivel educativo del estudiante.
+Usuarios con dos roles posibles: `student` y `teacher`. Almacena datos de contacto, credenciales cifradas con bcrypt, tokens de Google OAuth, nivel educativo del estudiante y plan de acceso (`clases`, `contenido`, `completo`).
 
 ### Availability
 Franja horaria que un profesor pone disponible. Referencia al usuario profesor y contiene fecha, hora y modalidad. Una disponibilidad solo puede tener una reserva asociada.
 
 ### Reservation
-Relaciona un estudiante (User) con una franja horaria (Availability). Incluye la modalidad elegida. Al crearse, dispara el envío automático de correos de confirmación.
+Relaciona un estudiante (User) con una franja horaria (Availability) y un profesor (User). Incluye estado (`pendiente`, `confirmada`, `rechazada`), modalidad y enlace Meet cuando aplica. Solo el propio estudiante o el profesor puede cancelarla.
 
 ### Module
-Unidades de contenido educativo organizadas por asignatura (`ingles`, `mates`) y nivel (`1` a `5`). Cada módulo tiene título, descripción, video de YouTube, contenido enriquecido (HTML via Tiptap) y orden.
+Unidades de contenido educativo organizadas por asignatura (`inglés`, `matemáticas`) y nivel educativo. Cada módulo tiene título, orden, video de YouTube, contenido enriquecido (HTML via Tiptap) y referencias a sus quizzes.
 
 ### Quiz
-Preguntas de opción múltiple asociadas a un módulo. Cada pregunta tiene cuatro opciones y el texto de la respuesta correcta.
+Preguntas de opción múltiple asociadas a un módulo. Cada pregunta tiene cuatro opciones y la respuesta correcta identificada por texto.
+
+### Progress
+Registra qué módulos ha completado cada estudiante. Cada documento relaciona un `student` con un `module` con un índice único compuesto, de forma que un módulo solo puede marcarse como completado una vez por estudiante. El progreso controla el desbloqueo secuencial de módulos dentro de un nivel.
 
 **Relaciones:**
 
 ```
-User (professor) ──< Availability ──< Reservation >── User (student)
+User (teacher) ──< Availability ──< Reservation >── User (student)
 Module ──< Quiz
+User (student) ──< Progress >── Module
 ```
 
 ---
@@ -107,6 +109,8 @@ Module ──< Quiz
 | GET | `/api/v1/users/me` | Autenticado | Perfil propio |
 | PUT | `/api/v1/users/me` | Autenticado | Actualizar datos propios |
 | GET | `/api/v1/users/students` | Profesor | Listar estudiantes |
+| PATCH | `/api/v1/users/:id/plan` | Profesor | Cambiar plan de un estudiante |
+| PATCH | `/api/v1/users/:id/level` | Profesor | Cambiar nivel de un estudiante |
 
 ### Disponibilidades
 | Método | Ruta | Acceso | Descripción |
@@ -119,22 +123,28 @@ Module ──< Quiz
 | Método | Ruta | Acceso | Descripción |
 |---|---|---|---|
 | GET | `/api/v1/reservation` | Autenticado | Reservas propias |
-| POST | `/api/v1/reservation` | Estudiante | Crear reserva (valida duplicados) |
+| POST | `/api/v1/reservation` | Estudiante | Crear reserva |
 | PUT | `/api/v1/reservation/:id` | Profesor | Confirmar o rechazar reserva |
-| DELETE | `/api/v1/reservation/:id` | Autenticado | Cancelar reserva |
+| DELETE | `/api/v1/reservation/:id` | Propietario o profesor | Cancelar reserva |
 
 ### Módulos
 | Método | Ruta | Acceso | Descripción |
 |---|---|---|---|
-| GET | `/api/v1/modules` | Autenticado | Listar módulos (filtrar por asignatura/nivel) |
-| POST | `/api/v1/modules` | Profesor | Crear módulo |
-| PUT | `/api/v1/modules/:id` | Profesor | Editar módulo |
-| DELETE | `/api/v1/modules/:id` | Profesor | Eliminar módulo |
+| GET | `/api/v1/module` | Autenticado | Listar módulos |
+| GET | `/api/v1/module/:id` | Autenticado | Obtener módulo por id |
+| POST | `/api/v1/module` | Profesor | Crear módulo |
+| PUT | `/api/v1/module/:id` | Profesor | Editar módulo |
+| DELETE | `/api/v1/module/:id` | Profesor | Eliminar módulo |
 
 ### Quizzes
 | Método | Ruta | Acceso | Descripción |
 |---|---|---|---|
-| GET | `/api/v1/quiz/:moduleId` | Autenticado | Preguntas de un módulo |
-| POST | `/api/v1/quiz` | Profesor | Crear pregunta |
-| PUT | `/api/v1/quiz/:id` | Profesor | Editar pregunta |
-| DELETE | `/api/v1/quiz/:id` | Profesor | Eliminar pregunta |
+| GET | `/api/v1/quiz/module/:moduleId` | Autenticado | Quiz de un módulo |
+| POST | `/api/v1/quiz` | Profesor | Crear quiz |
+| PUT | `/api/v1/quiz/:id` | Profesor | Editar quiz |
+
+### Progreso
+| Método | Ruta | Acceso | Descripción |
+|---|---|---|---|
+| GET | `/api/v1/progress` | Estudiante | IDs de módulos completados |
+| POST | `/api/v1/progress/:moduleId` | Estudiante | Marcar módulo como completado |
