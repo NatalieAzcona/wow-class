@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../../context/AuthContext'
+import useAuth from '../../hooks/useAuth'
+import React from 'react'
+
 import CalendarStudent from './CalendarStudent'
 import CalendarProfessor from './CalendarProfessor'
 
 const SubjectCalendar = ({ subject }) => {
-  const { user } = useContext(AuthContext)
+  const { user } = useAuth()
   return user.role === 'teacher'
     ? <CalendarProfessor />
     : <CalendarStudent subject={subject} />

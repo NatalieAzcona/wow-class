@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import useAuth from '../../hooks/useAuth'
+import React, { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { AuthContext } from '../../context/AuthContext'
+
 import ModuleCard from './ModuleCard'
 import AddModuleForm from './AddModuleForm'
 import { API } from '../../config/api'
@@ -9,7 +10,7 @@ import './LevelPage.scss'
 
 const LevelPage = () => {
     const { subject, level } = useParams()
-    const { user } = useContext(AuthContext)
+    const { user } = useAuth()
     const isTeacher = user?.role === 'teacher'
     const [adding, setAdding] = useState(false)
 

@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
-import { AuthContext } from '../../context/AuthContext'
+import useAuth from '../../hooks/useAuth'
+import React from 'react'
+
 import SubjectCard from '../../components/subjects/SubjectCard'
 import './ModulesPage.scss'
 
 const ModulesPage = () => {
-  const { user } = useContext(AuthContext)
+  const { user } = useAuth()
 
   const allCards = [
     { subject: 'english', path: '/dashboard/subject/inglés', key: 'inglés' },

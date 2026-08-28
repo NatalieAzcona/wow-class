@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react'
+import useAuth from '../../hooks/useAuth'
+import React, { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay, faBookOpen, faQuestion } from '@fortawesome/free-solid-svg-icons'
-import { AuthContext } from '../../context/AuthContext'
+
 import ModuleHeader from './ModuleHeader'
 import VideoSection from './VideoSection'
 import ContentSection from './ContentSection'
@@ -19,7 +20,7 @@ const SECTIONS = [
 
 const ModulePage = () => {
   const { subject, level, moduleId } = useParams()
-  const { user } = useContext(AuthContext)
+  const { user } = useAuth()
   const isTeacher = user?.role === 'teacher'
   const [activeSection, setActiveSection] = useState('video')
   const queryClient = useQueryClient()

@@ -1,13 +1,14 @@
-import React, { useState, useContext } from 'react'
+import useAuth from '../../hooks/useAuth'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { API } from '../../config/api'
-import { AuthContext } from '../../context/AuthContext'
+
 import { LEVELS } from '../../data/levels'
 import { PLANS } from '../../data/plans'
 import './ProfilePage.scss'
 
 const ProfilePage = () => {
-  const { user, token, updateUser } = useContext(AuthContext)
+  const { user, token, updateUser } = useAuth()
   const [name, setName] = useState(user?.name || '')
   const [phone, setPhone] = useState(user?.phone || '')
   const [address, setAddress] = useState(user?.address || '')

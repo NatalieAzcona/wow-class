@@ -1,10 +1,11 @@
-import React, { useContext, useState, useRef, useEffect } from 'react'
+import useAuth from '../../hooks/useAuth'
+import React, { useState, useRef, useEffect } from 'react'
 import ProfileCard from './ProfileCard'
-import { AuthContext } from '../../context/AuthContext'
+
 import './AvatarMenu.scss'
 
 const AvatarMenu = () => {
-  const { user } = useContext(AuthContext)
+  const { user } = useAuth()
   const initial = user?.name?.charAt(0).toUpperCase() || '?'
   const [open, setOpen] = useState(false)
   const menuRef = useRef(null)

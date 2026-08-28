@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react'
+import useAuth from '../../hooks/useAuth'
+import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { AuthContext } from '../../context/AuthContext'
+
 import { API } from '../../config/api'
 import { PLANS } from '../../data/plans'
 import './RevenuePage.scss'
@@ -11,7 +12,7 @@ const formatDate = (dateStr) =>
 const getPlan = (key) => PLANS.find(p => p.key === key) ?? PLANS[0]
 
 const RevenuePage = () => {
-  const { token } = useContext(AuthContext)
+  const { token } = useAuth()
   const [discounts, setDiscounts] = useState({})
   const [currentMonth, setCurrentMonth] = useState(new Date())
 

@@ -1,14 +1,14 @@
-import React, { useContext } from 'react'
+import useAuth from '../hooks/useAuth'
+import React from 'react'
 import { API } from '../config/api'
 import './Auth.scss'
 import { useMutation } from '@tanstack/react-query'
 import {useForm} from "react-hook-form"
-import { AuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
-const { login } = useContext(AuthContext)
+const { login } = useAuth()
 
 const navigate = useNavigate()
 

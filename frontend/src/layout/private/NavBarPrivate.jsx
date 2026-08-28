@@ -1,12 +1,13 @@
-import React, { useContext } from 'react'
+import useAuth from '../../hooks/useAuth'
+import React from 'react'
 import { NavLink } from "react-router-dom"
 import "./NavBarPrivate.scss"
 import AvatarMenu from '../../components/profile/AvatarMenu'
 import NotificationBell from '../../components/notifications/NotificationBell'
-import { AuthContext } from '../../context/AuthContext'
+
 
 const NavBarPrivate = () => {
-  const { user } = useContext(AuthContext)
+  const { user } = useAuth()
 
     return (
         <nav className="navbar">

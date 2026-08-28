@@ -1,6 +1,5 @@
+import useAuth from '../hooks/useAuth'
 import { Route, Routes, Navigate } from "react-router-dom"
-import { useContext } from "react"
-import { AuthContext } from "../context/AuthContext"
 import Home from "../pages/Home"
 import Register from "../pages/Register"
 import Login from "../pages/Login"
@@ -22,7 +21,7 @@ import Privacidad from "../pages/legal/Privacidad"
 import Cookies from "../pages/legal/Cookies"
 
 const AppRouter = () => {
-  const { token } = useContext(AuthContext)
+  const { token } = useAuth()
 
   return (
     <div className="app-layout">

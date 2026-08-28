@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import useAuth from '../../hooks/useAuth'
+import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { AuthContext } from '../../context/AuthContext'
+
 import SubjectCalendar from '../calendar/SubjectCalendar'
 import LevelTeacher from './LevelPath'
 import LevelStudent from './LevelStudent'
@@ -12,7 +13,7 @@ import './SubjectPage.scss'
 
 const SubjectPage = () => {
   const { subject } = useParams()
-  const { user } = useContext(AuthContext)
+  const { user } = useAuth()
   const [tab, setTab] = useState('modules')
 
   const { data, isLoading, isError } = useQuery({

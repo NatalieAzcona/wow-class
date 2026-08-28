@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import useAuth from '../../hooks/useAuth'
+import React, { useState } from 'react'
 import { Views } from 'react-big-calendar'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { AuthContext } from '../../context/AuthContext'
+
 import CalendarView from './CalendarView'
 import CalendarLegend from './CalendarLegend'
 import CalendarModals from './CalendarModals'
@@ -9,7 +10,7 @@ import GoogleCalendarBanner from './GoogleCalendarBanner'
 import { API } from '../../config/api'
 
 const CalendarProfessor = () => {
-  const { user } = useContext(AuthContext)
+  const { user } = useAuth()
   const [selectedEvent, setSelectedEvent] = useState(null)
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null)
   const [date, setDate] = useState(new Date())

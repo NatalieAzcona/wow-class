@@ -1,18 +1,18 @@
+import useAuth from '../hooks/useAuth'
 import React from 'react'
 import { API } from '../config/api'
 import './Auth.scss'
 import { useMutation } from '@tanstack/react-query'
 import {useForm} from "react-hook-form"
 import {useNavigate, Link} from 'react-router-dom'
-import { useContext } from 'react'
-import { AuthContext } from '../context/AuthContext'
+
 import { LEVELS } from '../data/levels'
 
 
 const Register = () => {
 
 const navigate = useNavigate()  
-const { login } = useContext(AuthContext)
+const { login } = useAuth()
 const { register, handleSubmit, formState: { errors }, getValues } = useForm()
 
 
